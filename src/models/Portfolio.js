@@ -1,3 +1,5 @@
+const Stock = require('./Stock');
+
 class Portfolio {
 
     constructor(cash, creationDate) {
@@ -28,8 +30,24 @@ class Portfolio {
     }
 
 
-    getHoldings() {
+    getPortfolio() {
         return this.stocks;
+    }
+
+    getStock(ticker) {
+        if (this.stocks.has(ticker)) {
+            return this.stocks.get(ticker).stock;
+        } else {
+            throw new Error('Stock not found in portfolio.');
+        }
+    }
+
+    getHoldings(ticker) {
+        if (this.stocks.has(ticker)) {
+            return this.stocks.get(ticker).holdings;
+        } else {
+            throw new Error('Stock not found in portfolio.');
+        }
     }
 
     buyStock(ticker, price, quantity) {
@@ -70,3 +88,5 @@ class Portfolio {
 
 
 }
+
+module.exports = Portfolio;
