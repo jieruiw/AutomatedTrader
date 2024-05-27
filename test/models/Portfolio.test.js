@@ -41,12 +41,6 @@ describe('User Sim', () => {
         expect(portfolio.getCash()).toBe(1302);
         expect(portfolio.getHoldings(appleTicker)).toBe(0);
     });
-
-
-
-
-
-
 });
 
 

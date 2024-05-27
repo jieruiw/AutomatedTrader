@@ -12,14 +12,14 @@ async function getZacksRank(ticker) {
         rankChips.each((index, element) => {
             const text = $(element).text().trim();
             if (text && text !== '&nbsp;') {
-                zacksRank = text;
+                zacksRank = parseInt(text, 10);
                 return false;
             }
         });
-
-        console.log(`The Zacks Rank for ${ticker} is ${zacksRank}`);
         return zacksRank;
     } catch (error) {
-        console.error(`Error fetching Zacks Rank for ${ticker}:`, error);
+        throw new Error(`Error fetching Zacks Rank for ${ticker}!`);
     }
 }
+
+module.exports = {getZacksRank};
