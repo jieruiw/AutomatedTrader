@@ -17,6 +17,9 @@ class TradingAlgorithm {
 
     decision(ticker, config) { // potential config as to which trading strategies to include
         const zacksRank = DataRetriever.getZacksRank(ticker);
+
+
+
         // TODO: Add other analyst/indicator inputs and make decision
     }
 

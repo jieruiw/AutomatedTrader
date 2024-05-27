@@ -50,7 +50,136 @@ async function getPriceTargets(ticker) {
 }
 
 
+async function getSMA(ticker){
+    const baseURL = 'https://api.twelvedata.com/sma';
+    const params = {
+        symbol: ticker,
+        interval: '1day',
+        apikey: '64054d02fbb640a5972ec2fb4061bfd8'
+    };
+
+
+    const response = await axios.get(baseURL, { params });
+
+    if (response.status === 200 && response.data.status === "ok") {
+        return response.data.values.map(item => ({
+            datetime: item.datetime,
+            sma: parseFloat(item.sma)
+        }));
+    } else {
+        throw new Error(`API Error: ${response.data.message}`);
+    }
+}
+
+
+async function getEMA(ticker){
+    const baseURL = 'https://api.twelvedata.com/ema';
+    const params = {
+        symbol: ticker,
+        interval: '1day',
+        apikey: '64054d02fbb640a5972ec2fb4061bfd8'
+    };
+
+
+    const response = await axios.get(baseURL, { params });
+
+    if (response.status === 200 && response.data.status === "ok") {
+        return response.data.values.map(item => ({
+            datetime: item.datetime,
+            ema: parseFloat(item.ema)
+        }));
+    } else {
+        throw new Error(`API Error: ${response.data.message}`);
+    }
+}
+
+
+async function getRSI(ticker){
+    const baseURL = 'https://api.twelvedata.com/rsi';
+    const params = {
+        symbol: ticker,
+        interval: '1day',
+        apikey: '64054d02fbb640a5972ec2fb4061bfd8'
+    };
+
+
+    const response = await axios.get(baseURL, { params });
+
+    if (response.status === 200 && response.data.status === "ok") {
+        return response.data.values.map(item => ({
+            datetime: item.datetime,
+            rsi: parseFloat(item.rsi)
+        }));
+    } else {
+        throw new Error(`API Error: ${response.data.message}`);
+    }
+}
+
+
+async function getMACD(ticker){
+    const baseURL = 'https://api.twelvedata.com/macd';
+    const params = {
+        symbol: ticker,
+        interval: '1day',
+        apikey: '64054d02fbb640a5972ec2fb4061bfd8'
+    };
+
+
+    const response = await axios.get(baseURL, { params });
+
+    if (response.status === 200 && response.data.status === "ok") {
+        return response.data.values.map(item => ({
+            datetime: item.datetime,
+            macd: parseFloat(item.macd),
+            macd_signal: parseFloat(item.macd_signal),
+            macd_hist: parseFloat(item.macd_hist)
+        }));
+    } else {
+        throw new Error(`API Error: ${response.data.message}`);
+    }
+}
+
+
+async function getBBands(ticker) {
+    const baseURL = "https://api.twelvedata.com/bbands";
+    const params = {
+        symbol: ticker,
+        interval: "1day",
+        apikey: "64054d02fbb640a5972ec2fb4061bfd8"
+    };
+
+    const response = await axios.get(baseURL, { params });
+    if (response.status === 200 && response.data.status === "ok") {
+        return response.data.values.map(item => ({
+            datetime: item.datetime,
+            upper_band: parseFloat(item.upper_band),
+            middle_band: parseFloat(item.middle_band),
+            lower_band: parseFloat(item.lower_band)
+        }));
+    } else {
+        throw new Error(`API Error: ${response.data.message}`);
+    }
+}
 
 
 
-module.exports = {getZacksRank, getPriceTargets};
+async function getOBV(ticker) {
+    const baseURL = "https://api.twelvedata.com/obv";
+    const params = {
+        symbol: ticker,
+        interval: "1day",
+        apikey: "64054d02fbb640a5972ec2fb4061bfd8"
+    };
+
+    const response = await axios.get(baseURL, { params });
+    if (response.status === 200 && response.data.status === "ok") {
+        return response.data.values.map(item => ({
+            datetime: item.datetime,
+            obv: parseFloat(item.obv)
+        }));
+    } else {
+        throw new Error(`API Error: ${response.data.message}`);
+    }
+}
+
+module.exports = {getZacksRank, getPriceTargets, getSMA, getEMA, getRSI, getMACD, getBBands, getOBV};
