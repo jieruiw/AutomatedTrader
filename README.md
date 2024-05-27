@@ -20,4 +20,5 @@ Automated Trader is a Node.js project that implements a stock trading strategy u
    cd automated-trader
 
 2.	**Install dependencies**:
-   npm install
+  ```bash
+ npm install
