@@ -82,12 +82,12 @@ describe('Technical Indicators', () => {
         macd.forEach(item => {
             expect(item).toHaveProperty('datetime');
             expect(item).toHaveProperty('macd');
-            expect(item).toHaveProperty('signal');
-            expect(item).toHaveProperty('histogram');
+            expect(item).toHaveProperty('macd_signal');
+            expect(item).toHaveProperty('macd_hist');
             expect(typeof item.datetime).toBe('string');
             expect(typeof item.macd).toBe('number');
-            expect(typeof item.signal).toBe('number');
-            expect(typeof item.histogram).toBe('number');
+            expect(typeof item.macd_signal).toBe('number');
+            expect(typeof item.macd_hist).toBe('number');
         });
     });
 
