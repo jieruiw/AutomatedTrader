@@ -15,15 +15,12 @@ class TradingAlgorithm {
     }
 
 
-    buyDecision(ticker) {
+    decision(ticker) {
         const zacksRank = DataRetriever.getZacksRank(ticker);
         // TODO: Add other analyst/indicator inputs and make decision
     }
 
-    sellDecision(ticker) {
-        const zacksRank = DataRetriever.getZacksRank(ticker);
-        // TODO: Add other analyst/indicator inputs and make decision
-    }
+
 
 
 }
