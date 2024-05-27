@@ -2,10 +2,10 @@ const DataRetriever = require('../../src/utils/DataRetriever');
 const { getZacksRank, getPriceTargets, getSMA, getEMA, getRSI, getMACD, getBBands, getOBV} = require('../../src/utils/DataRetriever');
 
 
-describe('A few symbols', () => {
+describe('Zacks Tests', () => {
     let portfolio;
 
-    test('should get AAPL ticker', async () => {
+    test('should get AAPL Zacks Rank', async () => {
         const zacksRank = await DataRetriever.getZacksRank('AAPL');
         expect(typeof zacksRank).toBe("number")
         console.log(zacksRank);
