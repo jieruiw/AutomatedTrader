@@ -1,13 +1,4 @@
 const DataRetriever = require('../../src/utils/DataRetriever');
-// TODO:Data Analysis: Analyze retrieved data.
-// 	•	Decision Making: Implement buy/sell logic.
-// 	•	Integration with Portfolio: Execute trades and update portfolio.
-// 	•	Risk Management: Enforce risk parameters.
-// 	•	Logging and Monitoring: Keep records of trades and strategy performance.
-// 	•	Flexibility and Extensibility: Allow for different strategies to be tested and implemented.
-
-
-
 class TradingAlgorithm {
 
     constructor(config) {
@@ -15,7 +6,7 @@ class TradingAlgorithm {
     }
 
 
-    async decision(ticker, config) {
+    async decision(ticker) {
         const zacksRank = await this.zacksDecision(ticker);
 
         const technicalScore = await this.technicalDecision(ticker);

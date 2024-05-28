@@ -1,3 +1,4 @@
+const DataRetriever = require('./DataRetriever');
 class StockListManager {
     constructor() {
         if (!StockListManager.instance) {
@@ -18,6 +19,16 @@ class StockListManager {
 
     getStocks() {
         return this.stocks;
+    }
+
+    updateStockPrice() {
+        //TODO
+    }
+
+    getStockPrice(ticker) {
+        const newPrice = DataRetriever.getStockPrice(ticker);
+        this.updateStockPrice(newPrice);
+        return newPrice;
     }
 }
 

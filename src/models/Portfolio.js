@@ -57,6 +57,7 @@ class Portfolio {
 
             if (this.stocks.has(ticker)) {
                 this.stocks.get(ticker).holdings += quantity;
+                this.stocks.get(ticker).stock.price = price;
 
             } else {
                 const currStock = new Stock(ticker, price);
@@ -70,6 +71,7 @@ class Portfolio {
 
     sellStock(ticker, price, quantity) {
         if (this.stocks.has(ticker)) {
+            this.stocks.get(ticker).stock.price = price;
             const stockEntry = this.stocks.get(ticker);
             if (stockEntry.holdings >= quantity) {
                 stockEntry.holdings -= quantity;
@@ -86,7 +88,9 @@ class Portfolio {
     }
 
 
-
+    getTotalStockValue() {
+        // TODO: total stocks * cost,  using old prices, as rough estimate.
+    }
 }
 
 module.exports = Portfolio;

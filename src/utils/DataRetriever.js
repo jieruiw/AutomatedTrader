@@ -165,7 +165,6 @@ async function getBBands(ticker) {
 }
 
 
-
 async function getOBV(ticker) {
     const baseURL = "https://api.twelvedata.com/obv";
     const params = {
@@ -185,4 +184,9 @@ async function getOBV(ticker) {
     }
 }
 
-module.exports = {getZacksRank, getPriceTargets, getSMA, getEMA, getRSI, getMACD, getBBands, getOBV};
+async function getStockPrice(ticker) {
+    //TODO
+    return 0;
+}
+
+module.exports = {getZacksRank, getPriceTargets, getSMA, getEMA, getRSI, getMACD, getBBands, getOBV, getStockPrice};
