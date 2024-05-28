@@ -22,6 +22,10 @@ class TradingAlgorithm {
 
         const analystScore = await this.analystDecision(ticker);
 
+        console.log('zacks is: ' + zacksRank);
+        console.log('technical is: ' + technicalScore);
+        console.log('analyst is: ' + analystScore);
+
         return (this.config.weights.zacks * zacksRank) +
             (this.config.weights.technical * technicalScore) +
             (this.config.weights.analyst * analystScore);
@@ -58,19 +62,24 @@ class TradingAlgorithm {
         const bbands = await DataRetriever.getBBands(ticker);
         const obv = await DataRetriever.getOBV(ticker);
 
-        let score = 0;
+        let maResult = this.maCalc(ema50, ema200, sma50, sma200);
 
-        score += this.maCalc(ema50, ema200, sma50, sma200);
+        let rsiResult = this.rsiCalc(rsi);
 
-        score += this.rsiCalc(rsi);
+        let macdResult = this.macdCalc(macd);
 
-        score += this.macdCalc(macd);
+        let bbandsResult = this.bbandsCalc(bbands);
 
-        score += this.bbandsCalc(bbands);
+        let obvResult = this.obvCalc(obv);
 
-        score += this.obvCalc(obv);
+        // console.log("ma: " + maResult);
+        // console.log("rsi: " + rsiResult);
+        // console.log("macd: " + macdResult);
+        // console.log("bbands: " + bbandsResult);
+        // console.log("obv: " + obvResult);
 
-        return score;
+
+        return maResult + rsiResult + macdResult + bbandsResult + obvResult;
     }
 
     maCalc(ema50, ema200, sma50, sma200) {
@@ -162,8 +171,9 @@ class TradingAlgorithm {
     }
 
     async analystDecision(ticker) {
-        const priceTargets = await DataRetriever.getPriceTargets();
+        const priceTargets = await DataRetriever.getPriceTargets(ticker);
         const { low, current, average, high } = priceTargets;
+        console.log(priceTargets);
         let score = 0;
 
         if (current < low) {
@@ -173,7 +183,7 @@ class TradingAlgorithm {
         } else {
             // Calculate score based on proximity to average
             const range = high - low;
-            const distanceFromAverage = current - average;
+            const distanceFromAverage = average - current;
             score = (distanceFromAverage / range) * 100;
 
             // Ensure the score is within -100 to 100 range

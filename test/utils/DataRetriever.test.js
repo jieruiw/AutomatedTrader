@@ -14,8 +14,8 @@ describe('Zacks Tests', () => {
 
 
 describe('Analyst Price Targets', () => {
-    test('should get TSLA analyst price targets', async () => {
-        const priceTargets = await getPriceTargets('TSLA');
+    test('should get AAPL analyst price targets', async () => {
+        const priceTargets = await getPriceTargets('AAPL');
         expect(typeof priceTargets.low).toBe('number');
         expect(typeof priceTargets.average).toBe('number');
         expect(typeof priceTargets.current).toBe('number');
