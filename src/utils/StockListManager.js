@@ -1,4 +1,5 @@
 const DataRetriever = require('./DataRetriever');
+const Stock = require("../models/Stock");
 class StockListManager {
     constructor() {
         if (!StockListManager.instance) {
@@ -9,8 +10,11 @@ class StockListManager {
         return StockListManager.instance;
     }
 
-    addStock(stock) {
+    async addStock(ticker) {
+        const price = await DataRetriever.getStockPrice(ticker);
+        const stock = new Stock(ticker, price);
         this.stocks.push(stock);
+        console.log('stock ' + stock.getTicker() + ' added');
     }
 
     removeStock(stock) {
@@ -22,7 +26,7 @@ class StockListManager {
     }
 
     async getStockPrice(ticker) {
-        const newPrice = DataRetriever.getStockPrice(ticker);
+        const newPrice = await DataRetriever.getStockPrice(ticker);
         const stock = this.stocks.find(s => s.getTicker() === ticker);
         if (stock) {
             stock.setPrice(newPrice);
@@ -36,4 +40,4 @@ class StockListManager {
 const instance = new StockListManager();
 Object.freeze(instance);
 
-export default instance;
+module.exports = instance;

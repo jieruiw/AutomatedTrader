@@ -45,7 +45,17 @@ class Scheduler {
         }
     }
 
-    start() {
+    async delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+
+    async start(stocks) {
+
+        for (const ticker of stocks) {
+            await StockListManager.addStock(ticker);
+        }
+
         // Schedule stock price updates every 2 minutes
         cron.schedule('*/2 * * * 1-5', async () => {
             await this.updateStockPrices();
@@ -64,13 +74,26 @@ class Scheduler {
             cron.schedule(time, async () => {
                 const stocks = StockListManager.getStocks();
                 for (let i = 0; i < stocks.length; i++) {
-                    const ticker = stocks[i];
+                    const stock = stocks[i];
+                    const ticker = stock.getTicker();
+                    console.log("ticker got for: " + ticker);
                     await this.generateSignal(ticker);
+                    await this.delay(10000);
                 }
             }, {
                 scheduled: true,
                 timezone: "America/Vancouver"
             });
+        }
+    }
+
+
+    async manualCheck() {
+        const stocks = StockListManager.getStocks();
+        for (const stock of stocks) {
+            const ticker = stock.getTicker();
+            await this.generateSignal(ticker);
+            await this.delay(10000);
         }
     }
 

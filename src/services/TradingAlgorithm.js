@@ -44,10 +44,10 @@ class TradingAlgorithm {
     }
 
     async technicalDecision(ticker) {
-        const sma50 = await DataRetriever.getSMA(ticker, 50);
-        const sma200 = await DataRetriever.getSMA(ticker, 200);
-        const ema50 = await DataRetriever.getEMA(ticker, 50);
-        const ema200 = await DataRetriever.getEMA(ticker, 200);
+        const sma50 = await DataRetriever.getSMA(ticker, 30);
+        const sma200 = await DataRetriever.getSMA(ticker, 120);
+        const ema50 = await DataRetriever.getEMA(ticker, 30);
+        const ema200 = await DataRetriever.getEMA(ticker, 120);
         const rsi = await DataRetriever.getRSI(ticker);
         const macd = await DataRetriever.getMACD(ticker);
         const bbands = await DataRetriever.getBBands(ticker);
@@ -63,6 +63,12 @@ class TradingAlgorithm {
 
         let obvResult = this.obvCalc(obv);
 
+        console.log('maResult is: ' + maResult);
+        console.log('RSI is: ' + rsiResult);
+        console.log('macd is: ' + macdResult);
+        console.log('bbands is: ' + bbandsResult);
+        console.log('obv is: ' + obvResult);
+
         let overallResult = maResult + rsiResult + macdResult + bbandsResult + obvResult;
 
         if (overallResult > 100) {
@@ -75,24 +81,24 @@ class TradingAlgorithm {
         return overallResult;
     }
 
-    maCalc(ema50, ema200, sma50, sma200) {
+    maCalc(emaShort, emaLong, smaShort, smaLong) {
         // Ensure we have data for the required periods
-        if (!ema50 || !ema200 || !sma50 || !sma200) {
+        if (!emaShort || !emaLong || !smaShort || !smaLong) {
             console.error('Missing data for moving averages');
             return 0;  // Neutral signal due to insufficient data
         }
 
         // Determine the most recent values
-        const latestShortTermEMA = ema50[0].ema;
-        const latestLongTermEMA = ema200[0].ema;
-        const latestShortTermSMA = sma50[0].sma;
-        const latestLongTermSMA = sma200[0].sma;
+        const latestShortTermEMA = emaShort[0].ema;
+        const latestLongTermEMA = emaLong[0].ema;
+        const latestShortTermSMA = smaShort[0].sma;
+        const latestLongTermSMA = smaLong[0].sma;
 
         // Determine the values 1 day before (yesterday's values)
-        const previousShortTermEMA = ema50[1].ema;
-        const previousLongTermEMA = ema200[1].ema;
-        const previousShortTermSMA = sma50[1].sma;
-        const previousLongTermSMA = sma200[1].sma;
+        const previousShortTermEMA = emaShort[1].ema;
+        const previousLongTermEMA = emaLong[1].ema;
+        const previousShortTermSMA = smaShort[1].sma;
+        const previousLongTermSMA = smaLong[1].sma;
 
         // Primary Indicator: Check for Golden Cross and Death Cross for EMA
         if (previousShortTermEMA <= previousLongTermEMA && latestShortTermEMA > latestLongTermEMA) {

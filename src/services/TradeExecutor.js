@@ -19,7 +19,7 @@ class TradeExecutor {
     }
 
     // Method to execute trades based on the signal
-    executeTrade(signal, ticker) {
+    executeTrade(signal, ticker) { // TODO: BUG HERE:
         const currStockPrice = StockListManager.getStockPrice(ticker);
         const currentStockValue = this.portfolio.getHoldings(ticker) * currStockPrice;
         const totalValue = this.portfolio.getCash() + this.portfolio.getTotalStockValue();

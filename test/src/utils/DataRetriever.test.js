@@ -1,5 +1,5 @@
-const DataRetriever = require('../../src/utils/DataRetriever');
-const { getZacksRank, getPriceTargets, getSMA, getEMA, getRSI, getMACD, getBBands, getOBV} = require('../../src/utils/DataRetriever');
+const DataRetriever = require('../../../src/utils/DataRetriever');
+const { getZacksRank, getPriceTargets, getSMA, getEMA, getRSI, getMACD, getBBands, getOBV, getStockPrice} = require('../../../src/utils/DataRetriever');
 
 
 describe('Zacks Tests', () => {
@@ -21,6 +21,15 @@ describe('Analyst Price Targets', () => {
         expect(typeof priceTargets.current).toBe('number');
         expect(typeof priceTargets.high).toBe('number');
         console.log(priceTargets);
+    });
+});
+
+
+describe('Get current price', () => {
+    test('should get AAPL price', async () => {
+        const price = await getStockPrice('AAPL');
+        expect(typeof price).toBe('number');
+        console.log(price);
     });
 });
 

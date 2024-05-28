@@ -2,6 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 async function getZacksRank(ticker) {
+    console.log("running getZacks for " + ticker);
     try {
         const response = await axios.get('https://www.zacks.com/stock/quote/' + ticker);
         const html = response.data;
@@ -79,7 +80,7 @@ async function getEMA(ticker, time){
     const params = {
         symbol: ticker,
         interval: '1day',
-        apikey: '64054d02fbb640a5972ec2fb4061bfd8',
+        apikey: '8e6856af48ce4ea6aebdf9d955cd80e1',
         outputsize: 10,
         time_period: time
     };
@@ -102,7 +103,7 @@ async function getRSI(ticker){
     const params = {
         symbol: ticker,
         interval: '1day',
-        apikey: '64054d02fbb640a5972ec2fb4061bfd8'
+        apikey: '6441fada692f4c2baa006b2ca9080b4d'
     };
 
 
@@ -124,7 +125,7 @@ async function getMACD(ticker){
     const params = {
         symbol: ticker,
         interval: '1day',
-        apikey: '64054d02fbb640a5972ec2fb4061bfd8'
+        apikey: '8ce78a0fe62449c6b79fc0fc54dff3dc'
     };
 
 
@@ -148,7 +149,7 @@ async function getBBands(ticker) {
     const params = {
         symbol: ticker,
         interval: "1day",
-        apikey: "64054d02fbb640a5972ec2fb4061bfd8"
+        apikey: "2bb245a933f144978a57512e9699008c"
     };
 
     const response = await axios.get(baseURL, { params });
@@ -170,7 +171,7 @@ async function getOBV(ticker) {
     const params = {
         symbol: ticker,
         interval: "1day",
-        apikey: "64054d02fbb640a5972ec2fb4061bfd8"
+        apikey: "38e6a82f685b42e391a5253de6c6d555"
     };
 
     const response = await axios.get(baseURL, { params });
@@ -185,8 +186,21 @@ async function getOBV(ticker) {
 }
 
 async function getStockPrice(ticker) {
-    //TODO
-    return 0;
+    const apiKey = 'LtTzlKlTZb931YisiggYFCWv2mJbJmAi';
+    const url = `https://financialmodelingprep.com/api/v3/quote-short/${ticker}?apikey=${apiKey}`;
+
+    try {
+        const response = await axios.get(url);
+        if (response.data && response.data.length > 0) {
+            const stockData = response.data[0];
+            return stockData.price;
+        } else {
+            throw new Error(`No data found for ticker ${ticker}`);
+        }
+    } catch (error) {
+        console.error(`Error fetching stock price for ${ticker}:`, error);
+        throw error;
+    }
 }
 
 module.exports = {getZacksRank, getPriceTargets, getSMA, getEMA, getRSI, getMACD, getBBands, getOBV, getStockPrice};

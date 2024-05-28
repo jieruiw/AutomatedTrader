@@ -1,5 +1,5 @@
-const TradingAlgorithm = require('../../src/services/TradingAlgorithm');
-const Portfolio = require("../../src/models/Portfolio");
+const TradingAlgorithm = require('../../../src/services/TradingAlgorithm');
+const Portfolio = require("../../../src/models/Portfolio");
 
 describe('TradingAlg Unit Tests', () => {
     const config = {
@@ -15,7 +15,7 @@ describe('TradingAlg Unit Tests', () => {
     });
 
     test('test zacks recommendations', async () => {
-        const zackScore = await tradingAlgorithm.zacksDecision('AAPL');
+        const zackScore = await tradingAlgorithm.zacksDecision('NVDA');
         console.log(zackScore);
         expect(zackScore).toBeGreaterThan(-101);
         expect(zackScore).toBeLessThan(101);
@@ -36,7 +36,7 @@ describe('TradingAlg Unit Tests', () => {
     });
 
     test('test overall recommendations', async () => {
-        const score = await tradingAlgorithm.decision('JD');
+        const score = await tradingAlgorithm.decision('NVDA');
         console.log(score);
         expect(score).toBeGreaterThan(-101);
         expect(score).toBeLessThan(101);
