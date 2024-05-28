@@ -40,3 +40,6 @@ async function initialize() {
 
 // Call the initialize function
 initialize();
+
+
+//TODO: save application process and ability to resume, and also dynamically interact with program.

@@ -1,4 +1,4 @@
-const Stock = require('./Stock');
+const StockListManager = require("../utils/StockListManager");
 
 class Portfolio {
 
@@ -60,7 +60,7 @@ class Portfolio {
                 this.stocks.get(ticker).stock.price = price;
 
             } else {
-                const currStock = new Stock(ticker, price);
+                const currStock = StockListManager.getStock(ticker)
                 this.stocks.set(ticker, {stock: currStock, holdings: quantity});
             }
 
@@ -88,8 +88,15 @@ class Portfolio {
     }
 
 
-    getTotalStockValue() {
-        // TODO: total stocks * cost,  using old prices, as rough estimate.
+    getPortfolioValue() {
+        let totalValue = this.cash;
+
+        this.stocks.forEach(({stock, holdings}) => {
+            const currentPrice = stock.getPrice(); // Assuming getPrice() returns the latest price
+            totalValue += currentPrice * holdings;
+        });
+
+        return totalValue;
     }
 }
 

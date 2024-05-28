@@ -13,19 +13,23 @@ class TradeExecutor {
         this.maxCap = config.maxCap;
     }
 
-    update(signal, ticker) {
+    async update(signal, ticker) {
         console.log(`Received signal for ${ticker}: ${signal}`);
-        this.executeTrade(signal, ticker);
+        await this.executeTrade(signal, ticker);
     }
 
     // Method to execute trades based on the signal
-    executeTrade(signal, ticker) { // TODO: BUG HERE:
-        const currStockPrice = StockListManager.getStockPrice(ticker);
+    async executeTrade(signal, ticker) { // TODO: BUG HERE:
+        const currStockPrice = await StockListManager.getStockPrice(ticker);
         const currentStockValue = this.portfolio.getHoldings(ticker) * currStockPrice;
-        const totalValue = this.portfolio.getCash() + this.portfolio.getTotalStockValue();
+        const totalValue = this.portfolio.getCash() + this.portfolio.getPortfolioValue();
         const maxInvestment = totalValue * this.maxCap;
 
+        console.log("current price for " + ticker + " is " + currStockPrice);
+        console.log(", currently have" + currentStockValue + " of the stock. Can invest " + maxInvestment);
+
         if (signal > 40 && currentStockValue < maxInvestment) {
+            console.log("we can invest more in " + ticker);
             // Check if we can invest more in this stock without exceeding the cap
             const availableCash = this.portfolio.getCash();
             const amountToInvest = Math.min(maxInvestment - currentStockValue, availableCash);

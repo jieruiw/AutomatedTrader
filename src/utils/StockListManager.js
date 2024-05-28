@@ -25,6 +25,10 @@ class StockListManager {
         return this.stocks;
     }
 
+    getStock(ticker) {
+        return this.stocks.find(s => s.getTicker() === ticker);
+    }
+
     async getStockPrice(ticker) {
         const newPrice = await DataRetriever.getStockPrice(ticker);
         const stock = this.stocks.find(s => s.getTicker() === ticker);
