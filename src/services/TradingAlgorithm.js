@@ -72,14 +72,16 @@ class TradingAlgorithm {
 
         let obvResult = this.obvCalc(obv);
 
-        // console.log("ma: " + maResult);
-        // console.log("rsi: " + rsiResult);
-        // console.log("macd: " + macdResult);
-        // console.log("bbands: " + bbandsResult);
-        // console.log("obv: " + obvResult);
+        let overallResult = maResult + rsiResult + macdResult + bbandsResult + obvResult;
+
+        if (overallResult > 100) {
+            return 100;
+        } else if (overallResult < -100) {
+            return -100;
+        }
 
 
-        return maResult + rsiResult + macdResult + bbandsResult + obvResult;
+        return overallResult;
     }
 
     maCalc(ema50, ema200, sma50, sma200) {
@@ -104,29 +106,29 @@ class TradingAlgorithm {
         // Primary Indicator: Check for Golden Cross and Death Cross for EMA
         if (previousShortTermEMA <= previousLongTermEMA && latestShortTermEMA > latestLongTermEMA) {
             // Golden Cross: 50-day EMA crosses above 200-day EMA
-            return 20;  // Strong positive signal
+            return 30;  // Strong positive signal
         } else if (previousShortTermEMA >= previousLongTermEMA && latestShortTermEMA < latestLongTermEMA) {
             // Death Cross: 50-day EMA crosses below 200-day EMA
-            return -20;  // Strong negative signal
+            return -30;  // Strong negative signal
         }
 
         // Primary Indicator: Check for Golden Cross and Death Cross for SMA
         if (previousShortTermSMA <= previousLongTermSMA && latestShortTermSMA > latestLongTermSMA) {
             // Golden Cross: 50-day SMA crosses above 200-day SMA
-            return 20;  // Strong positive signal
+            return 30;  // Strong positive signal
         } else if (previousShortTermSMA >= previousLongTermSMA && latestShortTermSMA < latestLongTermSMA) {
             // Death Cross: 50-day SMA crosses below 200-day SMA
-            return -20;  // Strong negative signal
+            return -30;  // Strong negative signal
         }
 
         // Secondary Indicator: General comparison of EMA and SMA
         if (latestShortTermEMA > latestShortTermSMA) {
             // Positive signal for upward trend
-            return 10;
+            return 20;
         }
 
         // Negative signal for downward trend
-        return -10;
+        return -20;
     }
 
     rsiCalc(rsi) {

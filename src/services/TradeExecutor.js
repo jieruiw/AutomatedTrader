@@ -3,6 +3,9 @@ const Portfolio = require('../models/Portfolio');
 
 class TradeExecutor {
 
+    //TODO: Encorporate a max cap on one stock investment based on total value
+    //TODO: decide to buy, sell, hold, or do nothing based on signal
+
     constructor(config, cash) {
         this.logger = new Logger();
         this.portfolio = new Portfolio(cash, new Date());

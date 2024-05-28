@@ -1,6 +1,9 @@
 const TradingAlgorithm = require('../services/TradingAlgorithm');
 class Scheduler {
 
+    //TODO: Ensure that failed analysis and other exceptions are thrown all the way to this point, where this section of
+    // the program retries the analysis at a later time.
+
     constructor(config) {
         this.observers = [];
         this.tradingAlgorithm = new TradingAlgorithm(config);
