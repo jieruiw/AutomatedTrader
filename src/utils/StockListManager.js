@@ -21,14 +21,15 @@ class StockListManager {
         return this.stocks;
     }
 
-    updateStockPrice() {
-        //TODO
-    }
-
-    getStockPrice(ticker) {
+    async getStockPrice(ticker) {
         const newPrice = DataRetriever.getStockPrice(ticker);
-        this.updateStockPrice(newPrice);
-        return newPrice;
+        const stock = this.stocks.find(s => s.getTicker() === ticker);
+        if (stock) {
+            stock.setPrice(newPrice);
+            return newPrice;
+        } else {
+            throw new Error(`Stock with ticker ${ticker} not found`);
+        }
     }
 }
 
