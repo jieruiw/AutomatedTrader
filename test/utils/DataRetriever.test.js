@@ -25,13 +25,14 @@ describe('Analyst Price Targets', () => {
 });
 
 describe('Technical Indicators', () => {
-    test('should get TSLA SMA', async () => {
-        const sma = await getSMA('TSLA');
+    test('should get TSLA SMA-50', async () => {
+        const sma = await getSMA('TSLA', 50);
+        console.log(sma);
 
         expect(Array.isArray(sma)).toBe(true);
 
         // Check if the array is not empty
-        expect(sma.length).toBeGreaterThan(0);
+        expect(sma.length).toBe(10);
 
         // Check if each item in the array has the required properties
         sma.forEach(item => {
@@ -44,9 +45,10 @@ describe('Technical Indicators', () => {
 
 
     test('should get TSLA EMA', async () => {
-        const ema = await getEMA('TSLA');
+        const ema = await getEMA('TSLA', 50);
+        console.log(ema);
         expect(Array.isArray(ema)).toBe(true);
-        expect(ema.length).toBeGreaterThan(0);
+        expect(ema.length).toBe(10);
 
         // Check if each item in the array has the required properties
         ema.forEach(item => {

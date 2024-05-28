@@ -49,8 +49,10 @@ class TradingAlgorithm {
     }
 
     async technicalDecision(ticker) {
-        const sma = await DataRetriever.getSMA(ticker);
-        const ema = await DataRetriever.getEMA(ticker);
+        const sma50 = await DataRetriever.getSMA(ticker, 50);
+        const sma200 = await DataRetriever.getSMA(ticker, 200);
+        const ema50 = await DataRetriever.getEMA(ticker, 50);
+        const ema200 = await DataRetriever.getEMA(ticker, 200);
         const rsi = await DataRetriever.getRSI(ticker);
         const macd = await DataRetriever.getMACD(ticker);
         const bbands = await DataRetriever.getBBands(ticker);
@@ -58,7 +60,7 @@ class TradingAlgorithm {
 
         let score = 0;
 
-        score += this.maCalc(ema, sma);
+        score += this.maCalc(ema50, ema200, sma50, sma200);
 
         score += this.rsiCalc(rsi);
 
@@ -71,16 +73,51 @@ class TradingAlgorithm {
         return score;
     }
 
-    maCalc(ema, sma) {
-
-        // TODO: implement golden cross and death cross
-        // SMA/EMA Crossover
-        if (ema[0].ema > sma[0].sma) {
-            return 20;  // Positive signal for upward trend
+    maCalc(ema50, ema200, sma50, sma200) {
+        // Ensure we have data for the required periods
+        if (!ema50 || !ema200 || !sma50 || !sma200) {
+            console.error('Missing data for moving averages');
+            return 0;  // Neutral signal due to insufficient data
         }
 
-        return -20;  // Negative signal for downward trend
+        // Determine the most recent values
+        const latestShortTermEMA = ema50[0].ema;
+        const latestLongTermEMA = ema200[0].ema;
+        const latestShortTermSMA = sma50[0].sma;
+        const latestLongTermSMA = sma200[0].sma;
 
+        // Determine the values 1 day before (yesterday's values)
+        const previousShortTermEMA = ema50[1].ema;
+        const previousLongTermEMA = ema200[1].ema;
+        const previousShortTermSMA = sma50[1].sma;
+        const previousLongTermSMA = sma200[1].sma;
+
+        // Primary Indicator: Check for Golden Cross and Death Cross for EMA
+        if (previousShortTermEMA <= previousLongTermEMA && latestShortTermEMA > latestLongTermEMA) {
+            // Golden Cross: 50-day EMA crosses above 200-day EMA
+            return 20;  // Strong positive signal
+        } else if (previousShortTermEMA >= previousLongTermEMA && latestShortTermEMA < latestLongTermEMA) {
+            // Death Cross: 50-day EMA crosses below 200-day EMA
+            return -20;  // Strong negative signal
+        }
+
+        // Primary Indicator: Check for Golden Cross and Death Cross for SMA
+        if (previousShortTermSMA <= previousLongTermSMA && latestShortTermSMA > latestLongTermSMA) {
+            // Golden Cross: 50-day SMA crosses above 200-day SMA
+            return 20;  // Strong positive signal
+        } else if (previousShortTermSMA >= previousLongTermSMA && latestShortTermSMA < latestLongTermSMA) {
+            // Death Cross: 50-day SMA crosses below 200-day SMA
+            return -20;  // Strong negative signal
+        }
+
+        // Secondary Indicator: General comparison of EMA and SMA
+        if (latestShortTermEMA > latestShortTermSMA) {
+            // Positive signal for upward trend
+            return 10;
+        }
+
+        // Negative signal for downward trend
+        return -10;
     }
 
     rsiCalc(rsi) {
@@ -147,7 +184,6 @@ class TradingAlgorithm {
         return score;
     }
 
-
-
-
 }
+
+module.exports = TradingAlgorithm;

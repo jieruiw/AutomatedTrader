@@ -50,12 +50,14 @@ async function getPriceTargets(ticker) {
 }
 
 
-async function getSMA(ticker){
+async function getSMA(ticker, time){
     const baseURL = 'https://api.twelvedata.com/sma';
     const params = {
         symbol: ticker,
         interval: '1day',
-        apikey: '64054d02fbb640a5972ec2fb4061bfd8'
+        apikey: '64054d02fbb640a5972ec2fb4061bfd8',
+        outputsize: 10,
+        time_period: time
     };
 
 
@@ -72,12 +74,14 @@ async function getSMA(ticker){
 }
 
 
-async function getEMA(ticker){
+async function getEMA(ticker, time){
     const baseURL = 'https://api.twelvedata.com/ema';
     const params = {
         symbol: ticker,
         interval: '1day',
-        apikey: '64054d02fbb640a5972ec2fb4061bfd8'
+        apikey: '64054d02fbb640a5972ec2fb4061bfd8',
+        outputsize: 10,
+        time_period: time
     };
 
 
@@ -92,7 +96,6 @@ async function getEMA(ticker){
         throw new Error(`API Error: ${response.data.message}`);
     }
 }
-
 
 async function getRSI(ticker){
     const baseURL = 'https://api.twelvedata.com/rsi';
