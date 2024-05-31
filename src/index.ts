@@ -19,7 +19,11 @@ const initialCash = 100000;
 const tradeExecutor = new TradeExecutor(config, initialCash);
 
 // Add some stocks to the Stock List Manager for monitoring (example stocks)
-let stocks = ['TSLA', 'AAPL'];
+let stocks = ['TSLA', 'AAPL', 'NVDA', 'MGM', 'GPS', 'AMZN', 'RIVN', 'F', 'MSFT', 'META',
+    'GOOG', 'LLY', 'JPM', 'PG', 'AMD', 'PYPL', 'EXC', 'EA', 'BIIB', 'JD', 'HPQ', 'RCL', 'ARM', 'ANF',
+    'CHWY', 'JNJ', 'PFE', 'MRK', 'UNH', 'ABBV', 'BAC', 'GS', 'C', 'WFC', 'KO', 'PEP', 'UL', 'CL', 'GE',
+    'BA', 'CAT', 'MMM', 'HON', 'XOM', 'CVX', 'COP', 'SLB', 'HAL', 'NEE', 'DUK', 'D', 'SO', 'AEP', 'VZ', 'T',
+    'TMUS', 'CMCSA', 'CHTR', 'DIS', 'MCD', 'SBUX', 'NFLX', 'BKNG'];
 // Initialize the Scheduler
 const scheduler = new Scheduler(config);
 
