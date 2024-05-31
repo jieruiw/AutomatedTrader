@@ -1,103 +1,90 @@
-const StockListManager = require("../utils/StockListManager");
-
-class Portfolio {
-
-    constructor(cash, creationDate) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var StockListManager_1 = require("../utils/StockListManager");
+var Portfolio = /** @class */ (function () {
+    function Portfolio(cash, creationDate) {
         this.cash = cash;
         this.creationDate = creationDate;
         this.stocks = new Map();
     }
-
-    getCash() {
+    Portfolio.prototype.getCash = function () {
         return this.cash;
-    }
-
-    getCreationDate() {
+    };
+    Portfolio.prototype.getCreationDate = function () {
         return this.creationDate;
-    }
-
-    deposit(amount) {
+    };
+    Portfolio.prototype.deposit = function (amount) {
         this.cash += amount;
-    }
-
-    withdraw(amount) {
+    };
+    Portfolio.prototype.withdraw = function (amount) {
         if (this.cash >= amount) {
             this.cash -= amount;
             return this.cash;
-        } else {
+        }
+        else {
             throw new Error('Insufficient funds for withdrawal.');
         }
-    }
-
-
-    getPortfolio() {
+    };
+    Portfolio.prototype.getPortfolio = function () {
         return this.stocks;
-    }
-
-    getStock(ticker) {
+    };
+    Portfolio.prototype.getStock = function (ticker) {
         if (this.stocks.has(ticker)) {
             return this.stocks.get(ticker).stock;
-        } else {
+        }
+        else {
             throw new Error('Stock not found in portfolio.');
         }
-    }
-
-    getHoldings(ticker) {
+    };
+    Portfolio.prototype.getHoldings = function (ticker) {
         if (this.stocks.has(ticker)) {
             return this.stocks.get(ticker).holdings;
-        } else {
+        }
+        else {
             return 0;
         }
-    }
-
-    buyStock(ticker, price, quantity) {
-        if (price*quantity <= this.cash) {
-
-            this.cash -= price*quantity;
-
+    };
+    Portfolio.prototype.buyStock = function (ticker, price, quantity) {
+        if (price * quantity <= this.cash) {
+            this.cash -= price * quantity;
             if (this.stocks.has(ticker)) {
                 this.stocks.get(ticker).holdings += quantity;
                 this.stocks.get(ticker).stock.price = price;
-
-            } else {
-                const currStock = StockListManager.getStock(ticker)
-                this.stocks.set(ticker, {stock: currStock, holdings: quantity});
             }
-
-        } else {
+            else {
+                var currStock = StockListManager_1.default.getStock(ticker);
+                this.stocks.set(ticker, { stock: currStock, holdings: quantity });
+            }
+        }
+        else {
             throw new Error('Insufficient funds to buy ' + ticker + '.');
         }
-    }
-
-    sellStock(ticker, price, quantity) {
+    };
+    Portfolio.prototype.sellStock = function (ticker, price, quantity) {
         if (this.stocks.has(ticker)) {
             this.stocks.get(ticker).stock.price = price;
-            const stockEntry = this.stocks.get(ticker);
+            var stockEntry = this.stocks.get(ticker);
             if (stockEntry.holdings >= quantity) {
                 stockEntry.holdings -= quantity;
-
                 this.cash += price * quantity;
-            } else {
+            }
+            else {
                 throw new Error('Insufficient holdings to sell.');
             }
-
-
-        } else {
+        }
+        else {
             throw new Error('Stock not found in portfolio.');
         }
-    }
-
-
-    getPortfolioValue() {
-        let totalValue = this.cash;
-
-        this.stocks.forEach(({stock, holdings}) => {
-            const currentPrice = stock.getPrice(); // Assuming getPrice() returns the latest price
+    };
+    Portfolio.prototype.getPortfolioValue = function () {
+        var totalValue = this.cash;
+        this.stocks.forEach(function (_a) {
+            var stock = _a.stock, holdings = _a.holdings;
+            var currentPrice = stock.getPrice(); // Assuming getPrice() returns the latest price
             totalValue += currentPrice * holdings;
         });
-
         return totalValue;
-    }
-}
-
-module.exports = Portfolio;
+    };
+    return Portfolio;
+}());
+exports.default = Portfolio;

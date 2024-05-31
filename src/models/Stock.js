@@ -1,23 +1,19 @@
-class Stock {
-
-
-    constructor(ticker, price) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Stock = /** @class */ (function () {
+    function Stock(ticker, price) {
         this.ticker = ticker;
         this.price = price;
     }
-
-    getTicker() {
+    Stock.prototype.getTicker = function () {
         return this.ticker;
-    }
-
-    getPrice() {
+    };
+    Stock.prototype.getPrice = function () {
         return this.price;
-    }
-
-    setPrice(price) {
+    };
+    Stock.prototype.setPrice = function (price) {
         this.price = price;
-    }
-
-}
-
-module.exports = Stock;
+    };
+    return Stock;
+}());
+exports.default = Stock;
