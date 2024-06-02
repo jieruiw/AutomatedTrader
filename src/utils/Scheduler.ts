@@ -11,9 +11,9 @@ export default class Scheduler {
     private observers: any[];
     private tradingAlgorithm: TradingAlgorithm;
 
-    constructor(config: any) {
+    constructor() {
         this.observers = [];
-        this.tradingAlgorithm = new TradingAlgorithm(config);
+        this.tradingAlgorithm = new TradingAlgorithm();
     }
 
 

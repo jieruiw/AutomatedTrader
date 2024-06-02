@@ -108,6 +108,39 @@ class Portfolio {
 
         return totalValue;
     }
+
+
+    // Saves the cash, creationDate, tickers of stocks **NOT STOCK OBJECT**, and holdings quantity
+    toJSON() {
+        const stocksArray = [];
+        for (const [ticker, data] of this.stocks.entries()) {
+            stocksArray.push({
+                ticker: ticker,
+                holdings: data.holdings
+            });
+
+        }
+
+        return {
+            cash: this.cash,
+            creationDate: this.creationDate,
+            stocks: stocksArray
+        };
+    }
+
+     fromJSON(json: any) : Portfolio {
+        const portfolio = new Portfolio(json.cash, new Date(json.creationDate));
+
+        for (const stockData of json.stocks) {
+            const stock = StockListManager.getStock(stockData.ticker);
+            portfolio.stocks.set(stockData.ticker, {
+                stock : stock,
+                holdings : stockData.holdings
+            });
+        }
+
+        return portfolio;
+    }
 }
 
 export default Portfolio;

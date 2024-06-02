@@ -3,16 +3,18 @@ import Stock from '../models/Stock.js';
 class StockListManager {
     constructor() {
         this.stocks = [];
-        if (!StockListManager.instance) {
-            StockListManager.instance = this;
-        }
-        return StockListManager.instance;
     }
     async addStock(ticker) {
         const price = await DataRetriever.getStockPrice(ticker);
         const stock = new Stock(ticker, price);
         this.stocks.push(stock);
         console.log('stock ' + stock.getTicker() + ' added');
+    }
+    static getInstance() {
+        if (!StockListManager.instance) {
+            StockListManager.instance = new StockListManager();
+        }
+        return StockListManager.instance;
     }
     removeStock(ticker) {
         let stock = this.stocks.find(s => s.getTicker() === ticker);
@@ -46,7 +48,20 @@ class StockListManager {
             throw new Error(`Stock with ticker ${ticker} not found`);
         }
     }
+    toJSON() {
+        return {
+            stocks: this.stocks.map(stock => ({
+                ticker: stock.getTicker(),
+                price: stock.getPrice()
+            }))
+        };
+    }
+    fromJSON(json) {
+        const instance = StockListManager.getInstance();
+        instance.stocks = json.stocks.map((stockData) => new Stock(stockData.ticker, stockData.price));
+        return instance;
+    }
 }
-const instance = new StockListManager();
+const instance = StockListManager.getInstance();
 Object.freeze(instance);
 export default instance;

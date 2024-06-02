@@ -3,9 +3,9 @@ import DataRetriever from './DataRetriever.js';
 import TradingAlgorithm from '../services/TradingAlgorithm.js';
 import StockListManager from "./StockListManager.js";
 export default class Scheduler {
-    constructor(config) {
+    constructor() {
         this.observers = [];
-        this.tradingAlgorithm = new TradingAlgorithm(config);
+        this.tradingAlgorithm = new TradingAlgorithm();
     }
     addObserver(observer) {
         this.observers.push(observer);

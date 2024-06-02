@@ -1,15 +1,9 @@
 import DataRetriever from '../utils/DataRetriever.js';
+import Config from "../utils/Config.js";
 export default class TradingAlgorithm {
-    private config: any;
 
-    constructor(config: {
-        weights: {
-            zacks: number; technical: number; analyst: number;
-        }; maxCap: any;
-    }) {
-        this.config = config;
+    constructor() {
     }
-
 
     async decision(ticker: string) {
         const zacksRank = await this.zacksDecision(ticker);
@@ -22,9 +16,9 @@ export default class TradingAlgorithm {
         console.log('technical is: ' + technicalScore);
         console.log('analyst is: ' + analystScore);
 
-        return (this.config.weights.zacks * zacksRank) +
-            (this.config.weights.technical * technicalScore) +
-            (this.config.weights.analyst * analystScore);
+        return (Config.zacks * zacksRank) +
+            (Config.technical * technicalScore) +
+            (Config.analyst * analystScore);
 
     }
 

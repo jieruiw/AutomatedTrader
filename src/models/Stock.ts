@@ -19,4 +19,15 @@ public price: number;
         this.price = price;
     }
 
+    // toJSON(): any {
+    //     return {
+    //         ticker: this.ticker,
+    //         price: this.price
+    //     };
+    // }
+    //
+    // fromJSON(json: any): Stock {
+    //     return new Stock(json.ticker, json.price);
+    // }
+
 }

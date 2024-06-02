@@ -1,11 +1,11 @@
 import Logger from '../utils/Logger.js';
 import Portfolio from '../models/Portfolio.js';
 import StockListManager from "../utils/StockListManager.js";
+import Config from "../utils/Config.js";
 export default class TradeExecutor {
-    constructor(config, cash) {
+    constructor(cash) {
         this.logger = new Logger();
         this.portfolio = new Portfolio(cash, new Date());
-        this.maxCap = config.maxCap;
     }
     async update(signal, ticker) {
         console.log(`Received signal for ${ticker}: ${signal}`);
@@ -16,7 +16,7 @@ export default class TradeExecutor {
         const currStockPrice = await StockListManager.getStockPrice(ticker);
         const currentStockValue = this.portfolio.getHoldings(ticker) * currStockPrice;
         const totalValue = this.portfolio.getCash() + this.portfolio.getPortfolioValue();
-        const maxInvestment = totalValue * this.maxCap;
+        const maxInvestment = totalValue * Config.maxCap;
         console.log("current price for " + ticker + " is " + currStockPrice);
         console.log(", currently have" + currentStockValue + " of the stock. Can invest " + maxInvestment);
         if (signal > 40 && currentStockValue < maxInvestment) {
@@ -45,5 +45,10 @@ export default class TradeExecutor {
         else {
             this.logger.log(`No action for ${ticker}.`);
         }
+    }
+    toJSON() {
+        return {
+            portfolio: this.portfolio.toJSON()
+        };
     }
 }

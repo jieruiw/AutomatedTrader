@@ -12,4 +12,13 @@ export default class Stock {
     setPrice(price) {
         this.price = price;
     }
+    toJSON() {
+        return {
+            ticker: this.ticker,
+            price: this.price
+        };
+    }
+    fromJSON(json) {
+        return new Stock(json.ticker, json.price);
+    }
 }

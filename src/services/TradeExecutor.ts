@@ -1,6 +1,7 @@
 import Logger from '../utils/Logger.js';
 import Portfolio from '../models/Portfolio.js';
 import StockListManager from "../utils/StockListManager.js";
+import Config from "../utils/Config.js";
 
 export default class TradeExecutor {
 
@@ -8,16 +9,10 @@ export default class TradeExecutor {
     //TODO: decide to buy, sell, hold, or do nothing based on signal
     private logger: Logger;
     private portfolio: Portfolio;
-    private maxCap: number;
 
-    constructor(config: {
-            weights: {
-                zacks: number; technical: number; analyst: number;
-            }; maxCap: any;
-        }, cash: number) {
+    constructor(cash: number) {
         this.logger = new Logger();
         this.portfolio = new Portfolio(cash, new Date());
-        this.maxCap = config.maxCap;
     }
 
     async update(signal: number, ticker: any) {
@@ -30,7 +25,7 @@ export default class TradeExecutor {
         const currStockPrice = await StockListManager.getStockPrice(ticker);
         const currentStockValue = this.portfolio.getHoldings(ticker) * currStockPrice;
         const totalValue = this.portfolio.getCash() + this.portfolio.getPortfolioValue();
-        const maxInvestment = totalValue * this.maxCap;
+        const maxInvestment = totalValue * Config.maxCap;
 
         console.log("current price for " + ticker + " is " + currStockPrice);
         console.log(", currently have" + currentStockValue + " of the stock. Can invest " + maxInvestment);
@@ -59,6 +54,21 @@ export default class TradeExecutor {
         } else {
             this.logger.log(`No action for ${ticker}.`);
         }
+    }
+
+    toJSON(){
+        return {
+            portfolio: this.portfolio.toJSON()
+        }
+    }
+
+    fromJSON(json: any): TradeExecutor {
+        const portfolio = new Portfolio(0, new Date());
+        portfolio.fromJSON(json.portfolio);
+
+        const tradeExecutor = new TradeExecutor(portfolio.getCash());
+        tradeExecutor.portfolio = portfolio;
+        return tradeExecutor;
     }
 
 
