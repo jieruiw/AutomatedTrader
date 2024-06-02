@@ -62,7 +62,7 @@ export default class TradeExecutor {
         }
     }
 
-    fromJSON(json: any): TradeExecutor {
+    static fromJSON(json: any): TradeExecutor {
         const portfolio = new Portfolio(0, new Date());
         portfolio.fromJSON(json.portfolio);
 
@@ -70,6 +70,5 @@ export default class TradeExecutor {
         tradeExecutor.portfolio = portfolio;
         return tradeExecutor;
     }
-
 
 }
