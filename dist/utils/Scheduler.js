@@ -10,7 +10,6 @@ export default class Scheduler {
     addObserver(observer) {
         this.observers.push(observer);
     }
-    // Method to remove an observer
     removeObserver(observer) {
         this.observers = this.observers.filter(obs => obs !== observer);
     }
@@ -36,10 +35,11 @@ export default class Scheduler {
     }
     async start(stocks) {
         for (let i = 0; i < stocks.length; i++) {
-            await StockListManager.addStock(stocks[i]);
-            // Add a 2-second delay every 60 stocks
-            if ((i + 1) % 60 === 0) {
-                await new Promise(resolve => setTimeout(resolve, 20000));
+            try {
+                await StockListManager.addStock(stocks[i]);
+            }
+            catch (error) {
+                console.error(`Error adding stock ${stocks[i]}: ${error}`);
             }
         }
         await this.continue();
@@ -64,7 +64,7 @@ export default class Scheduler {
                     const ticker = stock.getTicker();
                     console.log("ticker got for: " + ticker);
                     await this.generateSignal(ticker);
-                    await this.delay(1000);
+                    //await this.delay(50);
                 }
             }, {
                 scheduled: true,
@@ -77,7 +77,7 @@ export default class Scheduler {
         for (const stock of stocks) {
             const ticker = stock.getTicker();
             await this.generateSignal(ticker);
-            await this.delay(1000);
+            //await this.delay(50);
         }
     }
 }

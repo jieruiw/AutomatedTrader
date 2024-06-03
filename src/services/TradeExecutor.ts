@@ -22,7 +22,7 @@ export default class TradeExecutor {
     async executeTrade(signal: number, ticker: string) {
         const currStockPrice = await StockListManager.getStockPrice(ticker);
         const currentStockValue = this.portfolio.getHoldings(ticker) * currStockPrice;
-        const totalValue = this.portfolio.getCash() + this.portfolio.getPortfolioValue();
+        const totalValue = this.portfolio.getPortfolioValue();
         const maxInvestment = totalValue * Config.maxCap;
 
         console.log("current price for " + ticker + " is " + currStockPrice);
