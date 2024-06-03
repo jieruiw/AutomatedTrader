@@ -18,7 +18,7 @@ export default class TradeExecutor {
         const totalValue = this.portfolio.getCash() + this.portfolio.getPortfolioValue();
         const maxInvestment = totalValue * Config.maxCap;
         console.log("current price for " + ticker + " is " + currStockPrice);
-        console.log(", currently have" + currentStockValue + " of the stock. Can invest " + maxInvestment);
+        console.log(", currently have " + currentStockValue + " of the stock. Can invest " + maxInvestment);
         if (signal >= 35 && currentStockValue < maxInvestment) {
             console.log("we can invest more in " + ticker);
             // Check if we can invest more in this stock without exceeding the cap

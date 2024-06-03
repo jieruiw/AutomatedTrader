@@ -8,6 +8,14 @@
   "stockListManager": {
     "stocks": [
       {
+        "ticker": "TSM",
+        "price": 154.71
+      },
+      {
+        "ticker": "ARM",
+        "price": 114.77
+      },
+      {
         "ticker": "TSLA",
         "price": 178.1
       },
@@ -26,17 +34,269 @@
       {
         "ticker": "GPS",
         "price": 22.52
+      },
+      {
+        "ticker": "AMZN",
+        "price": 176.445
+      },
+      {
+        "ticker": "RIVN",
+        "price": 10.925
+      },
+      {
+        "ticker": "F",
+        "price": 12.13
+      },
+      {
+        "ticker": "MSFT",
+        "price": 415.605
+      },
+      {
+        "ticker": "META",
+        "price": 467.29
+      },
+      {
+        "ticker": "GOOG",
+        "price": 173.93
+      },
+      {
+        "ticker": "FLNC",
+        "price": 25.13
+      },
+      {
+        "ticker": "LLY",
+        "price": 820.34
+      },
+      {
+        "ticker": "JPM",
+        "price": 198.69
+      },
+      {
+        "ticker": "PG",
+        "price": 168.35
+      },
+      {
+        "ticker": "AMD",
+        "price": 166.9
+      },
+      {
+        "ticker": "PYPL",
+        "price": 63
+      },
+      {
+        "ticker": "EXC",
+        "price": 37.55
+      },
+      {
+        "ticker": "EA",
+        "price": 132.88
+      },
+      {
+        "ticker": "BIIB",
+        "price": 224.94
+      },
+      {
+        "ticker": "JD",
+        "price": 35.27
+      },
+      {
+        "ticker": "HPQ",
+        "price": 32.75
+      },
+      {
+        "ticker": "RCL",
+        "price": 148.43
+      },
+      {
+        "ticker": "ARM",
+        "price": 114.77
+      },
+      {
+        "ticker": "ANF",
+        "price": 172.87
+      },
+      {
+        "ticker": "CHWY",
+        "price": 21.21
+      },
+      {
+        "ticker": "JNJ",
+        "price": 146.67
+      },
+      {
+        "ticker": "PFE",
+        "price": 28.66
+      },
+      {
+        "ticker": "MRK",
+        "price": 125.54
+      },
+      {
+        "ticker": "UNH",
+        "price": 495.37
+      },
+      {
+        "ticker": "ABBV",
+        "price": 160.59
+      },
+      {
+        "ticker": "BAC",
+        "price": 39.99
+      },
+      {
+        "ticker": "GS",
+        "price": 456.52
+      },
+      {
+        "ticker": "C",
+        "price": 62.31
+      },
+      {
+        "ticker": "WFC",
+        "price": 59.92
+      },
+      {
+        "ticker": "KO",
+        "price": 62
+      },
+      {
+        "ticker": "PEP",
+        "price": 172.87
+      },
+      {
+        "ticker": "UL",
+        "price": 54.75
+      },
+      {
+        "ticker": "CL",
+        "price": 92.96
+      },
+      {
+        "ticker": "GE",
+        "price": 165.14
+      },
+      {
+        "ticker": "BA",
+        "price": 177.61
+      },
+      {
+        "ticker": "CAT",
+        "price": 362.75
+      },
+      {
+        "ticker": "MMM",
+        "price": 100.14
+      },
+      {
+        "ticker": "HON",
+        "price": 199.575
+      },
+      {
+        "ticker": "XOM",
+        "price": 117.85
+      },
+      {
+        "ticker": "CVX",
+        "price": 162.67
+      },
+      {
+        "ticker": "COP",
+        "price": 116.48
+      },
+      {
+        "ticker": "SLB",
+        "price": 45.89
+      },
+      {
+        "ticker": "HAL",
+        "price": 36.52
+      },
+      {
+        "ticker": "NEE",
+        "price": 80.02
+      },
+      {
+        "ticker": "DUK",
+        "price": 103.57
+      },
+      {
+        "ticker": "D",
+        "price": 53.92
+      },
+      {
+        "ticker": "SO",
+        "price": 80.14
+      },
+      {
+        "ticker": "AEP",
+        "price": 90.21
+      },
+      {
+        "ticker": "VZ",
+        "price": 41.15
+      },
+      {
+        "ticker": "T",
+        "price": 18.22
+      },
+      {
+        "ticker": "TMUS",
+        "price": 174.94
+      },
+      {
+        "ticker": "CMCSA",
+        "price": 40.03
+      },
+      {
+        "ticker": "CHTR",
+        "price": 287.12
+      },
+      {
+        "ticker": "DIS",
+        "price": 103.41
+      },
+      {
+        "ticker": "MCD",
+        "price": 258.89
+      },
+      {
+        "ticker": "SBUX",
+        "price": 80.25
+      },
+      {
+        "ticker": "NFLX",
+        "price": 642.03
+      },
+      {
+        "ticker": "BKNG",
+        "price": 3734.29
       }
     ]
   },
   "tradeExecutor": {
     "portfolio": {
-      "cash": 80272.9,
-      "creationDate": "2024-06-03T00:48:42.521Z",
+      "cash": 18802.339999999993,
+      "creationDate": "2024-06-03T06:56:13.140Z",
       "stocks": [
         {
           "ticker": "NVDA",
           "holdings": 18
+        },
+        {
+          "ticker": "RCL",
+          "holdings": 121
+        },
+        {
+          "ticker": "ANF",
+          "holdings": 93
+        },
+        {
+          "ticker": "SLB",
+          "holdings": 318
+        },
+        {
+          "ticker": "NFLX",
+          "holdings": 20
         }
       ]
     }

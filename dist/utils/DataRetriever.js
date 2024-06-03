@@ -204,7 +204,17 @@ DataRetriever.apiKeys = [
     '2bb245a933f144978a57512e9699008c',
     '38e6a82f685b42e391a5253de6c6d555',
     '6d49d5e74a5a4dd78d48ffeff7057a4b',
-    'fffaaf907f1b4a3bb4553e467bde4c8e'
+    'fffaaf907f1b4a3bb4553e467bde4c8e',
+    '2471fc35ed1f48368faf380040597b4e',
+    '9a4fa615f93f4850addf8bd762563fa7',
+    'f1f90dddd6d045d4bc93af743ca70717',
+    'c219df232e5b4075b4b734d4df1173ff',
+    'd7083a021a3c4ccda8ce3f21f51547f0',
+    '6c4efcc4b9c24acdaa9d29c9252fb863',
+    'e51bc806de304bec970deaaf4251ac18',
+    'd4f86787d27b4920ba559bb1a5763413',
+    '0a9386414b9540e98a430387afc086e8',
+    '2793e3e96b7d4c94a87db26b32dadccf'
 ];
 DataRetriever.currKey = 0;
 export default DataRetriever;

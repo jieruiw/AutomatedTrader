@@ -26,11 +26,15 @@ async function initialize() {
 
     } else {
 
-        Config.set(0.3, 0.5, 0.2, 0.1);
+        Config.set(0.3, 0.5, 0.2, 0.05);
         const initialCash = 100000;
         tradeExecutor = new TradeExecutor(initialCash);
         scheduler.addObserver(tradeExecutor);
-        let stocks = ['TSLA', 'AAPL', 'NVDA', 'MGM', 'GPS'];
+        let stocks = ['TSM', 'ARM', 'TSLA', 'AAPL', 'NVDA', 'MGM', 'GPS', 'AMZN', 'RIVN', 'F', 'MSFT', 'META',
+            'GOOG', 'FLNC', 'LLY', 'JPM', 'PG', 'AMD', 'PYPL', 'EXC', 'EA', 'BIIB', 'JD', 'HPQ', 'RCL', 'ARM', 'ANF',
+            'CHWY', 'JNJ', 'PFE', 'MRK', 'UNH', 'ABBV', 'BAC', 'GS', 'C', 'WFC', 'KO', 'PEP', 'UL', 'CL', 'GE',
+            'BA', 'CAT', 'MMM', 'HON', 'XOM', 'CVX', 'COP', 'SLB', 'HAL', 'NEE', 'DUK', 'D', 'SO', 'AEP', 'VZ', 'T',
+            'TMUS', 'CMCSA', 'CHTR', 'DIS', 'MCD', 'SBUX', 'NFLX', 'BKNG'];
         await scheduler.start(stocks);
     }
 
