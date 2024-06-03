@@ -52,8 +52,8 @@ export default class TradeExecutor {
         };
     }
     static fromJSON(json) {
-        const portfolio = new Portfolio(0, new Date());
-        portfolio.fromJSON(json.portfolio);
+        let portfolio = new Portfolio(0, new Date());
+        portfolio = portfolio.fromJSON(json.portfolio);
         const tradeExecutor = new TradeExecutor(portfolio.getCash());
         tradeExecutor.portfolio = portfolio;
         return tradeExecutor;

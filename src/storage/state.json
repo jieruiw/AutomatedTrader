@@ -31,9 +31,14 @@
   },
   "tradeExecutor": {
     "portfolio": {
-      "cash": 0,
-      "creationDate": "2024-06-03T00:21:03.050Z",
-      "stocks": []
+      "cash": 80272.9,
+      "creationDate": "2024-06-03T00:48:42.521Z",
+      "stocks": [
+        {
+          "ticker": "NVDA",
+          "holdings": 18
+        }
+      ]
     }
   }
 }

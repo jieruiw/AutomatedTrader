@@ -84,7 +84,7 @@ export default class Scheduler {
                     const ticker = stock.getTicker();
                     console.log("ticker got for: " + ticker);
                     await this.generateSignal(ticker);
-                    await this.delay(10000);
+                    await this.delay(5000);
                 }
             }, {
                 scheduled: true,
@@ -98,7 +98,7 @@ export default class Scheduler {
         for (const stock of stocks) {
             const ticker = stock.getTicker();
             await this.generateSignal(ticker);
-            await this.delay(10000);
+            await this.delay(5000);
         }
     }
 
