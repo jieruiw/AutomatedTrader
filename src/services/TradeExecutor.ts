@@ -5,8 +5,6 @@ import Config from "../utils/Config.js";
 
 export default class TradeExecutor {
 
-    //TODO: Encorporate a max cap on one stock investment based on total value
-    //TODO: decide to buy, sell, hold, or do nothing based on signal
     private logger: Logger;
     private portfolio: Portfolio;
 
@@ -30,7 +28,7 @@ export default class TradeExecutor {
         console.log("current price for " + ticker + " is " + currStockPrice);
         console.log(", currently have" + currentStockValue + " of the stock. Can invest " + maxInvestment);
 
-        if (signal > 40 && currentStockValue < maxInvestment) {
+        if (signal >= 35 && currentStockValue < maxInvestment) {
             console.log("we can invest more in " + ticker);
             // Check if we can invest more in this stock without exceeding the cap
             const availableCash = this.portfolio.getCash();
@@ -43,7 +41,7 @@ export default class TradeExecutor {
                     this.logger.log(`Bought ${quantity} shares of ${ticker} at ${currStockPrice} each.`);
                 }
             }
-        } else if (signal < -40) {
+        } else if (signal <= -35) {
             const quantity = this.portfolio.getHoldings(ticker);
             if (quantity > 0) {
                 this.portfolio.sellStock(ticker, currStockPrice, quantity);

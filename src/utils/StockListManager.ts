@@ -75,6 +75,5 @@ class StockListManager {
 }
 
 const instance = StockListManager.getInstance();
-Object.freeze(instance);
 
 export default instance;

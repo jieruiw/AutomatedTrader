@@ -1,0 +1,39 @@
+{
+  "config": {
+    "zacks": 0.3,
+    "technical": 0.5,
+    "analyst": 0.2,
+    "maxCap": 0.1
+  },
+  "stockListManager": {
+    "stocks": [
+      {
+        "ticker": "TSLA",
+        "price": 178.1
+      },
+      {
+        "ticker": "AAPL",
+        "price": 192.325
+      },
+      {
+        "ticker": "NVDA",
+        "price": 1095.95
+      },
+      {
+        "ticker": "MGM",
+        "price": 40.17
+      },
+      {
+        "ticker": "GPS",
+        "price": 22.52
+      }
+    ]
+  },
+  "tradeExecutor": {
+    "portfolio": {
+      "cash": 0,
+      "creationDate": "2024-06-03T00:21:03.050Z",
+      "stocks": []
+    }
+  }
+}

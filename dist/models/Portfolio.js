@@ -97,7 +97,7 @@ class Portfolio {
             stocks: stocksArray
         };
     }
-    static fromJSON(json) {
+    fromJSON(json) {
         const portfolio = new Portfolio(json.cash, new Date(json.creationDate));
         for (const stockData of json.stocks) {
             const stock = StockListManager.getStock(stockData.ticker);

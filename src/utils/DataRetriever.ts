@@ -1,29 +1,6 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
-async function getZacksRank(ticker: string): Promise<number | null> {
-    console.log("running getZacks for " + ticker);
-    try {
-        const response = await axios.get('https://www.zacks.com/stock/quote/' + ticker);
-        const html = response.data;
-        const $ = cheerio.load(html);
-
-        const rankChips = $('.rank_chip');
-
-        let zacksRank = null;
-        rankChips.each((index, element) => {
-            const text = $(element).text().trim();
-            if (text && text !== '&nbsp;') {
-                zacksRank = parseInt(text, 10);
-                return false;
-            }
-        });
-        return zacksRank;
-    } catch (error) {
-        throw new Error(`Error fetching Zacks Rank for ${ticker}!`);
-    }
-}
-
 interface PriceTargets {
     low: number;
     average: number;
@@ -31,7 +8,47 @@ interface PriceTargets {
     high: number;
 }
 
-async function getPriceTargets(ticker: string): Promise<PriceTargets> {
+export default class DataRetriever {
+
+    private static apiKeys: string[] = [
+        '64054d02fbb640a5972ec2fb4061bfd8',
+        '8e6856af48ce4ea6aebdf9d955cd80e1',
+        '6441fada692f4c2baa006b2ca9080b4d',
+        '8ce78a0fe62449c6b79fc0fc54dff3dc',
+        '2bb245a933f144978a57512e9699008c',
+        '38e6a82f685b42e391a5253de6c6d555',
+        '6d49d5e74a5a4dd78d48ffeff7057a4b',
+        'fffaaf907f1b4a3bb4553e467bde4c8e'
+    ]
+
+    private static currKey = 0;
+
+    static async getZacksRank(ticker: string): Promise<number | null> {
+        console.log("running getZacks for " + ticker);
+        try {
+            const response = await axios.get('https://www.zacks.com/stock/quote/' + ticker);
+            const html = response.data;
+            const $ = cheerio.load(html);
+
+            const rankChips = $('.rank_chip');
+
+            let zacksRank = null;
+            rankChips.each((index, element) => {
+                const text = $(element).text().trim();
+                if (text && text !== '&nbsp;') {
+                    zacksRank = parseInt(text, 10);
+                    return false;
+                }
+            });
+            return zacksRank;
+        } catch (error) {
+            throw new Error(`Error fetching Zacks Rank for ${ticker}!`);
+        }
+    }
+
+
+
+static async getPriceTargets(ticker: string): Promise<PriceTargets> {
     try {
         const response = await axios.get('https://finance.yahoo.com/quote/' + ticker);
         const html = response.data;
@@ -62,12 +79,12 @@ async function getPriceTargets(ticker: string): Promise<PriceTargets> {
 }
 
 
-async function getSMA(ticker: string, time: number) {
+static async getSMA(ticker: string, time: number) {
     const baseURL = 'https://api.twelvedata.com/sma';
     const params = {
         symbol: ticker,
         interval: '1day',
-        apikey: '64054d02fbb640a5972ec2fb4061bfd8',
+        apikey: this.getAPIKey(),
         outputsize: 10,
         time_period: time
     };
@@ -86,12 +103,12 @@ async function getSMA(ticker: string, time: number) {
 }
 
 
-async function getEMA(ticker: string, time: number) {
+static async getEMA(ticker: string, time: number) {
     const baseURL = 'https://api.twelvedata.com/ema';
     const params = {
         symbol: ticker,
         interval: '1day',
-        apikey: '8e6856af48ce4ea6aebdf9d955cd80e1',
+        apikey: this.getAPIKey(),
         outputsize: 10,
         time_period: time
     };
@@ -109,12 +126,12 @@ async function getEMA(ticker: string, time: number) {
     }
 }
 
-async function getRSI(ticker: string) {
+static async getRSI(ticker: string) {
     const baseURL = 'https://api.twelvedata.com/rsi';
     const params = {
         symbol: ticker,
         interval: '1day',
-        apikey: '6441fada692f4c2baa006b2ca9080b4d'
+        apikey: this.getAPIKey()
     };
 
 
@@ -131,19 +148,24 @@ async function getRSI(ticker: string) {
 }
 
 
-async function getMACD(ticker: string) {
+static async getMACD(ticker: string) {
     const baseURL = 'https://api.twelvedata.com/macd';
     const params = {
         symbol: ticker,
         interval: '1day',
-        apikey: '8ce78a0fe62449c6b79fc0fc54dff3dc'
+        apikey: this.getAPIKey()
     };
 
 
     const response = await axios.get(baseURL, {params});
 
     if (response.status === 200 && response.data.status === "ok") {
-        return response.data.values.map((item: { datetime: any; macd: string; macd_signal: string; macd_hist: string; }) => ({
+        return response.data.values.map((item: {
+            datetime: any;
+            macd: string;
+            macd_signal: string;
+            macd_hist: string;
+        }) => ({
             datetime: item.datetime,
             macd: parseFloat(item.macd),
             macd_signal: parseFloat(item.macd_signal),
@@ -155,17 +177,22 @@ async function getMACD(ticker: string) {
 }
 
 
-async function getBBands(ticker: string) {
+static async getBBands(ticker: string) {
     const baseURL = "https://api.twelvedata.com/bbands";
     const params = {
         symbol: ticker,
         interval: "1day",
-        apikey: "2bb245a933f144978a57512e9699008c"
+        apikey: this.getAPIKey()
     };
 
     const response = await axios.get(baseURL, {params});
     if (response.status === 200 && response.data.status === "ok") {
-        return response.data.values.map((item: { datetime: any; upper_band: string; middle_band: string; lower_band: string; }) => ({
+        return response.data.values.map((item: {
+            datetime: any;
+            upper_band: string;
+            middle_band: string;
+            lower_band: string;
+        }) => ({
             datetime: item.datetime,
             upper_band: parseFloat(item.upper_band),
             middle_band: parseFloat(item.middle_band),
@@ -177,12 +204,12 @@ async function getBBands(ticker: string) {
 }
 
 
-async function getOBV(ticker: string) {
+static async getOBV(ticker: string) {
     const baseURL = "https://api.twelvedata.com/obv";
     const params = {
         symbol: ticker,
         interval: "1day",
-        apikey: "38e6a82f685b42e391a5253de6c6d555"
+        apikey: this.getAPIKey()
     };
 
     const response = await axios.get(baseURL, {params});
@@ -196,7 +223,7 @@ async function getOBV(ticker: string) {
     }
 }
 
-async function getStockPrice(ticker: any) {
+static async getStockPrice(ticker: any) {
     const url = `https://finance.yahoo.com/quote/${ticker}`;
 
     try {
@@ -219,4 +246,17 @@ async function getStockPrice(ticker: any) {
     }
 }
 
-export default {getZacksRank, getPriceTargets, getSMA, getEMA, getRSI, getMACD, getBBands, getOBV, getStockPrice};
+
+    private static getAPIKey(): string {
+        const ret: string =  this.apiKeys[this.currKey];
+        if (this.currKey < this.apiKeys.length - 1) {
+            this.currKey++;
+        } else {
+            this.currKey = 0;
+        }
+
+        return ret;
+}
+
+
+}

@@ -32,7 +32,6 @@ export default class Scheduler {
         }
     }
 
-
     //todo: implement a manual stock check button
 
     async generateSignal(ticker: string) {
@@ -59,7 +58,11 @@ export default class Scheduler {
             await StockListManager.addStock(ticker);
         }
 
-        // Schedule stock price updates every 2 minutes
+        await this.continue();
+    }
+
+
+    async continue() {
         cron.schedule('*/2 * * * 1-5', async () => {
             await this.updateStockPrices();
         }, {
@@ -81,7 +84,7 @@ export default class Scheduler {
                     const ticker = stock.getTicker();
                     console.log("ticker got for: " + ticker);
                     await this.generateSignal(ticker);
-                    await this.delay(15000);
+                    await this.delay(10000);
                 }
             }, {
                 scheduled: true,
@@ -90,13 +93,12 @@ export default class Scheduler {
         }
     }
 
-
     async manualCheck() {
         const stocks = StockListManager.getStocks();
         for (const stock of stocks) {
             const ticker = stock.getTicker();
             await this.generateSignal(ticker);
-            await this.delay(15000);
+            await this.delay(10000);
         }
     }
 
