@@ -35,8 +35,12 @@ export default class Scheduler {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
     async start(stocks) {
-        for (const ticker of stocks) {
-            await StockListManager.addStock(ticker);
+        for (let i = 0; i < stocks.length; i++) {
+            await StockListManager.addStock(stocks[i]);
+            // Add a 2-second delay every 60 stocks
+            if ((i + 1) % 60 === 0) {
+                await new Promise(resolve => setTimeout(resolve, 20000));
+            }
         }
         await this.continue();
     }
@@ -60,7 +64,7 @@ export default class Scheduler {
                     const ticker = stock.getTicker();
                     console.log("ticker got for: " + ticker);
                     await this.generateSignal(ticker);
-                    await this.delay(1500);
+                    await this.delay(1000);
                 }
             }, {
                 scheduled: true,
@@ -73,7 +77,7 @@ export default class Scheduler {
         for (const stock of stocks) {
             const ticker = stock.getTicker();
             await this.generateSignal(ticker);
-            await this.delay(1500);
+            await this.delay(1000);
         }
     }
 }
