@@ -20,8 +20,13 @@ export default class Scheduler {
     }
     //todo: implement a manual stock check button
     async generateSignal(ticker) {
-        const signal = await this.tradingAlgorithm.decision(ticker);
-        this.notifyObservers(signal, ticker);
+        try {
+            const signal = await this.tradingAlgorithm.decision(ticker);
+            this.notifyObservers(signal, ticker);
+        }
+        catch (error) {
+            throw error;
+        }
     }
     async updateStockPrices() {
         const stocks = StockListManager.getStocks();
@@ -75,8 +80,13 @@ export default class Scheduler {
     async manualCheck() {
         const stocks = StockListManager.getStocks();
         for (const stock of stocks) {
-            const ticker = stock.getTicker();
-            await this.generateSignal(ticker);
+            try {
+                const ticker = stock.getTicker();
+                await this.generateSignal(ticker);
+            }
+            catch (error) {
+                console.error(error);
+            }
             //await this.delay(50);
         }
     }

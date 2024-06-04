@@ -24,23 +24,22 @@ async function initialize() {
         tradeExecutor = new TradeExecutor(initialCash);
         scheduler.addObserver(tradeExecutor);
         let stocks = ['TSM', 'ARM', 'TSLA', 'AAPL', 'NVDA', 'MGM', 'GPS', 'AMZN', 'RIVN', 'F', 'MSFT', 'META',
-            'GOOG', 'FLNC', 'LLY', 'JPM', 'PG', 'AMD', 'PYPL', 'EXC', 'EA', 'BIIB', 'JD', 'HPQ', 'RCL', 'ARM', 'ANF',
+            'GOOG', 'FLNC', 'LLY', 'JPM', 'PG', 'AMD', 'ANET', 'PYPL', 'EXC', 'EA', 'BIIB', 'JD', 'HPQ', 'RCL', 'ARM', 'ANF',
             'CHWY', 'JNJ', 'PFE', 'MRK', 'UNH', 'ABBV', 'BAC', 'GS', 'C', 'WFC', 'KO', 'PEP', 'UL', 'CL', 'GE',
             'BA', 'CAT', 'MMM', 'HON', 'XOM', 'CVX', 'COP', 'SLB', 'HAL', 'NEE', 'DUK', 'D', 'SO', 'AEP', 'VZ', 'T',
-            'TMUS', 'CMCSA', 'CHTR', 'DIS', 'MCD', 'SBUX', 'NFLX', 'OSCR', 'VMEO', 'PLTR',
-            'WWW', 'BRFS', 'DFIN', 'GTN', 'HIMS', 'MMYT', 'ML', 'PCTY', 'RGA', 'SSTK', 'JYNT', 'WRK', 'WWD', 'AROC',
-            'CRS', 'NVRI', 'GVA', 'HAS', 'LDOS', 'NWPX', 'OSPN', 'AGS', 'SPXC', 'VMI', 'AXTA', 'GRMN', 'NGD', 'CVLT', 'VTMX',
-            'MS', 'POWL', 'SNBR', 'TMHC', 'WING', 'ZBRA', 'AEM', 'MBIN', 'MTX', 'AMKR', 'KALU', 'SKX', 'UMBF', 'CSL', 'EXPO',
-            'NTNX', 'OSK', 'PIPR', 'PUBM', 'SKYW', 'TPH', 'MHO', 'SPOT', 'WAB', 'ERO', 'MEDP', 'PHM', 'AZZ', 'ASIX', 'LPX', 'AU', 'BMI', 'GFI',
-            'FBK', 'LAKE', 'SUZ', 'HG', 'DBD', 'JAKK', 'STEP', 'NTRS', 'TROW', 'GRPN', 'BB', 'GBX', 'GCT', 'CIFR',
-            'FIX', 'HCI', 'EME', 'COIN', 'DUOL', 'BKNG', 'BSIG', 'CLS', 'GPRK', 'IVR', 'ITOCY', 'JHG',
-            'LMAT', 'M', 'MLM', 'NTIC', 'OPCH', 'PDD', 'RSVR', 'SM', 'SGRP', 'ODP', 'WU', 'UPLD', 'VTS', 'APTV',
-            'EAT', 'CPA', 'DD', 'LNTH', 'PBI', 'UNCRY', 'VEL', 'ANF', 'GOLD', 'HTHIY', 'COOP', 'MMS', 'SHIP', 'SCBFF',
-            'TYL', 'MNDY', 'FWONK', 'SPNS', 'CIM', 'DY', 'BMA', 'PRMW', 'RBA', 'LPG', 'HUYA', 'OC', 'TOELY', 'CHWY',
-            'DBX', 'AOSL', 'IDN', 'KBCSY', 'BEKE', 'KD', 'NPSNY', 'IAG', 'SIG', 'SCCO', 'SRDX',
-            'GOOS', 'NEWT', 'PETQ', 'BWEN', 'GS', 'IPW', 'HL', 'ODD', 'PED', 'ACIC', 'EMBC', 'SRTS',
-            'SNCR', 'ANET', 'BLBD', 'HBI', 'HMY', 'ITRI', 'SLVM', 'VITL', 'APP', 'ASM', 'DDOG', 'EPC', 'GLDD',
-            'HY', 'OGN', 'PMT', 'SN', 'TRTX', 'TPC', 'ARKO', 'SIMO', 'SFM'];
+            'TMUS', 'CMCSA', 'CHTR', 'DIS', 'MCD', 'SBUX', 'NFLX', 'OSCR', 'VMEO', 'PLTR', 'WWW', 'BRFS', 'DFIN', 'GTN',
+            'HIMS', 'MMYT', 'ML', 'PCTY', 'RGA', 'SSTK', 'JYNT', 'WRK', 'WWD', 'AROC', 'CRS', 'NVRI', 'GVA', 'HAS', 'LDOS',
+            'NWPX', 'OSPN', 'AGS', 'SPXC', 'VMI', 'AXTA', 'GRMN', 'NGD', 'CVLT', 'VTMX', 'MS', 'POWL', 'TMHC', 'WING',
+            'ZBRA', 'AEM', 'MBIN', 'MTX', 'AMKR', 'KALU', 'SKX', 'UMBF', 'CSL', 'EXPO', 'NTNX', 'OSK', 'PUBM', 'SKYW',
+            'TPH', 'SPOT', 'WAB', 'ERO', 'PHM', 'AZZ', 'ASIX', 'LPX', 'AU', 'BMI', 'GFI', 'FBK', 'LAKE', 'SUZ', 'HG',
+            'DBD', 'JAKK', 'STEP', 'NTRS', 'TROW', 'GRPN', 'BB', 'GBX', 'GCT', 'CIFR', 'FIX', 'HCI', 'EME', 'COIN',
+            'DUOL', 'BKNG', 'BSIG', 'CLS', 'GPRK', 'IVR', 'ITOCY', 'JHG', 'LMAT', 'M', 'MLM', 'NTIC', 'OPCH', 'PDD',
+            'RSVR', 'SM', 'SGRP', 'ODP', 'WU', 'UPLD', 'VTS', 'APTV', 'EAT', 'CPA', 'DD', 'LNTH', 'PBI', 'UNCRY', 'VEL',
+            'ANF', 'GOLD', 'HTHIY', 'COOP', 'MMS', 'SHIP', 'SCBFF', 'TYL', 'MNDY', 'FWONK', 'SPNS', 'CIM', 'DY', 'BMA',
+            'PRMW', 'RBA', 'LPG', 'HUYA', 'OC', 'TOELY', 'CHWY', 'DBX', 'AOSL', 'IDN', 'KBCSY', 'BEKE', 'KD', 'IAG', 'SIG',
+            'SCCO', 'SRDX', 'GOOS', 'NEWT', 'PETQ', 'BWEN', 'GS', 'IPW', 'HL', 'ODD', 'PED', 'ACIC', 'EMBC', 'SRTS',
+            'SNCR', 'BLBD', 'HBI', 'HMY', 'ITRI', 'SLVM', 'VITL', 'APP', 'ASM', 'DDOG', 'EPC', 'GLDD', 'HY',
+            'OGN', 'PMT', 'SN', 'TRTX', 'TPC', 'ARKO', 'SIMO', 'SFM'];
         await scheduler.start(stocks);
     }
     await scheduler.manualCheck();

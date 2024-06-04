@@ -4,15 +4,20 @@ export default class TradingAlgorithm {
     constructor() {
     }
     async decision(ticker) {
-        const zacksRank = await this.zacksDecision(ticker);
-        const technicalScore = await this.technicalDecision(ticker);
-        const analystScore = await this.analystDecision(ticker);
-        console.log('zacks is: ' + zacksRank);
-        console.log('technical is: ' + technicalScore);
-        console.log('analyst is: ' + analystScore);
-        return (Config.zacks * zacksRank) +
-            (Config.technical * technicalScore) +
-            (Config.analyst * analystScore);
+        try {
+            const zacksRank = await this.zacksDecision(ticker);
+            const technicalScore = await this.technicalDecision(ticker);
+            const analystScore = await this.analystDecision(ticker);
+            console.log('zacks is: ' + zacksRank);
+            console.log('technical is: ' + technicalScore);
+            console.log('analyst is: ' + analystScore);
+            return (Config.zacks * zacksRank) +
+                (Config.technical * technicalScore) +
+                (Config.analyst * analystScore);
+        }
+        catch (error) {
+            throw error;
+        }
     }
     async zacksDecision(ticker) {
         const zacksRank = await DataRetriever.getZacksRank(ticker);
@@ -31,7 +36,7 @@ export default class TradingAlgorithm {
             }
         }
         catch (e) {
-            console.error(e);
+            throw new Error('error fetching Zacks Rank for ' + ticker);
         }
         return 0;
     }

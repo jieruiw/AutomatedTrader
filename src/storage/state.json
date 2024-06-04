@@ -1,0 +1,1060 @@
+{
+  "config": {
+    "zacks": 0.25,
+    "technical": 0.6,
+    "analyst": 0.15,
+    "maxCap": 0.05
+  },
+  "stockListManager": {
+    "stocks": [
+      {
+        "ticker": "TSM",
+        "price": 154.71
+      },
+      {
+        "ticker": "ARM",
+        "price": 114.77
+      },
+      {
+        "ticker": "TSLA",
+        "price": 176.29
+      },
+      {
+        "ticker": "AAPL",
+        "price": 194.03
+      },
+      {
+        "ticker": "NVDA",
+        "price": 1150
+      },
+      {
+        "ticker": "MGM",
+        "price": 40.12
+      },
+      {
+        "ticker": "GPS",
+        "price": 22.52
+      },
+      {
+        "ticker": "AMZN",
+        "price": 176.445
+      },
+      {
+        "ticker": "RIVN",
+        "price": 11.4
+      },
+      {
+        "ticker": "F",
+        "price": 12.19
+      },
+      {
+        "ticker": "MSFT",
+        "price": 413.52
+      },
+      {
+        "ticker": "META",
+        "price": 477.49
+      },
+      {
+        "ticker": "GOOG",
+        "price": 174.42
+      },
+      {
+        "ticker": "FLNC",
+        "price": 24.4
+      },
+      {
+        "ticker": "LLY",
+        "price": 831.26
+      },
+      {
+        "ticker": "JPM",
+        "price": 198.69
+      },
+      {
+        "ticker": "PG",
+        "price": 168.35
+      },
+      {
+        "ticker": "AMD",
+        "price": 163.55
+      },
+      {
+        "ticker": "ANET",
+        "price": 296.39
+      },
+      {
+        "ticker": "PYPL",
+        "price": 63
+      },
+      {
+        "ticker": "EXC",
+        "price": 37.55
+      },
+      {
+        "ticker": "EA",
+        "price": 133.39
+      },
+      {
+        "ticker": "BIIB",
+        "price": 229.8
+      },
+      {
+        "ticker": "JD",
+        "price": 35.27
+      },
+      {
+        "ticker": "HPQ",
+        "price": 32.75
+      },
+      {
+        "ticker": "RCL",
+        "price": 150.3
+      },
+      {
+        "ticker": "ARM",
+        "price": 114.77
+      },
+      {
+        "ticker": "ANF",
+        "price": 172.87
+      },
+      {
+        "ticker": "CHWY",
+        "price": 22.08
+      },
+      {
+        "ticker": "JNJ",
+        "price": 147.74
+      },
+      {
+        "ticker": "PFE",
+        "price": 29.31
+      },
+      {
+        "ticker": "MRK",
+        "price": 128.42
+      },
+      {
+        "ticker": "UNH",
+        "price": 497.44
+      },
+      {
+        "ticker": "ABBV",
+        "price": 160.59
+      },
+      {
+        "ticker": "BAC",
+        "price": 39.99
+      },
+      {
+        "ticker": "GS",
+        "price": 454.98
+      },
+      {
+        "ticker": "C",
+        "price": 62.31
+      },
+      {
+        "ticker": "WFC",
+        "price": 59.34
+      },
+      {
+        "ticker": "KO",
+        "price": 62
+      },
+      {
+        "ticker": "PEP",
+        "price": 171.3
+      },
+      {
+        "ticker": "UL",
+        "price": 54.75
+      },
+      {
+        "ticker": "CL",
+        "price": 92.47
+      },
+      {
+        "ticker": "GE",
+        "price": 160.55
+      },
+      {
+        "ticker": "BA",
+        "price": 183.565
+      },
+      {
+        "ticker": "CAT",
+        "price": 362.75
+      },
+      {
+        "ticker": "MMM",
+        "price": 99.76
+      },
+      {
+        "ticker": "HON",
+        "price": 201.91
+      },
+      {
+        "ticker": "XOM",
+        "price": 117.85
+      },
+      {
+        "ticker": "CVX",
+        "price": 162.67
+      },
+      {
+        "ticker": "COP",
+        "price": 113.87
+      },
+      {
+        "ticker": "SLB",
+        "price": 44.07
+      },
+      {
+        "ticker": "HAL",
+        "price": 34.755
+      },
+      {
+        "ticker": "NEE",
+        "price": 77.71
+      },
+      {
+        "ticker": "DUK",
+        "price": 103.57
+      },
+      {
+        "ticker": "D",
+        "price": 53.78
+      },
+      {
+        "ticker": "SO",
+        "price": 80.39
+      },
+      {
+        "ticker": "AEP",
+        "price": 90.08
+      },
+      {
+        "ticker": "VZ",
+        "price": 40.98
+      },
+      {
+        "ticker": "T",
+        "price": 18.22
+      },
+      {
+        "ticker": "TMUS",
+        "price": 172.703
+      },
+      {
+        "ticker": "CMCSA",
+        "price": 39.7013
+      },
+      {
+        "ticker": "CHTR",
+        "price": 287.15
+      },
+      {
+        "ticker": "DIS",
+        "price": 103.41
+      },
+      {
+        "ticker": "MCD",
+        "price": 259.75
+      },
+      {
+        "ticker": "SBUX",
+        "price": 82.08
+      },
+      {
+        "ticker": "NFLX",
+        "price": 633.79
+      },
+      {
+        "ticker": "OSCR",
+        "price": 19.16
+      },
+      {
+        "ticker": "VMEO",
+        "price": 3.92
+      },
+      {
+        "ticker": "PLTR",
+        "price": 21.32
+      },
+      {
+        "ticker": "WWW",
+        "price": 13.62
+      },
+      {
+        "ticker": "BRFS",
+        "price": 3.59
+      },
+      {
+        "ticker": "DFIN",
+        "price": 61.19
+      },
+      {
+        "ticker": "GTN",
+        "price": 6.36
+      },
+      {
+        "ticker": "HIMS",
+        "price": 20.265
+      },
+      {
+        "ticker": "MMYT",
+        "price": 76.75
+      },
+      {
+        "ticker": "ML",
+        "price": 98.5
+      },
+      {
+        "ticker": "PCTY",
+        "price": 153.64
+      },
+      {
+        "ticker": "RGA",
+        "price": 209.8
+      },
+      {
+        "ticker": "SSTK",
+        "price": 38
+      },
+      {
+        "ticker": "JYNT",
+        "price": 15.09
+      },
+      {
+        "ticker": "WRK",
+        "price": 54.03
+      },
+      {
+        "ticker": "WWD",
+        "price": 185.2239
+      },
+      {
+        "ticker": "AROC",
+        "price": 21.305
+      },
+      {
+        "ticker": "CRS",
+        "price": 103.64
+      },
+      {
+        "ticker": "NVRI",
+        "price": 8.85
+      },
+      {
+        "ticker": "GVA",
+        "price": 62.29
+      },
+      {
+        "ticker": "HAS",
+        "price": 59.78
+      },
+      {
+        "ticker": "LDOS",
+        "price": 145.11
+      },
+      {
+        "ticker": "NWPX",
+        "price": 34.97
+      },
+      {
+        "ticker": "OSPN",
+        "price": 13.17
+      },
+      {
+        "ticker": "AGS",
+        "price": 11.56
+      },
+      {
+        "ticker": "SPXC",
+        "price": 136.81
+      },
+      {
+        "ticker": "VMI",
+        "price": 246.21
+      },
+      {
+        "ticker": "AXTA",
+        "price": 35.59
+      },
+      {
+        "ticker": "GRMN",
+        "price": 163.21
+      },
+      {
+        "ticker": "NGD",
+        "price": 2.1301
+      },
+      {
+        "ticker": "CVLT",
+        "price": 108.79
+      },
+      {
+        "ticker": "VTMX",
+        "price": 31.44
+      },
+      {
+        "ticker": "MS",
+        "price": 97.22
+      },
+      {
+        "ticker": "POWL",
+        "price": 168.915
+      },
+      {
+        "ticker": "TMHC",
+        "price": 57.82
+      },
+      {
+        "ticker": "WING",
+        "price": 369.21
+      },
+      {
+        "ticker": "ZBRA",
+        "price": 307.63
+      },
+      {
+        "ticker": "AEM",
+        "price": 68.44
+      },
+      {
+        "ticker": "MBIN",
+        "price": 40.8
+      },
+      {
+        "ticker": "MTX",
+        "price": 85.07
+      },
+      {
+        "ticker": "AMKR",
+        "price": 32.59
+      },
+      {
+        "ticker": "KALU",
+        "price": 97.975
+      },
+      {
+        "ticker": "SKX",
+        "price": 71.42
+      },
+      {
+        "ticker": "UMBF",
+        "price": 80.945
+      },
+      {
+        "ticker": "CSL",
+        "price": 416.08
+      },
+      {
+        "ticker": "NTNX",
+        "price": 52.88
+      },
+      {
+        "ticker": "OSK",
+        "price": 112.985
+      },
+      {
+        "ticker": "PUBM",
+        "price": 21.9
+      },
+      {
+        "ticker": "SKYW",
+        "price": 79.41
+      },
+      {
+        "ticker": "TPH",
+        "price": 38.85
+      },
+      {
+        "ticker": "SPOT",
+        "price": 313.62
+      },
+      {
+        "ticker": "WAB",
+        "price": 165.645
+      },
+      {
+        "ticker": "ERO",
+        "price": 22.78
+      },
+      {
+        "ticker": "PHM",
+        "price": 115.49
+      },
+      {
+        "ticker": "AZZ",
+        "price": 82.5
+      },
+      {
+        "ticker": "ASIX",
+        "price": 24.09
+      },
+      {
+        "ticker": "LPX",
+        "price": 92.55
+      },
+      {
+        "ticker": "AU",
+        "price": 24.23
+      },
+      {
+        "ticker": "BMI",
+        "price": 192.96
+      },
+      {
+        "ticker": "GFI",
+        "price": 16.29
+      },
+      {
+        "ticker": "FBK",
+        "price": 36.35
+      },
+      {
+        "ticker": "LAKE",
+        "price": 18.94
+      },
+      {
+        "ticker": "SUZ",
+        "price": 10.345
+      },
+      {
+        "ticker": "HG",
+        "price": 17.25
+      },
+      {
+        "ticker": "DBD",
+        "price": 43.45
+      },
+      {
+        "ticker": "JAKK",
+        "price": 18.57
+      },
+      {
+        "ticker": "STEP",
+        "price": 44.38
+      },
+      {
+        "ticker": "NTRS",
+        "price": 85.51
+      },
+      {
+        "ticker": "TROW",
+        "price": 116.565
+      },
+      {
+        "ticker": "GRPN",
+        "price": 15.83
+      },
+      {
+        "ticker": "BB",
+        "price": 2.79
+      },
+      {
+        "ticker": "GBX",
+        "price": 54.46
+      },
+      {
+        "ticker": "GCT",
+        "price": 32.57
+      },
+      {
+        "ticker": "CIFR",
+        "price": 3.9
+      },
+      {
+        "ticker": "FIX",
+        "price": 342.32
+      },
+      {
+        "ticker": "HCI",
+        "price": 96.47
+      },
+      {
+        "ticker": "EME",
+        "price": 388.66
+      },
+      {
+        "ticker": "COIN",
+        "price": 218.86
+      },
+      {
+        "ticker": "DUOL",
+        "price": 175.78
+      },
+      {
+        "ticker": "BKNG",
+        "price": 3744.71
+      },
+      {
+        "ticker": "BSIG",
+        "price": 22.71
+      },
+      {
+        "ticker": "CLS",
+        "price": 55.57
+      },
+      {
+        "ticker": "GPRK",
+        "price": 10.27
+      },
+      {
+        "ticker": "IVR",
+        "price": 9.36
+      },
+      {
+        "ticker": "ITOCY",
+        "price": 92.57
+      },
+      {
+        "ticker": "JHG",
+        "price": 33.15
+      },
+      {
+        "ticker": "LMAT",
+        "price": 78.55
+      },
+      {
+        "ticker": "M",
+        "price": 19.045
+      },
+      {
+        "ticker": "MLM",
+        "price": 610.43
+      },
+      {
+        "ticker": "NTIC",
+        "price": 18.42
+      },
+      {
+        "ticker": "OPCH",
+        "price": 29.87
+      },
+      {
+        "ticker": "PDD",
+        "price": 146.92
+      },
+      {
+        "ticker": "RSVR",
+        "price": 8.015
+      },
+      {
+        "ticker": "SM",
+        "price": 47.92
+      },
+      {
+        "ticker": "SGRP",
+        "price": 2.63
+      },
+      {
+        "ticker": "ODP",
+        "price": 38.96
+      },
+      {
+        "ticker": "WU",
+        "price": 12.87
+      },
+      {
+        "ticker": "UPLD",
+        "price": 2.94
+      },
+      {
+        "ticker": "VTS",
+        "price": 24.91
+      },
+      {
+        "ticker": "APTV",
+        "price": 84.65
+      },
+      {
+        "ticker": "EAT",
+        "price": 71.32
+      },
+      {
+        "ticker": "CPA",
+        "price": 97.23
+      },
+      {
+        "ticker": "DD",
+        "price": 81.16
+      },
+      {
+        "ticker": "LNTH",
+        "price": 81.83
+      },
+      {
+        "ticker": "PBI",
+        "price": 5.42
+      },
+      {
+        "ticker": "UNCRY",
+        "price": 19.625
+      },
+      {
+        "ticker": "VEL",
+        "price": 18.5
+      },
+      {
+        "ticker": "ANF",
+        "price": 172.87
+      },
+      {
+        "ticker": "GOLD",
+        "price": 17.4505
+      },
+      {
+        "ticker": "HTHIY",
+        "price": 184.49
+      },
+      {
+        "ticker": "COOP",
+        "price": 83.4
+      },
+      {
+        "ticker": "MMS",
+        "price": 85.79
+      },
+      {
+        "ticker": "SHIP",
+        "price": 12.2
+      },
+      {
+        "ticker": "SCBFF",
+        "price": 9.929
+      },
+      {
+        "ticker": "TYL",
+        "price": 481.84
+      },
+      {
+        "ticker": "MNDY",
+        "price": 225.91
+      },
+      {
+        "ticker": "FWONK",
+        "price": 75.55
+      },
+      {
+        "ticker": "SPNS",
+        "price": 34.23
+      },
+      {
+        "ticker": "CIM",
+        "price": 11.895
+      },
+      {
+        "ticker": "DY",
+        "price": 180.48
+      },
+      {
+        "ticker": "BMA",
+        "price": 65.22
+      },
+      {
+        "ticker": "PRMW",
+        "price": 22.44
+      },
+      {
+        "ticker": "RBA",
+        "price": 70
+      },
+      {
+        "ticker": "LPG",
+        "price": 50.34
+      },
+      {
+        "ticker": "HUYA",
+        "price": 5.36
+      },
+      {
+        "ticker": "OC",
+        "price": 181.35
+      },
+      {
+        "ticker": "TOELY",
+        "price": 112.2
+      },
+      {
+        "ticker": "CHWY",
+        "price": 22.08
+      },
+      {
+        "ticker": "DBX",
+        "price": 22.465
+      },
+      {
+        "ticker": "AOSL",
+        "price": 29.495
+      },
+      {
+        "ticker": "IDN",
+        "price": 2.96
+      },
+      {
+        "ticker": "KBCSY",
+        "price": 36.5
+      },
+      {
+        "ticker": "BEKE",
+        "price": 17.055
+      },
+      {
+        "ticker": "KD",
+        "price": 26.24
+      },
+      {
+        "ticker": "IAG",
+        "price": 3.85
+      },
+      {
+        "ticker": "SIG",
+        "price": 108.47
+      },
+      {
+        "ticker": "SCCO",
+        "price": 115.75
+      },
+      {
+        "ticker": "SRDX",
+        "price": 42.06
+      },
+      {
+        "ticker": "GOOS",
+        "price": 14.72
+      },
+      {
+        "ticker": "NEWT",
+        "price": 13.04
+      },
+      {
+        "ticker": "PETQ",
+        "price": 20.77
+      },
+      {
+        "ticker": "BWEN",
+        "price": 4.09
+      },
+      {
+        "ticker": "GS",
+        "price": 454.98
+      },
+      {
+        "ticker": "IPW",
+        "price": 2.3399
+      },
+      {
+        "ticker": "HL",
+        "price": 5.795
+      },
+      {
+        "ticker": "ODD",
+        "price": 36.68
+      },
+      {
+        "ticker": "PED",
+        "price": 0.91
+      },
+      {
+        "ticker": "ACIC",
+        "price": 11.8
+      },
+      {
+        "ticker": "EMBC",
+        "price": 13.75
+      },
+      {
+        "ticker": "SRTS",
+        "price": 5.6
+      },
+      {
+        "ticker": "SNCR",
+        "price": 9.075
+      },
+      {
+        "ticker": "BLBD",
+        "price": 57.01
+      },
+      {
+        "ticker": "HBI",
+        "price": 5.17
+      },
+      {
+        "ticker": "HMY",
+        "price": 9.18
+      },
+      {
+        "ticker": "ITRI",
+        "price": 108.98
+      },
+      {
+        "ticker": "SLVM",
+        "price": 70.71
+      },
+      {
+        "ticker": "VITL",
+        "price": 36.41
+      },
+      {
+        "ticker": "APP",
+        "price": 82.0823
+      },
+      {
+        "ticker": "ASM",
+        "price": 1.07
+      },
+      {
+        "ticker": "DDOG",
+        "price": 108.45
+      },
+      {
+        "ticker": "EPC",
+        "price": 38.58
+      },
+      {
+        "ticker": "GLDD",
+        "price": 9.19
+      },
+      {
+        "ticker": "HY",
+        "price": 72.52
+      },
+      {
+        "ticker": "OGN",
+        "price": 21.38
+      },
+      {
+        "ticker": "PMT",
+        "price": 13.73
+      },
+      {
+        "ticker": "SN",
+        "price": 77.415
+      },
+      {
+        "ticker": "TRTX",
+        "price": 8.58
+      },
+      {
+        "ticker": "TPC",
+        "price": 22.06
+      },
+      {
+        "ticker": "ARKO",
+        "price": 6.14
+      },
+      {
+        "ticker": "SIMO",
+        "price": 79.86
+      },
+      {
+        "ticker": "SFM",
+        "price": 79.16
+      }
+    ]
+  },
+  "tradeExecutor": {
+    "portfolio": {
+      "cash": 0.07530000000289139,
+      "creationDate": "2024-06-04T00:15:03.956Z",
+      "stocks": [
+        {
+          "ticker": "NVDA",
+          "holdings": 4
+        },
+        {
+          "ticker": "MGM",
+          "holdings": 124
+        },
+        {
+          "ticker": "EA",
+          "holdings": 37
+        },
+        {
+          "ticker": "RCL",
+          "holdings": 33
+        },
+        {
+          "ticker": "CHWY",
+          "holdings": 226
+        },
+        {
+          "ticker": "NFLX",
+          "holdings": 7
+        },
+        {
+          "ticker": "ML",
+          "holdings": 50
+        },
+        {
+          "ticker": "WRK",
+          "holdings": 92
+        },
+        {
+          "ticker": "NVRI",
+          "holdings": 564
+        },
+        {
+          "ticker": "AXTA",
+          "holdings": 140
+        },
+        {
+          "ticker": "NGD",
+          "holdings": 2347
+        },
+        {
+          "ticker": "MTX",
+          "holdings": 58
+        },
+        {
+          "ticker": "AZZ",
+          "holdings": 60
+        },
+        {
+          "ticker": "ASIX",
+          "holdings": 207
+        },
+        {
+          "ticker": "AU",
+          "holdings": 206
+        },
+        {
+          "ticker": "LAKE",
+          "holdings": 263
+        },
+        {
+          "ticker": "HG",
+          "holdings": 289
+        },
+        {
+          "ticker": "DBD",
+          "holdings": 115
+        },
+        {
+          "ticker": "JAKK",
+          "holdings": 269
+        },
+        {
+          "ticker": "STEP",
+          "holdings": 112
+        },
+        {
+          "ticker": "TROW",
+          "holdings": 12
+        },
+        {
+          "ticker": "GPRK",
+          "holdings": 4
+        },
+        {
+          "ticker": "IDN",
+          "holdings": 1
+        }
+      ]
+    }
+  }
+}
