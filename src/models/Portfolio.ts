@@ -62,6 +62,7 @@ class Portfolio {
         }
     }
 
+    // TODO: add logging purchase price
     buyStock(ticker: string, price: number, quantity: number): Stock {
         let currStock;
         if (price*quantity <= this.cash) {

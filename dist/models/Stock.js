@@ -1,8 +1,10 @@
 export default class Stock {
-    constructor(ticker, price) {
+    constructor(ticker, price, signal) {
         this.signal = null;
         this.ticker = ticker;
         this.price = price;
+        if (signal)
+            this.signal = signal;
     }
     getTicker() {
         return this.ticker;

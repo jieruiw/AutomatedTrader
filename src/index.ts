@@ -31,12 +31,12 @@ async function initialize() {
         const initialCash = 100000;
         tradeExecutor = new TradeExecutor(initialCash);
         scheduler.addObserver(tradeExecutor);
-        let stocks = ['TSM', 'ARM', 'TSLA', 'AAPL', 'NVDA', 'MGM', 'GPS', 'AMZN', 'RIVN', 'F', 'MSFT', 'META',
+        let stocks = ['TSM', 'ARM', 'TSLA', 'AAPL', 'NVDA', 'MGM', 'MOD', 'GPS', 'AMZN', 'RIVN', 'F', 'MSFT', 'META',
             'GOOG', 'FLNC', 'LLY', 'JPM', 'PG', 'AMD', 'ANET', 'PYPL', 'EXC', 'EA', 'BIIB', 'JD', 'HPQ', 'RCL', 'ARM', 'ANF',
             'CHWY', 'JNJ', 'PFE', 'MRK', 'UNH', 'ABBV', 'BAC', 'GS', 'C', 'WFC', 'KO', 'PEP', 'UL', 'CL', 'GE',
             'BA', 'CAT', 'MMM', 'HON', 'XOM', 'CVX', 'COP', 'SLB', 'HAL', 'NEE', 'DUK', 'D', 'SO', 'AEP', 'VZ', 'T',
             'TMUS', 'CMCSA', 'CHTR', 'DIS', 'MCD', 'SBUX', 'NFLX', 'OSCR', 'VMEO', 'PLTR', 'WWW', 'BRFS', 'DFIN', 'GTN',
-            'HIMS', 'MMYT', 'ML', 'PCTY', 'RGA', 'SSTK', 'JYNT', 'WRK', 'WWD', 'AROC', 'CRS', 'NVRI', 'GVA', 'HAS', 'LDOS',
+            'HIMS', 'MMYT', 'ML', 'PCTY', 'RGA', 'SSTK', 'JYNT', 'WRK', 'WWD', 'AROC', 'NVRI', 'GVA', 'HAS', 'LDOS',
             'NWPX', 'OSPN', 'AGS', 'SPXC', 'VMI', 'AXTA', 'GRMN', 'NGD', 'CVLT', 'VTMX', 'MS', 'POWL',  'TMHC', 'WING',
             'ZBRA', 'AEM', 'MBIN', 'MTX', 'AMKR', 'KALU', 'SKX', 'UMBF', 'CSL', 'NTNX', 'OSK', 'PUBM', 'SKYW',
             'TPH', 'SPOT', 'WAB', 'ERO', 'PHM', 'AZZ', 'ASIX', 'LPX', 'AU', 'BMI', 'GFI', 'FBK', 'LAKE', 'SUZ', 'HG',

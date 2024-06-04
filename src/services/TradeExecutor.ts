@@ -1,4 +1,4 @@
-import Logger from '../utils/Logger.js';
+import Logger from '../utils/DatabaseManager';
 import Portfolio from '../models/Portfolio.js';
 import StockListManager from "../utils/StockListManager.js";
 import Config from "../utils/Config.js";

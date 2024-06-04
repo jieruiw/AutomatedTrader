@@ -37,6 +37,17 @@ const portfolioController = {
         }
     },
 
+    getCash: async (req: Request, res: Response) => {
+        try {
+            const tradeExecutor = StateManager.getTradeExecutor();
+            const portfolio: Portfolio = tradeExecutor.getPortfolio();
+            const balance = portfolio.getCash();
+            res.status(200).json(balance);
+        } catch (error) {
+            res.status(500).json({ error: 'Error fetching current balance' });
+        }
+    },
+
     getHistoricalValues: async (req: Request, res: Response) => {
         try {
             const tradeExecutor = StateManager.getTradeExecutor();
