@@ -1,4 +1,5 @@
 import StockListManager from "../utils/StockListManager.js";
+import DatabaseManager from "../utils/DatabaseManager.js";
 class Portfolio {
     constructor(cash, creationDate) {
         this.cash = cash;
@@ -44,7 +45,7 @@ class Portfolio {
         }
     }
     // TODO: add logging purchase price
-    buyStock(ticker, price, quantity) {
+    async buyStock(ticker, price, quantity) {
         let currStock;
         if (price * quantity <= this.cash) {
             this.cash -= price * quantity;
@@ -58,17 +59,23 @@ class Portfolio {
                 currStock = StockListManager.getStock(ticker);
                 this.stocks.set(ticker, { stock: currStock, holdings: quantity });
             }
+            const date = new Date();
+            await DatabaseManager.logStockPurchase(ticker, date, price);
+            await DatabaseManager.logTransaction(ticker, date, quantity, price, 'buy');
             return currStock;
         }
         throw new Error('Insufficient funds to buy ' + ticker + '.');
     }
-    sellStock(ticker, price, quantity) {
+    async sellStock(ticker, price, quantity) {
         if (this.stocks.has(ticker)) {
             this.stocks.get(ticker).stock.price = price;
             const stockEntry = this.stocks.get(ticker);
             if (stockEntry.holdings >= quantity) {
                 stockEntry.holdings -= quantity;
                 this.cash += price * quantity;
+                const date = new Date();
+                await DatabaseManager.removeStockPurchase(ticker, date);
+                await DatabaseManager.logTransaction(ticker, date, quantity, price, 'sell');
                 return price;
             }
             else {
@@ -82,16 +89,10 @@ class Portfolio {
     getPortfolioValue() {
         let totalValue = this.cash;
         this.stocks.forEach(({ stock, holdings }) => {
-            const currentPrice = stock.getPrice(); // Assuming getPrice() returns the latest price
+            const currentPrice = stock.getPrice();
             totalValue += currentPrice * holdings;
         });
         return totalValue;
-    }
-    getBookValue(ticker) {
-        return 0;
-    }
-    getHistoricalData(period) {
-        return [];
     }
     // Saves the cash, creationDate, tickers of stocks **NOT STOCK OBJECT**, and holdings quantity
     toJSON() {

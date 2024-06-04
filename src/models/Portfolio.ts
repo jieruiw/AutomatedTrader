@@ -1,6 +1,6 @@
 import StockListManager from "../utils/StockListManager.js";
 import Stock from "./Stock.js";
-import DataRetriever from "../utils/DataRetriever";
+import DatabaseManager from "../utils/DatabaseManager.js";
 
 interface StockEntry {
     stock : Stock;
@@ -63,11 +63,11 @@ class Portfolio {
     }
 
     // TODO: add logging purchase price
-    buyStock(ticker: string, price: number, quantity: number): Stock {
+    async buyStock(ticker: string, price: number, quantity: number): Promise<Stock> {
         let currStock;
-        if (price*quantity <= this.cash) {
+        if (price * quantity <= this.cash) {
 
-            this.cash -= price*quantity;
+            this.cash -= price * quantity;
 
             if (this.stocks.has(ticker)) {
                 const currEntry = this.stocks.get(ticker);
@@ -81,6 +81,9 @@ class Portfolio {
                 this.stocks.set(ticker, {stock: currStock, holdings: quantity});
 
             }
+            const date = new Date();
+            await DatabaseManager.logStockPurchase(ticker, date, price);
+            await DatabaseManager.logTransaction(ticker, date, quantity, price, 'buy');
             return currStock;
 
         }
@@ -89,7 +92,7 @@ class Portfolio {
     }
 
 
-    sellStock(ticker: string, price: number, quantity: number): number {
+    async sellStock(ticker: string, price: number, quantity: number): Promise<number> {
         if (this.stocks.has(ticker)) {
             this.stocks.get(ticker)!.stock.price = price;
             const stockEntry = this.stocks.get(ticker)!;
@@ -97,6 +100,10 @@ class Portfolio {
                 stockEntry.holdings -= quantity;
 
                 this.cash += price * quantity;
+                const date = new Date();
+                await DatabaseManager.removeStockPurchase(ticker, date);
+                await DatabaseManager.logTransaction(ticker, date, quantity, price, 'sell');
+
                 return price;
             } else {
                 throw new Error('Insufficient holdings to sell.');
@@ -109,24 +116,18 @@ class Portfolio {
     }
 
 
-    getPortfolioValue(): number {
+     getPortfolioValue(): number {
         let totalValue = this.cash;
 
         this.stocks.forEach(({stock, holdings}) => {
-            const currentPrice = stock.getPrice(); // Assuming getPrice() returns the latest price
+            const currentPrice = stock.getPrice();
             totalValue += currentPrice * holdings;
         });
+
 
         return totalValue;
     }
 
-    getBookValue(ticker: any): number {
-        return 0;
-    }
-
-    getHistoricalData(period: any): any[] {
-        return [];
-    }
 
 
     // Saves the cash, creationDate, tickers of stocks **NOT STOCK OBJECT**, and holdings quantity

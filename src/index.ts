@@ -6,6 +6,7 @@ import Scheduler from './utils/Scheduler.js';
 import TradeExecutor from './services/TradeExecutor.js';
 import Config from "./utils/Config.js";
 import StateManager from "./utils/StateManager.js";
+import DatabaseManager from "./utils/DatabaseManager.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,21 +33,7 @@ async function initialize() {
         tradeExecutor = new TradeExecutor(initialCash);
         scheduler.addObserver(tradeExecutor);
         let stocks = ['TSM', 'ARM', 'TSLA', 'AAPL', 'NVDA', 'MGM', 'MOD', 'GPS', 'AMZN', 'RIVN', 'F', 'MSFT', 'META',
-            'GOOG', 'FLNC', 'LLY', 'JPM', 'PG', 'AMD', 'ANET', 'PYPL', 'EXC', 'EA', 'BIIB', 'JD', 'HPQ', 'RCL', 'ARM', 'ANF',
-            'CHWY', 'JNJ', 'PFE', 'MRK', 'UNH', 'ABBV', 'BAC', 'GS', 'C', 'WFC', 'KO', 'PEP', 'UL', 'CL', 'GE',
-            'BA', 'CAT', 'MMM', 'HON', 'XOM', 'CVX', 'COP', 'SLB', 'HAL', 'NEE', 'DUK', 'D', 'SO', 'AEP', 'VZ', 'T',
-            'TMUS', 'CMCSA', 'CHTR', 'DIS', 'MCD', 'SBUX', 'NFLX', 'OSCR', 'VMEO', 'PLTR', 'WWW', 'BRFS', 'DFIN', 'GTN',
-            'HIMS', 'MMYT', 'ML', 'PCTY', 'RGA', 'SSTK', 'JYNT', 'WRK', 'WWD', 'AROC', 'NVRI', 'GVA', 'HAS', 'LDOS',
-            'NWPX', 'OSPN', 'AGS', 'SPXC', 'VMI', 'AXTA', 'GRMN', 'NGD', 'CVLT', 'VTMX', 'MS', 'POWL',  'TMHC', 'WING',
-            'ZBRA', 'AEM', 'MBIN', 'MTX', 'AMKR', 'KALU', 'SKX', 'UMBF', 'CSL', 'NTNX', 'OSK', 'PUBM', 'SKYW',
-            'TPH', 'SPOT', 'WAB', 'ERO', 'PHM', 'AZZ', 'ASIX', 'LPX', 'AU', 'BMI', 'GFI', 'FBK', 'LAKE', 'SUZ', 'HG',
-            'DBD', 'JAKK', 'STEP', 'NTRS', 'TROW', 'GRPN', 'BB', 'GBX', 'GCT', 'CIFR', 'FIX', 'HCI', 'EME', 'COIN',
-            'DUOL', 'BKNG',  'BSIG', 'CLS',  'GPRK', 'IVR', 'ITOCY', 'JHG', 'LMAT', 'M', 'MLM', 'NTIC', 'OPCH', 'PDD',
-            'RSVR', 'SM', 'SGRP', 'ODP', 'WU', 'UPLD', 'VTS', 'APTV', 'EAT', 'CPA', 'DD', 'LNTH', 'PBI', 'UNCRY', 'VEL',
-            'ANF', 'GOLD', 'HTHIY', 'COOP', 'MMS', 'SHIP', 'SCBFF', 'TYL', 'MNDY',  'FWONK', 'SPNS', 'CIM', 'DY', 'BMA',
-            'PRMW', 'RBA', 'LPG', 'HUYA', 'OC', 'TOELY', 'CHWY', 'DBX', 'AOSL', 'IDN', 'KBCSY', 'BEKE', 'KD', 'IAG', 'SIG',
-            'SCCO', 'SRDX', 'GOOS', 'NEWT', 'PETQ', 'BWEN', 'GS', 'IPW', 'HL', 'ODD', 'PED', 'ACIC', 'EMBC', 'SRTS',
-            'SNCR', 'BLBD', 'HBI', 'HMY', 'ITRI', 'SLVM', 'VITL', 'APP', 'ASM', 'DDOG', 'EPC', 'GLDD', 'HY',
+            'GOOG', 'FLNC', 'LLY', 'JPM', 'PG', 'AMD', 'APP', 'ASM', 'DDOG', 'EPC', 'GLDD', 'HY',
             'OGN', 'PMT', 'SN', 'TRTX', 'TPC', 'ARKO', 'SIMO', 'SFM'];
         await scheduler.start(stocks);
     }
@@ -55,6 +42,8 @@ async function initialize() {
 
     await scheduler.manualCheck();
 
+    let portfolioValue = tradeExecutor.getPortfolio().getPortfolioValue();
+    await DatabaseManager.logPortfolioValue(new Date(), portfolioValue);
     console.log('Trading application started...');
 
     // Graceful shutdown
@@ -70,5 +59,5 @@ initialize();
 const app = express();
 const port = 3000;
 
-app.use(express.json()); // Middleware to parse JSON
+app.use(express.json());
 

@@ -3,14 +3,13 @@ import Portfolio from '../models/Portfolio.js';
 import StockListManager from "../utils/StockListManager.js";
 import Config from "../utils/Config.js";
 import portfolio from "../models/Portfolio.js";
+import DatabaseManager from "../utils/DatabaseManager";
 
 export default class TradeExecutor {
 
-    private logger: Logger;
     private portfolio: Portfolio;
 
     constructor(cash: number) {
-        this.logger = new Logger();
         this.portfolio = new Portfolio(cash, new Date());
     }
 
@@ -27,7 +26,7 @@ export default class TradeExecutor {
     async executeTrade(signal: number, ticker: string) {
         const currStockPrice = await StockListManager.getStockPrice(ticker);
         const currentStockValue = this.portfolio.getHoldings(ticker) * currStockPrice;
-        const totalValue = this.portfolio.getPortfolioValue();
+        const totalValue =  this.portfolio.getPortfolioValue();
         const maxInvestment = totalValue * Config.maxCap;
 
         console.log("current price for " + ticker + " is " + currStockPrice);
@@ -42,20 +41,16 @@ export default class TradeExecutor {
             if (amountToInvest > 0) {
                 const quantity = Math.floor(amountToInvest / currStockPrice);
                 if (quantity > 0) {
-                    this.portfolio.buyStock(ticker, currStockPrice, quantity);
-                    this.logger.log(`Bought ${quantity} shares of ${ticker} at ${currStockPrice} each.`);
+                    await this.portfolio.buyStock(ticker, currStockPrice, quantity);
+                    const date = new Date();
                 }
             }
         } else if (signal <= -35) {
             const quantity = this.portfolio.getHoldings(ticker);
             if (quantity > 0) {
                 this.portfolio.sellStock(ticker, currStockPrice, quantity);
-                this.logger.log(`Sold ${quantity} shares of ${ticker} at ${currStockPrice} each.`);
+
             }
-        } else if (this.portfolio.getHoldings(ticker) > 0) {
-            this.logger.log(`Holding ${ticker}. No action taken.`);
-        } else {
-            this.logger.log(`No action for ${ticker}.`);
         }
     }
 

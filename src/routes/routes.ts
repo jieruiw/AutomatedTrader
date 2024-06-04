@@ -17,6 +17,10 @@ router.get('/portfolio/value', portfolioController.getValue);
 // GET endpoint for getting current portfolio balance
 router.get('/portfolio/cash', portfolioController.getCash);
 
+// TODO
+// getting all transactions
+router.get('/portfolio/transactions', portfolioController.getTransactions)
+
 
 
 // GET endpoint for getting historical values for a specified period

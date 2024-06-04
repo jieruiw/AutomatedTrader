@@ -3,6 +3,7 @@ import StateManager from '../utils/StateManager.js';
 import Portfolio from "../models/Portfolio.js";
 import DataRetriever from "../utils/DataRetriever";
 import Stock from "../models/Stock";
+import DatabaseManager from "../utils/DatabaseManager";
 
 const portfolioController = {
     getHoldings: async (req: Request, res: Response) => {
@@ -19,8 +20,7 @@ const portfolioController = {
     getBookValue: async (req: Request, res: Response) => {
         const { ticker } = req.params;
         try {
-            const tradeExecutor = StateManager.getTradeExecutor();
-            const bookValue = tradeExecutor.getPortfolio().getBookValue(ticker);
+            const bookValue = DatabaseManager.getBookValue(ticker);
             res.status(200).json({ ticker, bookValue });
         } catch (error) {
             res.status(500).json({ error: `Error fetching book value for ${ticker}` });
@@ -50,9 +50,12 @@ const portfolioController = {
 
     getHistoricalValues: async (req: Request, res: Response) => {
         try {
-            const tradeExecutor = StateManager.getTradeExecutor();
-            const { period } = req.query;
-            const historicalData = tradeExecutor.getPortfolio().getHistoricalData(period);
+            const period  = req.query.period as string;
+            if (!period) {
+                res.status(400).json({ error: 'Period is required' });
+                return;
+            }
+            const historicalData = DatabaseManager.getHistoricalData(period);
             res.status(200).json(historicalData);
         } catch (error) {
             res.status(500).json({ error: 'Error fetching historical values' });
@@ -65,7 +68,7 @@ const portfolioController = {
             const tradeExecutor = StateManager.getTradeExecutor();
             const { quantity } = req.body;
             const price = await DataRetriever.getStockPrice(ticker);
-            const stock: Stock = tradeExecutor.getPortfolio().buyStock(ticker, price, quantity);
+            const stock: Stock = await tradeExecutor.getPortfolio().buyStock(ticker, price, quantity);
             const response = {stock, price};
             res.status(200).json(res);
         } catch (error) {
@@ -79,7 +82,7 @@ const portfolioController = {
             const tradeExecutor = StateManager.getTradeExecutor();
             const { quantity } = req.body;
             const price = await DataRetriever.getStockPrice(ticker);
-            const result: number = tradeExecutor.getPortfolio().sellStock(ticker, price, quantity);
+            const result: number = await tradeExecutor.getPortfolio().sellStock(ticker, price, quantity);
             res.status(200).json(result);
         } catch (error) {
             res.status(500).json({ error: `Error selling stock ${ticker}` + error });
@@ -110,6 +113,14 @@ const portfolioController = {
             res.status(500).json({ error: 'Error withdrawing funds' });
         }
     },
+    getTransactions: async (req: Request, res: Response) => {
+        try {
+            const transactions = DatabaseManager.getTransactions();
+            res.status(200).json(transactions);
+        } catch (error) {
+            res.status(500).json({ error: 'Error fetching current balance' });
+        }
+    }
 };
 
 export default portfolioController;

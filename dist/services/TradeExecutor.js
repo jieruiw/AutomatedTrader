@@ -1,10 +1,8 @@
-import Logger from '../utils/Logger.js';
 import Portfolio from '../models/Portfolio.js';
 import StockListManager from "../utils/StockListManager.js";
 import Config from "../utils/Config.js";
 export default class TradeExecutor {
     constructor(cash) {
-        this.logger = new Logger();
         this.portfolio = new Portfolio(cash, new Date());
     }
     getPortfolio() {
@@ -31,8 +29,8 @@ export default class TradeExecutor {
             if (amountToInvest > 0) {
                 const quantity = Math.floor(amountToInvest / currStockPrice);
                 if (quantity > 0) {
-                    this.portfolio.buyStock(ticker, currStockPrice, quantity);
-                    this.logger.log(`Bought ${quantity} shares of ${ticker} at ${currStockPrice} each.`);
+                    await this.portfolio.buyStock(ticker, currStockPrice, quantity);
+                    const date = new Date();
                 }
             }
         }
@@ -40,14 +38,7 @@ export default class TradeExecutor {
             const quantity = this.portfolio.getHoldings(ticker);
             if (quantity > 0) {
                 this.portfolio.sellStock(ticker, currStockPrice, quantity);
-                this.logger.log(`Sold ${quantity} shares of ${ticker} at ${currStockPrice} each.`);
             }
-        }
-        else if (this.portfolio.getHoldings(ticker) > 0) {
-            this.logger.log(`Holding ${ticker}. No action taken.`);
-        }
-        else {
-            this.logger.log(`No action for ${ticker}.`);
         }
     }
     toJSON() {
