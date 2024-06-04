@@ -23,14 +23,3 @@ Automated Trader is a Node.js project that implements a stock trading strategy u
   ```bash
  npm install
 
-## Features
-
-	•	Real-Time Data Retrieval: Fetches real-time stock prices and signals using web scraping and external APIs.
-	•	Trading Algorithm: Generates buy, hold, or sell signals based on a custom trading algorithm.
-	•	Portfolio Management: Tracks portfolio holdings, cash balance, and transaction history.
-	•	Automated Trading Execution: Executes trades automatically based on generated signals.
-	•	Historical Data Tracking: Maintains historical prices and signals for analysis and decision-making.
-	•	RESTful API: Exposes a comprehensive set of endpoints for managing stocks, portfolio, and executing trades.
-
-## API Endpoints
-
