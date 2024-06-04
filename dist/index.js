@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from 'url';
+import express from 'express';
 import Scheduler from './utils/Scheduler.js';
 import TradeExecutor from './services/TradeExecutor.js';
 import Config from "./utils/Config.js";
@@ -30,7 +31,7 @@ async function initialize() {
             'TMUS', 'CMCSA', 'CHTR', 'DIS', 'MCD', 'SBUX', 'NFLX', 'OSCR', 'VMEO', 'PLTR', 'WWW', 'BRFS', 'DFIN', 'GTN',
             'HIMS', 'MMYT', 'ML', 'PCTY', 'RGA', 'SSTK', 'JYNT', 'WRK', 'WWD', 'AROC', 'CRS', 'NVRI', 'GVA', 'HAS', 'LDOS',
             'NWPX', 'OSPN', 'AGS', 'SPXC', 'VMI', 'AXTA', 'GRMN', 'NGD', 'CVLT', 'VTMX', 'MS', 'POWL', 'TMHC', 'WING',
-            'ZBRA', 'AEM', 'MBIN', 'MTX', 'AMKR', 'KALU', 'SKX', 'UMBF', 'CSL', 'EXPO', 'NTNX', 'OSK', 'PUBM', 'SKYW',
+            'ZBRA', 'AEM', 'MBIN', 'MTX', 'AMKR', 'KALU', 'SKX', 'UMBF', 'CSL', 'NTNX', 'OSK', 'PUBM', 'SKYW',
             'TPH', 'SPOT', 'WAB', 'ERO', 'PHM', 'AZZ', 'ASIX', 'LPX', 'AU', 'BMI', 'GFI', 'FBK', 'LAKE', 'SUZ', 'HG',
             'DBD', 'JAKK', 'STEP', 'NTRS', 'TROW', 'GRPN', 'BB', 'GBX', 'GCT', 'CIFR', 'FIX', 'HCI', 'EME', 'COIN',
             'DUOL', 'BKNG', 'BSIG', 'CLS', 'GPRK', 'IVR', 'ITOCY', 'JHG', 'LMAT', 'M', 'MLM', 'NTIC', 'OPCH', 'PDD',
@@ -42,6 +43,7 @@ async function initialize() {
             'OGN', 'PMT', 'SN', 'TRTX', 'TPC', 'ARKO', 'SIMO', 'SFM'];
         await scheduler.start(stocks);
     }
+    StateManager.setTradeExecutor(tradeExecutor);
     await scheduler.manualCheck();
     console.log('Trading application started...');
     // Graceful shutdown
@@ -52,4 +54,6 @@ async function initialize() {
     });
 }
 initialize();
-//TODO: save application process and ability to resume, and also dynamically interact with program.
+const app = express();
+const port = 3000;
+app.use(express.json()); // Middleware to parse JSON

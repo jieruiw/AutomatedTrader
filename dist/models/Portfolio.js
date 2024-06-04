@@ -13,6 +13,7 @@ class Portfolio {
     }
     deposit(amount) {
         this.cash += amount;
+        return this.cash;
     }
     withdraw(amount) {
         if (this.cash >= amount) {
@@ -43,20 +44,22 @@ class Portfolio {
         }
     }
     buyStock(ticker, price, quantity) {
+        let currStock;
         if (price * quantity <= this.cash) {
             this.cash -= price * quantity;
             if (this.stocks.has(ticker)) {
-                this.stocks.get(ticker).holdings += quantity;
-                this.stocks.get(ticker).stock.price = price;
+                const currEntry = this.stocks.get(ticker);
+                currStock = currEntry.stock;
+                currEntry.holdings += quantity;
+                currEntry.stock.price = price;
             }
             else {
-                let currStock = StockListManager.getStock(ticker);
+                currStock = StockListManager.getStock(ticker);
                 this.stocks.set(ticker, { stock: currStock, holdings: quantity });
             }
+            return currStock;
         }
-        else {
-            throw new Error('Insufficient funds to buy ' + ticker + '.');
-        }
+        throw new Error('Insufficient funds to buy ' + ticker + '.');
     }
     sellStock(ticker, price, quantity) {
         if (this.stocks.has(ticker)) {
@@ -65,6 +68,7 @@ class Portfolio {
             if (stockEntry.holdings >= quantity) {
                 stockEntry.holdings -= quantity;
                 this.cash += price * quantity;
+                return price;
             }
             else {
                 throw new Error('Insufficient holdings to sell.');
@@ -81,6 +85,12 @@ class Portfolio {
             totalValue += currentPrice * holdings;
         });
         return totalValue;
+    }
+    getBookValue(ticker) {
+        return 0;
+    }
+    getHistoricalData(period) {
+        return [];
     }
     // Saves the cash, creationDate, tickers of stocks **NOT STOCK OBJECT**, and holdings quantity
     toJSON() {

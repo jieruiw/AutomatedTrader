@@ -1,11 +1,9 @@
 import cron from 'node-cron';
-import DataRetriever from './DataRetriever.js';
 import TradingAlgorithm from '../services/TradingAlgorithm.js';
 import StockListManager from "./StockListManager.js";
 export default class Scheduler {
     constructor() {
         this.observers = [];
-        this.tradingAlgorithm = new TradingAlgorithm();
     }
     addObserver(observer) {
         this.observers.push(observer);
@@ -21,18 +19,11 @@ export default class Scheduler {
     //todo: implement a manual stock check button
     async generateSignal(ticker) {
         try {
-            const signal = await this.tradingAlgorithm.decision(ticker);
+            const signal = await TradingAlgorithm.decision(ticker);
             this.notifyObservers(signal, ticker);
         }
         catch (error) {
             throw error;
-        }
-    }
-    async updateStockPrices() {
-        const stocks = StockListManager.getStocks();
-        for (const stock of stocks) {
-            const price = await DataRetriever.getStockPrice(stock.getTicker());
-            stock.setPrice(price);
         }
     }
     async delay(ms) {
@@ -51,7 +42,7 @@ export default class Scheduler {
     }
     async continue() {
         cron.schedule('*/2 * * * 1-5', async () => {
-            await this.updateStockPrices();
+            await StockListManager.updateStockPrices();
         }, {
             scheduled: true,
             timezone: "America/Vancouver"
@@ -69,7 +60,6 @@ export default class Scheduler {
                     const ticker = stock.getTicker();
                     console.log("ticker got for: " + ticker);
                     await this.generateSignal(ticker);
-                    //await this.delay(50);
                 }
             }, {
                 scheduled: true,
@@ -87,7 +77,6 @@ export default class Scheduler {
             catch (error) {
                 console.error(error);
             }
-            //await this.delay(50);
         }
     }
 }

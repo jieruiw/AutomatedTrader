@@ -48,6 +48,12 @@ class StockListManager {
             throw new Error(`Stock with ticker ${ticker} not found`);
         }
     }
+    async updateStockPrices() {
+        for (const stock of this.stocks) {
+            const price = await DataRetriever.getStockPrice(stock.getTicker());
+            stock.setPrice(price);
+        }
+    }
     toJSON() {
         return {
             stocks: this.stocks.map(stock => ({

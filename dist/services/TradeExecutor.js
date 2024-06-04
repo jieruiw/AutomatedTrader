@@ -7,8 +7,12 @@ export default class TradeExecutor {
         this.logger = new Logger();
         this.portfolio = new Portfolio(cash, new Date());
     }
+    getPortfolio() {
+        return this.portfolio;
+    }
     async update(signal, ticker) {
         console.log(`Received signal for ${ticker}: ${signal}`);
+        this.portfolio.getStock(ticker).setSignal(signal);
         await this.executeTrade(signal, ticker);
     }
     // Method to execute trades based on the signal

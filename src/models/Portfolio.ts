@@ -63,23 +63,28 @@ class Portfolio {
     }
 
     buyStock(ticker: string, price: number, quantity: number): Stock {
+        let currStock;
         if (price*quantity <= this.cash) {
 
             this.cash -= price*quantity;
 
             if (this.stocks.has(ticker)) {
-                this.stocks.get(ticker)!.holdings += quantity;
-                this.stocks.get(ticker)!.stock.price = price;
+                const currEntry = this.stocks.get(ticker);
+                currStock = currEntry!.stock;
+                currEntry!.holdings += quantity;
+                currEntry!.stock.price = price;
+
 
             } else {
-                let currStock = StockListManager.getStock(ticker)!;
+                currStock = StockListManager.getStock(ticker)!;
                 this.stocks.set(ticker, {stock: currStock, holdings: quantity});
-                return currStock;
-            }
 
-        } else {
-            throw new Error('Insufficient funds to buy ' + ticker + '.');
+            }
+            return currStock;
+
         }
+
+        throw new Error('Insufficient funds to buy ' + ticker + '.');
     }
 
 

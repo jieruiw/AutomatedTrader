@@ -9,6 +9,15 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '../..');
 const storageDir = path.join(rootDir, 'src/storage');
 class StateManager {
+    static setTradeExecutor(tradeExecutor) {
+        this.tradeExecutor = tradeExecutor;
+    }
+    static getTradeExecutor() {
+        if (!this.tradeExecutor) {
+            throw new Error('TradeExecutor not initialized');
+        }
+        return this.tradeExecutor;
+    }
     static serialize(tradeExecutor) {
         const state = {
             config: Config.toJSON(),
@@ -32,5 +41,6 @@ class StateManager {
         return te;
     }
 }
+StateManager.tradeExecutor = null;
 StateManager.filePath = path.join(storageDir, 'state.json');
 export default StateManager;
