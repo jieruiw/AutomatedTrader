@@ -12,6 +12,19 @@ Automated Trader is a Node.js project that implements a stock trading strategy u
 - [Contributing](#contributing)
 - [License](#license)
 
+## Installation
+
+Clone the repository:
+```
+git clone https://github.com/yourusername/automated-trader.git
+cd automated-trader
+```
+
+Install dependencies:
+```
+npm install
+```
+
 ## Features
 
  - 	Real-Time Data Retrieval: Fetches real-time stock prices and signals using web scraping and external APIs.
