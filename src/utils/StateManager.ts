@@ -11,8 +11,22 @@ const rootDir = path.resolve(__dirname, '../..');
 const storageDir = path.join(rootDir, 'src/storage');
 
 
+
 export default class StateManager {
+    private static tradeExecutor: TradeExecutor | null = null;
+
     private static filePath = path.join(storageDir, 'state.json');
+
+    static setTradeExecutor(tradeExecutor: TradeExecutor) {
+        this.tradeExecutor = tradeExecutor;
+    }
+
+    static getTradeExecutor(): TradeExecutor {
+        if (!this.tradeExecutor) {
+            throw new Error('TradeExecutor not initialized');
+        }
+        return this.tradeExecutor;
+    }
 
     static serialize(tradeExecutor: TradeExecutor): void {
         const state = {

@@ -1,5 +1,6 @@
 import DataRetriever from './DataRetriever.js';
 import Stock from '../models/Stock.js';
+import TradingAlgorithm from "../services/TradingAlgorithm";
 class StockListManager {
     private static instance: StockListManager;
     private stocks: Stock[] = [];
@@ -53,6 +54,15 @@ class StockListManager {
             throw new Error(`Stock with ticker ${ticker} not found`);
         }
     }
+
+    async updateStockPrices() {
+        for (const stock of this.stocks) {
+            const price = await DataRetriever.getStockPrice(stock.getTicker());
+            stock.setPrice(price);
+        }
+    }
+
+
 
     toJSON() {
         return {

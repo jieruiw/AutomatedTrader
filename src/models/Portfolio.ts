@@ -1,5 +1,6 @@
 import StockListManager from "../utils/StockListManager.js";
 import Stock from "./Stock.js";
+import DataRetriever from "../utils/DataRetriever";
 
 interface StockEntry {
     stock : Stock;
@@ -26,8 +27,9 @@ class Portfolio {
         return this.creationDate;
     }
 
-    deposit(amount: number): void {
+    deposit(amount: number): number {
         this.cash += amount;
+        return this.cash;
     }
 
     withdraw(amount: number): number {
@@ -60,7 +62,7 @@ class Portfolio {
         }
     }
 
-    buyStock(ticker: string, price: number, quantity: number): void {
+    buyStock(ticker: string, price: number, quantity: number): Stock {
         if (price*quantity <= this.cash) {
 
             this.cash -= price*quantity;
@@ -72,6 +74,7 @@ class Portfolio {
             } else {
                 let currStock = StockListManager.getStock(ticker)!;
                 this.stocks.set(ticker, {stock: currStock, holdings: quantity});
+                return currStock;
             }
 
         } else {
@@ -79,7 +82,8 @@ class Portfolio {
         }
     }
 
-    sellStock(ticker: string, price: number, quantity: number): void {
+
+    sellStock(ticker: string, price: number, quantity: number): number {
         if (this.stocks.has(ticker)) {
             this.stocks.get(ticker)!.stock.price = price;
             const stockEntry = this.stocks.get(ticker)!;
@@ -87,6 +91,7 @@ class Portfolio {
                 stockEntry.holdings -= quantity;
 
                 this.cash += price * quantity;
+                return price;
             } else {
                 throw new Error('Insufficient holdings to sell.');
             }
@@ -107,6 +112,14 @@ class Portfolio {
         });
 
         return totalValue;
+    }
+
+    getBookValue(ticker: any): number {
+        return 0;
+    }
+
+    getHistoricalData(period: any): any[] {
+        return [];
     }
 
 
@@ -141,6 +154,9 @@ class Portfolio {
 
         return portfolio;
     }
+
+
+
 }
 
 export default Portfolio;

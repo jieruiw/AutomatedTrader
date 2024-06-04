@@ -5,7 +5,7 @@ export default class TradingAlgorithm {
     constructor() {
     }
 
-    async decision(ticker: string) {
+    static async decision(ticker: string) {
         try {
             const zacksRank = await this.zacksDecision(ticker);
 
@@ -26,7 +26,7 @@ export default class TradingAlgorithm {
 
     }
 
-    async zacksDecision(ticker: string): Promise<number> {
+    static async zacksDecision(ticker: string): Promise<number> {
         const zacksRank = await DataRetriever.getZacksRank(ticker);
         try {
             switch (zacksRank) {
@@ -48,7 +48,7 @@ export default class TradingAlgorithm {
         return 0;
     }
 
-    async technicalDecision(ticker: string) {
+    static async technicalDecision(ticker: string) {
         const sma50 = await DataRetriever.getSMA(ticker, 30);
         const sma200 = await DataRetriever.getSMA(ticker, 120);
         const ema50 = await DataRetriever.getEMA(ticker, 30);
@@ -86,7 +86,7 @@ export default class TradingAlgorithm {
         return overallResult;
     }
 
-    maCalc(emaShort: any[], emaLong: any[], smaShort: any[], smaLong: any[]) {
+    static maCalc(emaShort: any[], emaLong: any[], smaShort: any[], smaLong: any[]) {
         // Ensure we have data for the required periods
         if (!emaShort || !emaLong || !smaShort || !smaLong) {
             console.error('Missing data for moving averages');
@@ -133,7 +133,7 @@ export default class TradingAlgorithm {
         return -20;
     }
 
-    rsiCalc(rsi: any[]): number {
+    static rsiCalc(rsi: any[]): number {
         const rsiValue = rsi[0].rsi;
         if (rsiValue < 30) {
             return 30;
@@ -144,7 +144,7 @@ export default class TradingAlgorithm {
         return 0;
     }
 
-    macdCalc(macd: any[]) {
+    static macdCalc(macd: any[]) {
 
         const macdValue = macd[0].macd;
         const signalValue = macd[0].macd_signal;
@@ -154,7 +154,7 @@ export default class TradingAlgorithm {
         return -20;
     }
 
-    bbandsCalc(bbands: any[]) {
+    static bbandsCalc(bbands: any[]) {
         const currentPrice = bbands[0].middle_band;  // Assume current price is close to middle_band
         if (currentPrice < bbands[0].lower_band) {
             return 20;  // Below lower band, positive signal
@@ -165,7 +165,7 @@ export default class TradingAlgorithm {
         return 0;
     }
 
-    obvCalc(obv: any[]) {
+    static obvCalc(obv: any[]) {
         const obvTrend = obv[0].obv - obv[1].obv;
         if (obvTrend > 0) {
             return 10;  // Positive volume trend
@@ -174,7 +174,7 @@ export default class TradingAlgorithm {
         return -10;
     }
 
-    async analystDecision(ticker: string) {
+    static async analystDecision(ticker: string) {
         const priceTargets = await DataRetriever.getPriceTargets(ticker);
         const { low, current, average, high } = priceTargets;
         console.log(priceTargets);

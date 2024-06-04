@@ -2,6 +2,7 @@ import Logger from '../utils/Logger.js';
 import Portfolio from '../models/Portfolio.js';
 import StockListManager from "../utils/StockListManager.js";
 import Config from "../utils/Config.js";
+import portfolio from "../models/Portfolio.js";
 
 export default class TradeExecutor {
 
@@ -13,8 +14,12 @@ export default class TradeExecutor {
         this.portfolio = new Portfolio(cash, new Date());
     }
 
+    getPortfolio() {
+        return this.portfolio;
+    }
     async update(signal: number, ticker: any) {
         console.log(`Received signal for ${ticker}: ${signal}`);
+        this.portfolio.getStock(ticker).setSignal(signal);
         await this.executeTrade(signal, ticker);
     }
 

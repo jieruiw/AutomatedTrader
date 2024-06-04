@@ -9,11 +9,9 @@ export default class Scheduler {
     // the program retries the analysis at a later time.
 
     private observers: any[];
-    private tradingAlgorithm: TradingAlgorithm;
 
     constructor() {
         this.observers = [];
-        this.tradingAlgorithm = new TradingAlgorithm();
     }
 
 
@@ -35,20 +33,14 @@ export default class Scheduler {
 
     async generateSignal(ticker: string) {
         try {
-            const signal = await this.tradingAlgorithm.decision(ticker);
+            const signal = await TradingAlgorithm.decision(ticker);
             this.notifyObservers(signal, ticker);
         } catch (error) {
                 throw error;
         }
     }
 
-    async updateStockPrices() {
-        const stocks = StockListManager.getStocks();
-        for (const stock of stocks) {
-            const price = await DataRetriever.getStockPrice(stock.getTicker());
-            stock.setPrice(price);
-        }
-    }
+
 
     async delay(ms: number | undefined) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -71,7 +63,7 @@ export default class Scheduler {
 
     async continue() {
         cron.schedule('*/2 * * * 1-5', async () => {
-            await this.updateStockPrices();
+            await StockListManager.updateStockPrices();
         }, {
             scheduled: true,
             timezone: "America/Vancouver"
@@ -91,7 +83,6 @@ export default class Scheduler {
                     const ticker = stock.getTicker();
                     console.log("ticker got for: " + ticker);
                     await this.generateSignal(ticker);
-                    //await this.delay(50);
                 }
             }, {
                 scheduled: true,
@@ -109,7 +100,6 @@ export default class Scheduler {
             } catch (error) {
                 console.error(error);
             }
-            //await this.delay(50);
         }
     }
 

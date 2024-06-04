@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from 'url';
+import express from 'express';
 import Scheduler from './utils/Scheduler.js';
 import TradeExecutor from './services/TradeExecutor.js';
 import Config from "./utils/Config.js";
@@ -50,6 +51,7 @@ async function initialize() {
         await scheduler.start(stocks);
     }
 
+    StateManager.setTradeExecutor(tradeExecutor);
 
     await scheduler.manualCheck();
 
@@ -65,5 +67,8 @@ async function initialize() {
 
 initialize();
 
+const app = express();
+const port = 3000;
 
-//TODO: save application process and ability to resume, and also dynamically interact with program.
+app.use(express.json()); // Middleware to parse JSON
+
