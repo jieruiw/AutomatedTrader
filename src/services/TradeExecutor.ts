@@ -19,7 +19,7 @@ export default class TradeExecutor {
     }
     async update(signal: number, ticker: any) {
         console.log(`Received signal for ${ticker}: ${signal}`);
-        this.portfolio.getStock(ticker).setSignal(signal);
+        StockListManager.getStock(ticker).setSignal(signal);
         await this.executeTrade(signal, ticker);
     }
 
