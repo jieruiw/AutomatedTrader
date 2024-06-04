@@ -15,15 +15,15 @@ Automated Trader is a Node.js project that implements a stock trading strategy u
 ## Installation
 
 Clone the repository:
-``
+```
 git clone https://github.com/yourusername/automated-trader.git
 cd automated-trader
-``
+```
 
 Install dependencies:
-``
+```
 npm install
-``
+```
 
 ## Features
 
