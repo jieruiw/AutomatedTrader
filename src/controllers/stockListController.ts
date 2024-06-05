@@ -10,15 +10,20 @@ const stockListController = {
         try {
             const stocks = StockListManager.getStocks();
             stocks.sort((a, b) => {
-                if (a.signal === null && b.signal === null) {
-                    return a.getTicker().localeCompare(b.getTicker());
-                } else if (a.signal === null) {
+                // If a's signal is null and b's signal is not null, a should come after b
+                if (a.signal === null && b.signal !== null) {
                     return 1;
-                } else if (b.signal === null) {
-                    return -1;
-                } else {
-                    return b.signal - a.signal;
                 }
+                // If b's signal is null and a's signal is not null, b should come after a
+                if (b.signal === null && a.signal !== null) {
+                    return -1;
+                }
+                // If both signals are null, they remain in their current order (0 means no change)
+                if (a.signal === null && b.signal === null) {
+                    return 0;
+                } else
+                // If both signals are present, sort by signal in descending order
+                return b.signal! - a.signal!;
             });
             res.status(200).json(stocks);
         } catch (error) {
@@ -82,6 +87,7 @@ const stockListController = {
                 stock.setPrice(newPrice);
                 // Assume a function to update the signal, implement as needed
                 const newSignal = await TradingAlgorithm.decision(ticker);
+                if (newSignal !== null)
                 stock.setSignal(newSignal);
             }
             res.status(200).json({ message: 'All stocks updated successfully' });
@@ -99,6 +105,7 @@ const stockListController = {
                 const newPrice = await DataRetriever.getStockPrice(ticker);
                 stock.setPrice(newPrice);
                 const newSignal = await TradingAlgorithm.decision(ticker);
+                if (newSignal !== null)
                 stock.setSignal(newSignal);
                 await tradeExecutor.executeTrade(newSignal, ticker);
             }
