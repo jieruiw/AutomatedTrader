@@ -1,6 +1,6 @@
 import StateManager from '../utils/StateManager.js';
-import DataRetriever from "../utils/DataRetriever";
-import DatabaseManager from "../utils/DatabaseManager";
+import DataRetriever from "../utils/DataRetriever.js";
+import DatabaseManager from "../utils/DatabaseManager.js";
 const portfolioController = {
     getHoldings: async (req, res) => {
         try {
@@ -16,7 +16,7 @@ const portfolioController = {
     getBookValue: async (req, res) => {
         const { ticker } = req.params;
         try {
-            const bookValue = DatabaseManager.getBookValue(ticker);
+            const bookValue = await DatabaseManager.getBookValue(ticker);
             res.status(200).json({ ticker, bookValue });
         }
         catch (error) {
@@ -51,7 +51,7 @@ const portfolioController = {
                 res.status(400).json({ error: 'Period is required' });
                 return;
             }
-            const historicalData = DatabaseManager.getHistoricalData(period);
+            const historicalData = await DatabaseManager.getHistoricalData(period);
             res.status(200).json(historicalData);
         }
         catch (error) {
@@ -66,7 +66,7 @@ const portfolioController = {
             const price = await DataRetriever.getStockPrice(ticker);
             const stock = await tradeExecutor.getPortfolio().buyStock(ticker, price, quantity);
             const response = { stock, price };
-            res.status(200).json(res);
+            res.status(200).json(response);
         }
         catch (error) {
             res.status(500).json({ error: `Error buying stock ${ticker}` + error });
@@ -111,7 +111,7 @@ const portfolioController = {
     },
     getTransactions: async (req, res) => {
         try {
-            const transactions = DatabaseManager.getTransactions();
+            const transactions = await DatabaseManager.getTransactions();
             res.status(200).json(transactions);
         }
         catch (error) {

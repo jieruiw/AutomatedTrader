@@ -88,7 +88,7 @@ class Portfolio {
 
         }
 
-        throw new Error('Insufficient funds to buy ' + ticker + '.');
+        throw new Error('Insufficient funds to buy ' + quantity + ' shares of ' + ticker + '.');
     }
 
 

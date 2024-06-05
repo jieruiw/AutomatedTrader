@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import StockListManager from '../utils/StockListManager';
-import DataRetriever from '../utils/DataRetriever';
-import TradingAlgorithm from "../services/TradingAlgorithm";
-import StateManager from "../utils/StateManager";
+import StockListManager from '../utils/StockListManager.js';
+import DataRetriever from '../utils/DataRetriever.js';
+import TradingAlgorithm from "../services/TradingAlgorithm.js";
+import StateManager from "../utils/StateManager.js";
 
 const stockListController = {
     // GET endpoint for getting all monitored stocks

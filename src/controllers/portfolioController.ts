@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import StateManager from '../utils/StateManager.js';
 import Portfolio from "../models/Portfolio.js";
-import DataRetriever from "../utils/DataRetriever";
-import Stock from "../models/Stock";
-import DatabaseManager from "../utils/DatabaseManager";
+import DataRetriever from "../utils/DataRetriever.js";
+import Stock from "../models/Stock.js";
+import DatabaseManager from "../utils/DatabaseManager.js";
 
 const portfolioController = {
     getHoldings: async (req: Request, res: Response) => {
@@ -20,7 +20,7 @@ const portfolioController = {
     getBookValue: async (req: Request, res: Response) => {
         const { ticker } = req.params;
         try {
-            const bookValue = DatabaseManager.getBookValue(ticker);
+            const bookValue = await DatabaseManager.getBookValue(ticker);
             res.status(200).json({ ticker, bookValue });
         } catch (error) {
             res.status(500).json({ error: `Error fetching book value for ${ticker}` });
@@ -55,7 +55,7 @@ const portfolioController = {
                 res.status(400).json({ error: 'Period is required' });
                 return;
             }
-            const historicalData = DatabaseManager.getHistoricalData(period);
+            const historicalData = await DatabaseManager.getHistoricalData(period);
             res.status(200).json(historicalData);
         } catch (error) {
             res.status(500).json({ error: 'Error fetching historical values' });
@@ -70,7 +70,7 @@ const portfolioController = {
             const price = await DataRetriever.getStockPrice(ticker);
             const stock: Stock = await tradeExecutor.getPortfolio().buyStock(ticker, price, quantity);
             const response = {stock, price};
-            res.status(200).json(res);
+            res.status(200).json(response);
         } catch (error) {
             res.status(500).json({ error: `Error buying stock ${ticker}` + error });
         }
@@ -115,7 +115,7 @@ const portfolioController = {
     },
     getTransactions: async (req: Request, res: Response) => {
         try {
-            const transactions = DatabaseManager.getTransactions();
+            const transactions = await DatabaseManager.getTransactions();
             res.status(200).json(transactions);
         } catch (error) {
             res.status(500).json({ error: 'Error fetching current balance' });

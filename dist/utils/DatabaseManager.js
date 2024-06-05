@@ -58,11 +58,78 @@ export default class DatabaseManager {
             console.error("Error logging transaction:", error);
         }
     }
+    //return the list of the most recent 50 transactions
     static async getTransactions() {
+        await this.connect();
+        try {
+            const transactions = await this.transactions.find().sort({ date: -1 }).limit(50).toArray();
+            console.log("Fetched transactions:", transactions);
+            return transactions;
+        }
+        catch (error) {
+            console.error("Error fetching transactions:", error);
+            throw error;
+        }
     }
+    // gets portfolio values of the specified length of date
     static async getHistoricalData(period) {
+        await this.connect();
+        try {
+            const endDate = new Date();
+            let startDate;
+            switch (period) {
+                case "1w":
+                    startDate = new Date();
+                    startDate.setDate(endDate.getDate() - 7);
+                    break;
+                case "1m":
+                    startDate = new Date();
+                    startDate.setMonth(endDate.getMonth() - 1);
+                    break;
+                case "3m":
+                    startDate = new Date();
+                    startDate.setMonth(endDate.getMonth() - 3);
+                    break;
+                case "1y":
+                    startDate = new Date();
+                    startDate.setFullYear(endDate.getFullYear() - 1);
+                    break;
+                case "5y":
+                    startDate = new Date();
+                    startDate.setFullYear(endDate.getFullYear() - 5);
+                    break;
+                default:
+                    throw new Error("Invalid period specified");
+            }
+            const historicalData = await this.portfolioValues.find({
+                date: { $gte: startDate, $lte: endDate }
+            }).toArray();
+            console.log("Fetched historical data:", historicalData);
+            return historicalData;
+        }
+        catch (error) {
+            console.error("Error fetching historical data:", error);
+            throw error;
+        }
     }
+    // gets the corresponding "price" field of the stockPurchases collection
     static async getBookValue(ticker) {
+        await this.connect();
+        try {
+            const stock = await this.stockPurchases.findOne({ ticker });
+            if (stock) {
+                console.log("Fetched book value:", stock.price);
+                return stock.price;
+            }
+            else {
+                console.log("Stock not found");
+                return null;
+            }
+        }
+        catch (error) {
+            console.error("Error fetching book value:", error);
+            throw error;
+        }
     }
     static async close() {
         if (this.client) {

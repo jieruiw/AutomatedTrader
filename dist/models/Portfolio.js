@@ -64,7 +64,7 @@ class Portfolio {
             await DatabaseManager.logTransaction(ticker, date, quantity, price, 'buy');
             return currStock;
         }
-        throw new Error('Insufficient funds to buy ' + ticker + '.');
+        throw new Error('Insufficient funds to buy ' + quantity + ' shares of ' + ticker + '.');
     }
     async sellStock(ticker, price, quantity) {
         if (this.stocks.has(ticker)) {

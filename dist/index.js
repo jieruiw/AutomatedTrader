@@ -7,10 +7,15 @@ import TradeExecutor from './services/TradeExecutor.js';
 import Config from "./utils/Config.js";
 import StateManager from "./utils/StateManager.js";
 import DatabaseManager from "./utils/DatabaseManager.js";
+import router from "./routes/routes.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 const storageDir = path.join(rootDir, 'src/storage');
+const app = express();
+const port = 3000;
+app.use(express.json());
+app.use('/api', router);
 async function initialize() {
     const filePath = path.join(storageDir, 'state.json');
     const scheduler = new Scheduler();
@@ -31,7 +36,7 @@ async function initialize() {
         await scheduler.start(stocks);
     }
     StateManager.setTradeExecutor(tradeExecutor);
-    await scheduler.manualCheck();
+    // await scheduler.manualCheck();
     let portfolioValue = tradeExecutor.getPortfolio().getPortfolioValue();
     await DatabaseManager.logPortfolioValue(new Date(), portfolioValue);
     console.log('Trading application started...');
@@ -42,7 +47,10 @@ async function initialize() {
         process.exit();
     });
 }
-initialize();
-const app = express();
-const port = 3000;
-app.use(express.json());
+initialize().then(() => {
+    app.listen(port, () => {
+        console.log(`Server is running on http://localhost:${port}`);
+    });
+}).catch(err => {
+    console.error("Error initializing application", err);
+});

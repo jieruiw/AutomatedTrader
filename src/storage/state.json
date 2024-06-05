@@ -18,19 +18,9 @@
         "signal": 17.87841091492777
       },
       {
-        "ticker": "TSLA",
-        "price": 174.77,
-        "signal": -29.787978730564717
-      },
-      {
         "ticker": "AAPL",
         "price": 194.35,
         "signal": -10.654054054054054
-      },
-      {
-        "ticker": "NVDA",
-        "price": 1164.37,
-        "signal": 52
       },
       {
         "ticker": "MGM",
@@ -171,18 +161,19 @@
         "ticker": "SFM",
         "price": 79.16,
         "signal": 13.70909090909091
+      },
+      {
+        "ticker": "NVDA",
+        "price": 1164.37,
+        "signal": null
       }
     ]
   },
   "tradeExecutor": {
     "portfolio": {
-      "cash": 80372.87,
+      "cash": 9940.280000000013,
       "creationDate": "2024-06-04T23:18:13.212Z",
       "stocks": [
-        {
-          "ticker": "NVDA",
-          "holdings": 4
-        },
         {
           "ticker": "MGM",
           "holdings": 124
@@ -194,6 +185,10 @@
         {
           "ticker": "ARKO",
           "holdings": 807
+        },
+        {
+          "ticker": "AAPL",
+          "holdings": 3
         }
       ]
     }
