@@ -52,4 +52,7 @@ router.delete('/stocks/delete/:ticker', stockListController.removeStock);
 //updates information (price and signal) for all monitored stocks
 router.put('/stocks/update', stockListController.update);
 
+router.put('/stocks/run', stockListController.run);
+
+
 export default router;

@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import StockListManager from '../utils/StockListManager';
 import DataRetriever from '../utils/DataRetriever';
 import TradingAlgorithm from "../services/TradingAlgorithm";
+import StateManager from "../utils/StateManager";
 
 const stockListController = {
     // GET endpoint for getting all monitored stocks
@@ -77,6 +78,24 @@ const stockListController = {
             res.status(500).json({ error: 'Error updating stocks: ' + error });
         }
     },
+
+    run: async (req: Request, res: Response) => {
+        try {
+            const tradeExecutor = StateManager.getTradeExecutor();
+            const stocks = StockListManager.getStocks();
+            for (const stock of stocks) {
+                const ticker = stock.getTicker();
+                const newPrice = await DataRetriever.getStockPrice(ticker);
+                stock.setPrice(newPrice);
+                const newSignal = await TradingAlgorithm.decision(ticker);
+                stock.setSignal(newSignal);
+                await tradeExecutor.executeTrade(newSignal, ticker);
+            }
+            res.status(200).json({ message: 'Algorithm completed' });
+        } catch (error) {
+            res.status(500).json({ error: 'Error updating running algorithm: ' + error });
+        }
+    }
 };
 
 export default stockListController;
