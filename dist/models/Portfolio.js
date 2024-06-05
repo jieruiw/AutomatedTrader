@@ -26,7 +26,15 @@ class Portfolio {
         }
     }
     getPortfolio() {
-        return this.stocks;
+        const holdingsArray = [];
+        this.stocks.forEach((value, key) => {
+            holdingsArray.push({
+                ticker: key,
+                stock: value.stock,
+                holdings: value.holdings
+            });
+        });
+        return holdingsArray;
     }
     getStock(ticker) {
         if (this.stocks.has(ticker)) {
@@ -60,7 +68,7 @@ class Portfolio {
                 this.stocks.set(ticker, { stock: currStock, holdings: quantity });
             }
             const date = new Date();
-            await DatabaseManager.logStockPurchase(ticker, date, price);
+            await DatabaseManager.logStockPurchase(ticker, date, price, quantity);
             await DatabaseManager.logTransaction(ticker, date, quantity, price, 'buy');
             return currStock;
         }
@@ -74,7 +82,7 @@ class Portfolio {
                 stockEntry.holdings -= quantity;
                 this.cash += price * quantity;
                 const date = new Date();
-                await DatabaseManager.removeStockPurchase(ticker, date);
+                await DatabaseManager.reduceStockPurchase(ticker, date, quantity);
                 await DatabaseManager.logTransaction(ticker, date, quantity, price, 'sell');
                 return price;
             }

@@ -9,6 +9,17 @@ const stockListController = {
     getStocks: async (req: Request, res: Response) => {
         try {
             const stocks = StockListManager.getStocks();
+            stocks.sort((a, b) => {
+                if (a.signal === null && b.signal === null) {
+                    return a.getTicker().localeCompare(b.getTicker());
+                } else if (a.signal === null) {
+                    return 1;
+                } else if (b.signal === null) {
+                    return -1;
+                } else {
+                    return b.signal - a.signal;
+                }
+            });
             res.status(200).json(stocks);
         } catch (error) {
             res.status(500).json({ error: 'Error fetching stocks' });

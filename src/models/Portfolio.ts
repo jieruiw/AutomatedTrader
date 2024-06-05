@@ -42,8 +42,16 @@ class Portfolio {
     }
 
 
-    getPortfolio(): Map<string, StockEntry>  {
-        return this.stocks;
+    getPortfolio(): any[]  {
+        const holdingsArray: { ticker: string, stock: Stock, holdings: number }[] = [];
+        this.stocks.forEach((value, key) => {
+            holdingsArray.push({
+                ticker: key,
+                stock: value.stock,
+                holdings: value.holdings
+            });
+        });
+        return holdingsArray;
     }
 
     getStock(ticker: string): Stock {
@@ -82,7 +90,7 @@ class Portfolio {
 
             }
             const date = new Date();
-            await DatabaseManager.logStockPurchase(ticker, date, price);
+            await DatabaseManager.logStockPurchase(ticker, date, price, quantity);
             await DatabaseManager.logTransaction(ticker, date, quantity, price, 'buy');
             return currStock;
 
@@ -101,7 +109,7 @@ class Portfolio {
 
                 this.cash += price * quantity;
                 const date = new Date();
-                await DatabaseManager.removeStockPurchase(ticker, date);
+                await DatabaseManager.reduceStockPurchase(ticker, date, quantity);
                 await DatabaseManager.logTransaction(ticker, date, quantity, price, 'sell');
 
                 return price;

@@ -23,11 +23,12 @@ export default class DatabaseManager {
 
     static async logPortfolioValue(date: Date, value: number) {
         await this.connect();
+        const newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
         try {
-            const existingEntry = await this.portfolioValues.findOne({ date });
+            const existingEntry = await this.portfolioValues.findOne({ newDate });
             if (!existingEntry) {
-                await this.portfolioValues.insertOne({ date, value });
-                console.log("Logged portfolio value:", { date, value });
+                await this.portfolioValues.insertOne({ newDate, value });
+                console.log("Logged portfolio value:", { newDate, value });
             } else {
                 console.log("Portfolio value for today already exists.");
             }
@@ -36,21 +37,62 @@ export default class DatabaseManager {
         }
     }
 
-    static async logStockPurchase(ticker: string, date: Date, price: number) {
+    static async logStockPurchase(ticker: string, date: Date, price: number, quantity: number) {
         await this.connect();
         try {
-            await this.stockPurchases.insertOne({ ticker, date, price });
-            console.log("Logged stock purchase:", { ticker, date, price });
+            const existingEntries = await this.stockPurchases.find({ ticker }).toArray();
+            let totalQuantity = quantity;
+            let totalCost = price * quantity;
+            let oldestDate = date;
+
+            if (existingEntries.length > 0) {
+                for (const entry of existingEntries) {
+                    totalQuantity += entry.quantity;
+                    totalCost += entry.price * entry.quantity;
+                    if (entry.date < oldestDate) {
+                        oldestDate = entry.date;
+                    }
+                }
+
+                // Delete existing entries
+                await this.stockPurchases.deleteMany({ ticker });
+            }
+
+            const weightedAveragePrice = totalCost / totalQuantity;
+            const newEntry = {
+                ticker,
+                date: oldestDate,
+                price: weightedAveragePrice,
+                quantity: totalQuantity
+            };
+
+            await this.stockPurchases.insertOne(newEntry);
+            console.log("Logged stock purchase:", newEntry);
         } catch (error) {
             console.error("Error logging stock purchase:", error);
         }
     }
 
-    static async removeStockPurchase(ticker: string, date: Date) {
+    static async reduceStockPurchase(ticker: string, date: Date, quantity: number) {
         await this.connect();
         try {
-            await this.stockPurchases.deleteOne({ ticker, date });
-            console.log("Removed stock purchase:", { ticker, date });
+            const existingEntry = await this.stockPurchases.findOne({ ticker });
+            if (!existingEntry) {
+                throw new Error(`No stock found for ticker: ${ticker}`);
+            }
+
+            const newQuantity = existingEntry.quantity - quantity;
+
+            if (newQuantity > 0) {
+                await this.stockPurchases.updateOne(
+                    { ticker },
+                    { $set: { quantity: newQuantity } }
+                );
+                console.log("Updated stock purchase:", { ticker, date: existingEntry.date, quantity: newQuantity });
+            } else {
+                await this.stockPurchases.deleteOne({ ticker });
+                console.log("Removed stock purchase:", { ticker, date: existingEntry.date });
+            }
         } catch (error) {
             console.error("Error removing stock purchase:", error);
         }
