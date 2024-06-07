@@ -95,6 +95,7 @@ export default class DatabaseManager {
             }
         } catch (error) {
             console.error("Error removing stock purchase:", error);
+            throw error;
         }
     }
 
@@ -154,7 +155,7 @@ export default class DatabaseManager {
             }
 
             const historicalData = await this.portfolioValues.find({
-                date: { $gte: startDate, $lte: endDate }
+                newDate: { $gte: startDate, $lte: endDate }
             }).toArray();
 
             console.log("Fetched historical data:", historicalData);

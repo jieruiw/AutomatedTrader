@@ -41,7 +41,7 @@ export default class Scheduler {
         await this.continue();
     }
     async continue() {
-        cron.schedule('*/2 * * * 1-5', async () => {
+        cron.schedule('*/20 * * * 1-5', async () => {
             await StockListManager.updateStockPrices();
         }, {
             scheduled: true,

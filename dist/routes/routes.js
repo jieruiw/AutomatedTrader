@@ -45,4 +45,5 @@ router.delete('/stocks/delete/:ticker', stockListController.removeStock);
 router.put('/stocks/update', stockListController.update);
 //verified works
 router.put('/stocks/run', stockListController.run);
+router.put('/stocks/priceUpdate', stockListController.updatePrices);
 export default router;

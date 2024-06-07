@@ -9,1299 +9,1239 @@
     "stocks": [
       {
         "ticker": "MGM",
-        "price": 40.16,
-        "signal": 70
-      },
-      {
-        "ticker": "DBD",
-        "price": 42.505,
+        "price": null,
         "signal": 70
       },
       {
         "ticker": "JAKK",
-        "price": 18.57,
-        "signal": 70
+        "price": null,
+        "signal": 33
       },
       {
         "ticker": "ANF",
-        "price": 172.625,
-        "signal": 63.016279069767435
-      },
-      {
-        "ticker": "ANF",
-        "price": 172.625,
-        "signal": 63.016279069767435
+        "price": null,
+        "signal": 61.97674418604651
       },
       {
         "ticker": "VEL",
-        "price": 18.22,
-        "signal": 60.737500000000004
+        "price": null,
+        "signal": 34.55
       },
       {
         "ticker": "SIMO",
-        "price": 79.86,
-        "signal": 59.59375
+        "price": null,
+        "signal": 46.14625
       },
       {
         "ticker": "OPCH",
-        "price": 29.69,
-        "signal": 58
+        "price": null,
+        "signal": 57.5
       },
       {
         "ticker": "HTHIY",
-        "price": 184.49,
+        "price": null,
         "signal": 58
       },
       {
         "ticker": "GPRK",
-        "price": 10.19,
-        "signal": 57.5
+        "price": null,
+        "signal": 45.5
       },
       {
         "ticker": "TROW",
-        "price": 116.55,
-        "signal": 54.46875
+        "price": null,
+        "signal": 19.19375
       },
       {
         "ticker": "ML",
-        "price": 98.5,
-        "signal": 54.214214711729625
+        "price": null,
+        "signal": 30.21421471172962
       },
       {
         "ticker": "GOOS",
-        "price": 14.19,
-        "signal": 53.91721854304636
+        "price": null,
+        "signal": 16.240802675585286
       },
       {
         "ticker": "HBI",
-        "price": 5.17,
-        "signal": 52.36666666666667
+        "price": null,
+        "signal": 40.36666666666667
       },
       {
         "ticker": "LAKE",
-        "price": 18.85,
-        "signal": 52
+        "price": null,
+        "signal": 29.5
       },
       {
         "ticker": "HG",
-        "price": 17.3,
-        "signal": 52
+        "price": null,
+        "signal": 46
       },
       {
         "ticker": "DY",
-        "price": 179.12,
-        "signal": 52
+        "price": null,
+        "signal": 58
       },
       {
         "ticker": "PETQ",
-        "price": 20.77,
+        "price": null,
         "signal": 52
       },
       {
         "ticker": "NVDA",
-        "price": 1224.4,
-        "signal": 52
+        "price": null,
+        "signal": 40
       },
       {
         "ticker": "GBX",
-        "price": 53.11,
-        "signal": 50.95
+        "price": null,
+        "signal": 34
       },
       {
         "ticker": "BAC",
-        "price": 39.99,
-        "signal": 50.69552529182879
+        "price": null,
+        "signal": 19.175675675675677
       },
       {
         "ticker": "ARKO",
-        "price": 6.19,
-        "signal": 48.574999999999996
+        "price": null,
+        "signal": 48.6
       },
       {
         "ticker": "FWONK",
-        "price": 73.51,
-        "signal": 46.3172131147541
+        "price": null,
+        "signal": 34.454918032786885
       },
       {
         "ticker": "AZZ",
-        "price": 78.42,
-        "signal": 46
+        "price": null,
+        "signal": 34
       },
       {
         "ticker": "GFF",
-        "price": 67.255,
-        "signal": 46
+        "price": null,
+        "signal": 34
       },
       {
         "ticker": "DUOL",
-        "price": 175.78,
-        "signal": 46
+        "price": null,
+        "signal": 34
       },
       {
         "ticker": "BSIG",
-        "price": 22.71,
-        "signal": 46
+        "price": null,
+        "signal": -2.5
       },
       {
         "ticker": "MMS",
-        "price": 86.71,
-        "signal": 46
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "MNDY",
-        "price": 225.91,
+        "price": null,
         "signal": 46
       },
       {
         "ticker": "KD",
-        "price": 26.4,
-        "signal": 46
+        "price": null,
+        "signal": 34
       },
       {
         "ticker": "VMEO",
-        "price": 3.92,
-        "signal": 46
+        "price": null,
+        "signal": 34
       },
       {
         "ticker": "BRFS",
-        "price": 3.46,
-        "signal": 46
+        "price": null,
+        "signal": 13.000000000000005
       },
       {
         "ticker": "SSTK",
-        "price": 38,
-        "signal": 46
+        "price": null,
+        "signal": 58
       },
       {
         "ticker": "MTX",
-        "price": 85.07,
-        "signal": 46
+        "price": null,
+        "signal": 34
       },
       {
         "ticker": "AMKR",
-        "price": 33.0799,
-        "signal": 46
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "ASM",
-        "price": 1.07,
-        "signal": 46
+        "price": null,
+        "signal": 34
       },
       {
         "ticker": "GLDD",
-        "price": 9.19,
-        "signal": 46
+        "price": null,
+        "signal": 34
       },
       {
         "ticker": "HY",
-        "price": 71.94,
-        "signal": 46
+        "price": null,
+        "signal": 34
       },
       {
         "ticker": "ABBV",
-        "price": 160.59,
+        "price": null,
         "signal": 45
       },
       {
         "ticker": "SPOT",
-        "price": 324,
-        "signal": 44.46570286065826
+        "price": null,
+        "signal": 45.41799077396207
       },
       {
         "ticker": "IDN",
-        "price": 2.96,
-        "signal": 44.017190314191325
+        "price": null,
+        "signal": 50.017190314191325
       },
       {
         "ticker": "GPS",
-        "price": 22.52,
-        "signal": 42.641304347826086
+        "price": null,
+        "signal": 43.57954545454545
       },
       {
         "ticker": "NVRI",
-        "price": 8.85,
-        "signal": 42.436
+        "price": null,
+        "signal": 48.436
       },
       {
         "ticker": "STEP",
-        "price": 43.45,
-        "signal": 42.41578947368421
+        "price": null,
+        "signal": 43.26842105263158
       },
       {
         "ticker": "RCL",
-        "price": 150.3,
-        "signal": 41.11477272727272
+        "price": null,
+        "signal": 45.72045454545455
       },
       {
         "ticker": "COIN",
-        "price": 218.86,
-        "signal": 40
+        "price": null,
+        "signal": 55.22573770491803
       },
       {
         "ticker": "LPG",
-        "price": 50.265,
-        "signal": 40
+        "price": null,
+        "signal": 18.2
       },
       {
         "ticker": "SRDX",
-        "price": 42.06,
+        "price": null,
         "signal": 40
       },
       {
         "ticker": "ODP",
-        "price": 38.59,
-        "signal": 39.5
+        "price": null,
+        "signal": 21.5
       },
       {
         "ticker": "HON",
-        "price": 201.91,
-        "signal": 39.442
+        "price": null,
+        "signal": 14.004000000000001
       },
       {
         "ticker": "SRTS",
-        "price": 5.5691,
-        "signal": 39.28
+        "price": null,
+        "signal": 25.810000000000002
       },
       {
         "ticker": "CHWY",
-        "price": 22.08,
-        "signal": 39.16315789473684
+        "price": null,
+        "signal": 26.026315789473685
       },
       {
         "ticker": "CHWY",
-        "price": 22.08,
-        "signal": 39.16315789473684
+        "price": null,
+        "signal": 26.026315789473685
       },
       {
         "ticker": "BWEN",
-        "price": 4.09,
+        "price": null,
         "signal": 38.1625
       },
       {
         "ticker": "DD",
-        "price": 80.62,
-        "signal": 37.40434782608695
-      },
-      {
-        "ticker": "RBA",
-        "price": 70,
-        "signal": 36.68908232938926
+        "price": null,
+        "signal": 25.69130434782608
       },
       {
         "ticker": "HD",
-        "price": 329.49,
-        "signal": 36.2052
+        "price": null,
+        "signal": 24.542399999999997
       },
       {
         "ticker": "EMBC",
-        "price": 13.75,
-        "signal": 35.6875
+        "price": null,
+        "signal": 23.6875
       },
       {
         "ticker": "AXTA",
-        "price": 36.35,
-        "signal": 35.6375
+        "price": null,
+        "signal": 24.112500000000004
       },
       {
         "ticker": "VITL",
-        "price": 36.41,
-        "signal": 35.583333333333336
+        "price": null,
+        "signal": -0.41666666666666496
       },
       {
         "ticker": "HL",
-        "price": 5.555,
-        "signal": 35.142857142857146
+        "price": null,
+        "signal": 23.714285714285715
       },
       {
         "ticker": "BIIB",
-        "price": 237.115,
-        "signal": 34.683
+        "price": null,
+        "signal": -0.3990000000000009
       },
       {
         "ticker": "SKYW",
-        "price": 80.79,
-        "signal": 34.59464285714285
+        "price": null,
+        "signal": 35.9125
       },
       {
         "ticker": "EA",
-        "price": 137.96,
-        "signal": 34.51153846153846
+        "price": null,
+        "signal": 40.13461538461539
       },
       {
         "ticker": "NWPX",
-        "price": 34.59,
-        "signal": 34
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "ACIC",
-        "price": 11.8,
+        "price": null,
         "signal": 34
       },
       {
         "ticker": "OSPN",
-        "price": 12.92,
-        "signal": 33.730000000000004
+        "price": null,
+        "signal": 20.259999999999998
       },
       {
         "ticker": "HIMS",
-        "price": 20.265,
-        "signal": 33.61923076923077
+        "price": null,
+        "signal": 38.92692307692308
       },
       {
         "ticker": "WBD",
-        "price": 8.245,
-        "signal": 33.502941176470586
+        "price": null,
+        "signal": 21.41470588235294
       },
       {
         "ticker": "VTS",
-        "price": 24.91,
-        "signal": 33.5
+        "price": null,
+        "signal": 21.5
       },
       {
         "ticker": "ODD",
-        "price": 36.68,
-        "signal": 33.5
+        "price": null,
+        "signal": 29.756249999999998
       },
       {
         "ticker": "BA",
-        "price": 189.85,
-        "signal": 33.35777777777778
+        "price": null,
+        "signal": 21.267777777777777
       },
       {
         "ticker": "UPLD",
-        "price": 2.94,
-        "signal": 33.34
+        "price": null,
+        "signal": 8.84
       },
       {
         "ticker": "ANET",
-        "price": 297.56,
-        "signal": 33.317455621301775
+        "price": null,
+        "signal": 32.79378698224853
       },
       {
         "ticker": "APP",
-        "price": 83.47,
-        "signal": 33.25
+        "price": null,
+        "signal": -2.5395522388059715
       },
       {
         "ticker": "NXT",
-        "price": 56.31,
+        "price": null,
         "signal": 33.026785714285715
       },
       {
         "ticker": "ASIX",
-        "price": 23.77,
+        "price": null,
         "signal": 33
       },
       {
         "ticker": "SIG",
-        "price": 107.4,
-        "signal": 33
+        "price": null,
+        "signal": 20.5
       },
       {
         "ticker": "CMCSA",
-        "price": 39.45,
+        "price": null,
         "signal": 33
       },
       {
         "ticker": "MMYT",
-        "price": 81.49,
-        "signal": 32.80483870967742
+        "price": null,
+        "signal": -2.561290322580649
       },
       {
         "ticker": "RIVN",
-        "price": 11.22,
-        "signal": 32.71153846153846
+        "price": null,
+        "signal": 20.41730769230769
       },
       {
         "ticker": "AMD",
-        "price": 166.17,
-        "signal": 32.5296
+        "price": null,
+        "signal": 32.4264
       },
       {
         "ticker": "FLNC",
-        "price": 24.78,
-        "signal": 32.4046875
+        "price": null,
+        "signal": -2.521875000000001
       },
       {
         "ticker": "CLS",
-        "price": 53.97,
-        "signal": 32.35
+        "price": null,
+        "signal": 24.666666666666664
       },
       {
         "ticker": "LMAT",
-        "price": 78.55,
-        "signal": 32.35
+        "price": null,
+        "signal": -15.770000000000003
       },
       {
         "ticker": "NGD",
-        "price": 2.1301,
+        "price": null,
         "signal": 20.298999999999996
       },
       {
         "ticker": "SPNS",
-        "price": 33.42,
-        "signal": 32.00714285714285
+        "price": null,
+        "signal": -16.450000000000003
       },
       {
         "ticker": "WU",
-        "price": 12.97,
-        "signal": 31.84375
+        "price": null,
+        "signal": 7.531249999999998
       },
       {
         "ticker": "LPX",
-        "price": 90.76,
-        "signal": 31.67285714285714
+        "price": null,
+        "signal": 18.69571428571428
       },
       {
         "ticker": "PFE",
-        "price": 29.57,
-        "signal": 31.575
+        "price": null,
+        "signal": -15.833333333333332
       },
       {
         "ticker": "HUYA",
-        "price": 5.36,
-        "signal": 31.393013100436683
+        "price": null,
+        "signal": -4.606986899563318
       },
       {
         "ticker": "WMT",
-        "price": 65.575,
-        "signal": 31.225000000000012
+        "price": null,
+        "signal": 37.20909090909089
       },
       {
         "ticker": "NFLX",
-        "price": 650.27,
-        "signal": 30.964428571428574
+        "price": null,
+        "signal": 19.16157142857143
       },
       {
         "ticker": "META",
-        "price": 495.06,
-        "signal": 30.804054054054053
+        "price": null,
+        "signal": 30.763963963963963
       },
       {
         "ticker": "WWD",
-        "price": 185.32,
-        "signal": 29.563636363636366
+        "price": null,
+        "signal": 6.400000000000003
       },
       {
         "ticker": "ARM",
-        "price": 114.77,
-        "signal": 29.87841091492777
-      },
-      {
-        "ticker": "ARM",
-        "price": 114.77,
-        "signal": 29.87841091492777
+        "price": null,
+        "signal": null
       },
       {
         "ticker": "AOSL",
-        "price": 29.495,
-        "signal": 29.392857142857142
+        "price": null,
+        "signal": 17.392857142857142
       },
       {
         "ticker": "HPQ",
-        "price": 32.75,
-        "signal": 29.39
+        "price": null,
+        "signal": 27.824999999999996
       },
       {
         "ticker": "PLTR",
-        "price": 22.895,
-        "signal": 29.16346153846154
+        "price": null,
+        "signal": 16.875
       },
       {
         "ticker": "WWW",
-        "price": 13.73,
-        "signal": 28.814285714285717
-      },
-      {
-        "ticker": "SUZ",
-        "price": 10.345,
-        "signal": 28
+        "price": null,
+        "signal": 6.035714285714287
       },
       {
         "ticker": "CIM",
-        "price": 12.07,
-        "signal": 28
+        "price": null,
+        "signal": 34
       },
       {
         "ticker": "IPW",
-        "price": 2.3399,
-        "signal": 28
+        "price": null,
+        "signal": 40
       },
       {
         "ticker": "PCTY",
-        "price": 153.64,
-        "signal": 28
+        "price": null,
+        "signal": 3
       },
       {
         "ticker": "AGS",
-        "price": 11.545,
-        "signal": 28
+        "price": null,
+        "signal": 34
       },
       {
         "ticker": "SLVM",
-        "price": 69.28,
-        "signal": 26.724999999999998
+        "price": null,
+        "signal": -11.187499999999995
       },
       {
         "ticker": "SFM",
-        "price": 79.16,
-        "signal": 25.70909090909091
+        "price": null,
+        "signal": -10.29090909090909
       },
       {
         "ticker": "PDD",
-        "price": 142.8,
-        "signal": 25.090175394001015
+        "price": null,
+        "signal": 1.140830735958275
       },
       {
         "ticker": "SNCR",
-        "price": 9.075,
-        "signal": 24.1421647819063
+        "price": null,
+        "signal": 36.1421647819063
       },
       {
         "ticker": "NKE",
-        "price": 91.75,
-        "signal": 22.67727272727273
+        "price": null,
+        "signal": 33.594545454545454
       },
       {
         "ticker": "NEWT",
-        "price": 13.04,
-        "signal": 22.550000000000004
+        "price": null,
+        "signal": 33.5
       },
       {
         "ticker": "FBK",
-        "price": 35.845,
-        "signal": 22
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "GCT",
-        "price": 32.235,
+        "price": null,
         "signal": 22
       },
       {
         "ticker": "CIFR",
-        "price": 3.9,
-        "signal": 22
+        "price": null,
+        "signal": 45
       },
       {
         "ticker": "EME",
-        "price": 377.33,
+        "price": null,
         "signal": 22
       },
       {
         "ticker": "NTIC",
-        "price": 18.42,
-        "signal": 22
+        "price": null,
+        "signal": -2.5
       },
       {
         "ticker": "RSVR",
-        "price": 8.17,
+        "price": null,
         "signal": 22
       },
       {
         "ticker": "SM",
-        "price": 46.77,
+        "price": null,
         "signal": 22
       },
       {
         "ticker": "CPA",
-        "price": 97.335,
-        "signal": 22
+        "price": null,
+        "signal": -2.5
       },
       {
         "ticker": "PBI",
-        "price": 5.43,
-        "signal": 22
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "UNCRY",
-        "price": 20.08,
-        "signal": 22
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "GOLD",
-        "price": 17.4505,
-        "signal": 22
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "COOP",
-        "price": 81.99,
+        "price": null,
         "signal": 22
       },
       {
         "ticker": "GE",
-        "price": 161.5899,
+        "price": null,
         "signal": 22
       },
       {
         "ticker": "DFIN",
-        "price": 61.19,
-        "signal": 22
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "SPXC",
-        "price": 136.36,
-        "signal": 22
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "VTMX",
-        "price": 32.84,
-        "signal": 22
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "MBIN",
-        "price": 40.8,
+        "price": null,
         "signal": 22
       },
       {
         "ticker": "UMBF",
-        "price": 80.945,
-        "signal": 22
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "OSK",
-        "price": 111.48,
-        "signal": 22
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "PUBM",
-        "price": 21.68,
-        "signal": 22
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "TPH",
-        "price": 38.53,
-        "signal": 22
+        "price": null,
+        "signal": 10
       },
       {
         "ticker": "DDOG",
-        "price": 108.45,
+        "price": null,
         "signal": 22
       },
       {
         "ticker": "BKNG",
-        "price": 3777.75,
-        "signal": 21
+        "price": null,
+        "signal": 9
       },
       {
         "ticker": "MSFT",
-        "price": 424.01,
+        "price": null,
         "signal": 21
       },
       {
         "ticker": "VZ",
-        "price": 41.35,
-        "signal": 20.385714285714286
+        "price": null,
+        "signal": 20.55714285714286
       },
       {
         "ticker": "CHTR",
-        "price": 278.1,
-        "signal": 19.91147727272727
+        "price": null,
+        "signal": 19.864431818181817
       },
       {
         "ticker": "JHG",
-        "price": 32.89,
-        "signal": 19.81666666666667
+        "price": null,
+        "signal": -16.650000000000002
       },
       {
         "ticker": "INTC",
-        "price": 30.7133,
-        "signal": 19.791176470588233
+        "price": null,
+        "signal": 19.93235294117647
       },
       {
         "ticker": "SHIP",
-        "price": 12.31,
-        "signal": 19.325
+        "price": null,
+        "signal": 7.75625
       },
       {
         "ticker": "T",
-        "price": 18.22,
-        "signal": 19.141666666666666
+        "price": null,
+        "signal": 19.091666666666665
       },
       {
         "ticker": "M",
-        "price": 19.045,
-        "signal": 18.966040462427745
+        "price": null,
+        "signal": -4.3294797687861255
       },
       {
         "ticker": "WRK",
-        "price": 53.6,
-        "signal": 18.437499999999993
+        "price": null,
+        "signal": 21.718749999999993
       },
       {
         "ticker": "PRMW",
-        "price": 22.44,
-        "signal": 16.584999999999994
+        "price": null,
+        "signal": 4.5849999999999955
       },
       {
         "ticker": "SN",
-        "price": 77.57,
-        "signal": 16.53181818181819
+        "price": null,
+        "signal": 23.38636363636364
       },
       {
         "ticker": "APTV",
-        "price": 81.95,
-        "signal": 16.090963855421684
+        "price": null,
+        "signal": -1.84397590361446
       },
       {
         "ticker": "POWL",
-        "price": 160.87,
-        "signal": 16
+        "price": null,
+        "signal": -20
       },
       {
         "ticker": "TPC",
-        "price": 20.58,
-        "signal": 16
+        "price": null,
+        "signal": -5.750000000000002
       },
       {
         "ticker": "HAS",
-        "price": 59.78,
+        "price": null,
         "signal": 15.166666666666664
       },
       {
         "ticker": "DBX",
-        "price": 22.465,
-        "signal": 14.860000000000003
+        "price": null,
+        "signal": 2.860000000000004
       },
       {
         "ticker": "PMT",
-        "price": 13.73,
-        "signal": 13.299999999999994
+        "price": null,
+        "signal": -4.700000000000006
       },
       {
         "ticker": "AAPL",
-        "price": 195.87,
-        "signal": 13.14054054054054
+        "price": null,
+        "signal": 13.24189189189189
       },
       {
         "ticker": "TMUS",
-        "price": 180.27,
-        "signal": 13.093298969072164
+        "price": null,
+        "signal": 13.209278350515463
       },
       {
         "ticker": "LDOS",
-        "price": 145.67,
-        "signal": 13.007500000000004
+        "price": null,
+        "signal": 13.202499999999997
       },
       {
         "ticker": "V",
-        "price": 276,
-        "signal": 12.873999999999999
+        "price": null,
+        "signal": 36.160000000000004
       },
       {
         "ticker": "GVA",
-        "price": 60.17,
-        "signal": 12.829999999999998
+        "price": null,
+        "signal": 1.0900000000000034
       },
       {
         "ticker": "AROC",
-        "price": 21.305,
+        "price": null,
         "signal": 12.17500000000001
       },
       {
         "ticker": "BLBD",
-        "price": 54.17,
-        "signal": 11.917187499999999
+        "price": null,
+        "signal": 17.917187499999997
       },
       {
         "ticker": "ZM",
-        "price": 61.6,
-        "signal": 11.347499999999998
+        "price": null,
+        "signal": 34.7175
       },
       {
         "ticker": "COST",
-        "price": 809.89,
-        "signal": 11.282586206896552
+        "price": null,
+        "signal": 11.70735849056604
       },
       {
         "ticker": "WAB",
-        "price": 165.72,
-        "signal": 11.043023255813955
+        "price": null,
+        "signal": -0.28720930232558484
       },
       {
         "ticker": "TYL",
-        "price": 481.84,
-        "signal": 10.674999999999997
+        "price": null,
+        "signal": -1.3250000000000033
       },
       {
         "ticker": "IAG",
-        "price": 3.7867,
-        "signal": 10.543970588235293
+        "price": null,
+        "signal": -1.8147058823529396
       },
       {
         "ticker": "TMHC",
-        "price": 57.16,
-        "signal": 10.50526315789474
+        "price": null,
+        "signal": -0.06578947368420973
       },
       {
         "ticker": "CVLT",
-        "price": 108.79,
-        "signal": 10.289285714285711
+        "price": null,
+        "signal": 19.367857142857144
       },
       {
         "ticker": "PHM",
-        "price": 115.245,
-        "signal": 10.278846153846155
+        "price": null,
+        "signal": -0.8403846153846137
       },
       {
         "ticker": "AEM",
-        "price": 65.92,
-        "signal": 10.228688524590162
+        "price": null,
+        "signal": -13.844999999999999
       },
       {
         "ticker": "ZBRA",
-        "price": 302.77,
-        "signal": 10.222222222222221
+        "price": null,
+        "signal": -1.83666666666667
       },
       {
         "ticker": "SKX",
-        "price": 69.59,
-        "signal": 10.123214285714285
+        "price": null,
+        "signal": -8.803571428571423
       },
       {
         "ticker": "AU",
-        "price": 23.47,
+        "price": null,
         "signal": 10
       },
       {
         "ticker": "HCI",
-        "price": 96.56,
-        "signal": 10
+        "price": null,
+        "signal": 46
       },
       {
         "ticker": "KBCSY",
-        "price": 36.92,
+        "price": null,
         "signal": 10
       },
       {
         "ticker": "EAT",
-        "price": 71.66,
-        "signal": 9.5
+        "price": null,
+        "signal": -18.02894736842105
       },
       {
         "ticker": "LNTH",
-        "price": 81.945,
-        "signal": 9.5
+        "price": null,
+        "signal": -2.5
       },
       {
         "ticker": "PYPL",
-        "price": 63,
-        "signal": 9.3475
+        "price": null,
+        "signal": 8.399999999999999
       },
       {
         "ticker": "GOOG",
-        "price": 177.07,
-        "signal": 9.329999999999998
+        "price": null,
+        "signal": 8.802499999999995
       },
       {
         "ticker": "TRTX",
-        "price": 8.61,
-        "signal": 9.02500000000001
+        "price": null,
+        "signal": -1.1749999999999883
       },
       {
         "ticker": "JNJ",
-        "price": 146.0136,
-        "signal": 9
+        "price": null,
+        "signal": -3
       },
       {
         "ticker": "MCD",
-        "price": 259.99,
+        "price": null,
         "signal": 9
       },
       {
         "ticker": "INSW",
-        "price": 61.29,
-        "signal": 8.849999999999998
+        "price": null,
+        "signal": -27.150000000000002
       },
       {
         "ticker": "CSL",
-        "price": 416.08,
+        "price": null,
         "signal": 8.74112006973197
       },
       {
         "ticker": "OGN",
-        "price": 20.925,
-        "signal": 8.692857142857141
+        "price": null,
+        "signal": -3.071428571428571
       },
       {
         "ticker": "MA",
-        "price": 441.84,
-        "signal": 8.566867744138406
+        "price": null,
+        "signal": 35.041666666666664
       },
       {
         "ticker": "SBUX",
-        "price": 81.16,
-        "signal": 8.10666666666667
+        "price": null,
+        "signal": 7.243333333333334
       },
       {
         "ticker": "OSCR",
-        "price": 19.7,
-        "signal": 7.9750000000000005
+        "price": null,
+        "signal": -3.7325000000000017
       },
       {
         "ticker": "JD",
-        "price": 35.27,
-        "signal": 7.972972972972972
+        "price": null,
+        "signal": -2.010481875090988
       },
       {
         "ticker": "OC",
-        "price": 181.35,
-        "signal": 7.9490909090909145
+        "price": null,
+        "signal": -4.0509090909090855
       },
       {
         "ticker": "GM",
-        "price": 45.6331,
-        "signal": 7.872727272727271
+        "price": null,
+        "signal": 7.879545454545456
       },
       {
         "ticker": "JYNT",
-        "price": 15.14,
-        "signal": 7.378947368421053
+        "price": null,
+        "signal": -4.652631578947368
       },
       {
         "ticker": "GFI",
-        "price": 16.29,
-        "signal": 7.149999999999997
+        "price": null,
+        "signal": -4.850000000000003
       },
       {
         "ticker": "GS",
-        "price": 459.46,
-        "signal": 6.49545454545455
+        "price": null,
+        "signal": -5.258181818181816
       },
       {
         "ticker": "GS",
-        "price": 459.46,
-        "signal": 6.49545454545455
+        "price": null,
+        "signal": -5.258181818181816
       },
       {
         "ticker": "BMI",
-        "price": 188.74,
-        "signal": 5.949999999999996
+        "price": null,
+        "signal": -4.549999999999996
       },
       {
         "ticker": "WING",
-        "price": 408.345,
-        "signal": 5.880309734513274
+        "price": null,
+        "signal": -4.625663716814157
       },
       {
         "ticker": "FIX",
-        "price": 342.32,
-        "signal": 5.104000000000002
+        "price": null,
+        "signal": -6.895999999999998
       },
       {
         "ticker": "MRNA",
-        "price": 142.55,
-        "signal": 5.016807811959902
+        "price": null,
+        "signal": -6.512298387096774
       },
       {
         "ticker": "MS",
-        "price": 97.22,
-        "signal": 4.872340425531917
+        "price": null,
+        "signal": 7.743243243243244
       },
       {
         "ticker": "MS",
-        "price": 97.22,
-        "signal": 4.872340425531917
+        "price": null,
+        "signal": 7.743243243243244
       },
       {
         "ticker": "TSM",
-        "price": 162.92,
-        "signal": 3.6535714285714307
+        "price": null,
+        "signal": 28.14214285714286
       },
       {
         "ticker": "IVR",
-        "price": 9.335,
-        "signal": 3.5
+        "price": null,
+        "signal": -20.500000000000004
       },
       {
         "ticker": "LLY",
-        "price": 833.0062,
-        "signal": 3
+        "price": null,
+        "signal": -3
       },
       {
         "ticker": "COP",
-        "price": 112.27,
+        "price": null,
         "signal": 3
       },
       {
         "ticker": "SLB",
-        "price": 43.475,
-        "signal": 3
+        "price": null,
+        "signal": -3
       },
       {
         "ticker": "HAL",
-        "price": 34.755,
-        "signal": 3
+        "price": null,
+        "signal": -3
       },
       {
         "ticker": "SCCO",
-        "price": 111.85,
-        "signal": 2.237370242214534
+        "price": null,
+        "signal": -10.179930795847751
       },
       {
         "ticker": "F",
-        "price": 12.0764,
-        "signal": 2.1545454545454548
+        "price": null,
+        "signal": -3.7636363636363632
       },
       {
         "ticker": "GRPN",
-        "price": 15.83,
-        "signal": 2.034375
+        "price": null,
+        "signal": 22.478125000000002
       },
       {
         "ticker": "RGA",
-        "price": 204.86,
-        "signal": 1.3065217391304271
+        "price": null,
+        "signal": 13.730434782608691
       },
       {
         "ticker": "TGT",
-        "price": 145.23,
-        "signal": 0.8571428571428568
+        "price": null,
+        "signal": 12.728571428571431
       },
       {
         "ticker": "GRMN",
-        "price": 163.0999,
-        "signal": 0.7437500000000048
+        "price": null,
+        "signal": -11.44374999999999
       },
       {
         "ticker": "KO",
-        "price": 62,
-        "signal": -0.18214285714284983
+        "price": null,
+        "signal": -2.4857142857142844
       },
       {
         "ticker": "GTN",
-        "price": 5.9101,
-        "signal": -0.3875000000000002
+        "price": null,
+        "signal": -0.11562500000000053
       },
       {
         "ticker": "EPC",
-        "price": 39.24,
-        "signal": -0.5083333333333329
+        "price": null,
+        "signal": -0.3250000000000002
       },
       {
         "ticker": "WFC",
-        "price": 58.72,
-        "signal": -1.8231132075471685
+        "price": null,
+        "signal": -2.0471698113207535
       },
       {
         "ticker": "DIS",
-        "price": 103.41,
-        "signal": -1.9746835443037973
+        "price": null,
+        "signal": 10.323417721518986
       },
       {
         "ticker": "BB",
-        "price": 2.77,
-        "signal": -3
+        "price": null,
+        "signal": -15
       },
       {
         "ticker": "ITRI",
-        "price": 108.98,
-        "signal": -3
+        "price": null,
+        "signal": -15
       },
       {
         "ticker": "JPM",
-        "price": 198.69,
-        "signal": -4.058091286307051
+        "price": null,
+        "signal": -15.688796680497923
       },
       {
         "ticker": "NEE",
-        "price": 77.05,
-        "signal": -6.361795774647884
+        "price": null,
+        "signal": -29.889084507042252
       },
       {
         "ticker": "BMA",
-        "price": 60.11,
-        "signal": -7.081443298969072
+        "price": null,
+        "signal": 5.552577319587629
       },
       {
         "ticker": "HMY",
-        "price": 9.18,
-        "signal": -8
+        "price": null,
+        "signal": -20
       },
       {
         "ticker": "ADBE",
-        "price": 457.12,
-        "signal": -9.589106844741233
+        "price": null,
+        "signal": -10.287145242070117
       },
       {
         "ticker": "CRM",
-        "price": 234.44,
-        "signal": -11.39625
+        "price": null,
+        "signal": -12.575624999999999
       },
       {
         "ticker": "NTRS",
-        "price": 85.51,
+        "price": null,
         "signal": -12.572500000000005
       },
       {
         "ticker": "XOM",
-        "price": 117.85,
-        "signal": -12.582142857142852
+        "price": null,
+        "signal": -23.42857142857143
       },
       {
         "ticker": "MRK",
-        "price": 129.845,
-        "signal": -12.87162162162162
+        "price": null,
+        "signal": 12.049180327868843
       },
       {
         "ticker": "PEP",
-        "price": 173.2,
+        "price": null,
         "signal": -13.742372881355934
       },
       {
         "ticker": "BEKE",
-        "price": 17.055,
-        "signal": -15
+        "price": null,
+        "signal": -27.5
       },
       {
         "ticker": "MOD",
-        "price": 95.37,
+        "price": null,
         "signal": -15.5
       },
       {
         "ticker": "MLM",
-        "price": 610.43,
-        "signal": -15.840506329113925
+        "price": null,
+        "signal": -27.840506329113925
       },
       {
         "ticker": "AMZN",
-        "price": 181.175,
-        "signal": -15.8475
+        "price": null,
+        "signal": 8.055937499999999
       },
       {
         "ticker": "MMM",
-        "price": 98.61,
-        "signal": -15.866037735849055
+        "price": null,
+        "signal": -16.151886792452828
       },
       {
         "ticker": "CRBG",
-        "price": 29.16,
-        "signal": -15.955263157894738
+        "price": null,
+        "signal": -27.955263157894738
       },
       {
         "ticker": "C",
-        "price": 62.31,
-        "signal": -16.123943661971833
+        "price": null,
+        "signal": -15.870422535211265
       },
       {
         "ticker": "TSLA",
-        "price": 175,
-        "signal": -17.80059904422158
+        "price": null,
+        "signal": -29.756175540149425
       },
       {
         "ticker": "NTNX",
-        "price": 52.88,
-        "signal": -19.3020719738277
+        "price": null,
+        "signal": -3
       },
       {
         "ticker": "CAT",
-        "price": 362.75,
-        "signal": -19.580377358490566
+        "price": null,
+        "signal": -17.35263157894737
       },
       {
         "ticker": "KALU",
-        "price": 96.01,
+        "price": null,
         "signal": -20
       },
       {
         "ticker": "UNP",
-        "price": 227.41,
-        "signal": -22.423125
+        "price": null,
+        "signal": -10.640625
       },
       {
         "ticker": "CVX",
-        "price": 162.67,
-        "signal": -23.641176470588235
+        "price": null,
+        "signal": -10.064705882352936
       },
       {
         "ticker": "EXC",
-        "price": 37.035,
-        "signal": -24.86
+        "price": null,
+        "signal": -15
       },
       {
         "ticker": "CSCO",
-        "price": 46.055,
-        "signal": -25.635
+        "price": null,
+        "signal": -25.665
       },
       {
         "ticker": "UL",
-        "price": 54.75,
-        "signal": -27
+        "price": null,
+        "signal": -21
       },
       {
         "ticker": "CL",
-        "price": 93.73,
-        "signal": -27.810000000000006
+        "price": null,
+        "signal": -16.236
       },
       {
         "ticker": "DUK",
-        "price": 103.57,
+        "price": null,
         "signal": -27.917307692307684
       },
       {
         "ticker": "PG",
-        "price": 168.35,
-        "signal": -28.266666666666666
+        "price": null,
+        "signal": -4.138888888888892
       },
       {
         "ticker": "AEP",
-        "price": 89.07,
-        "signal": -29.899999999999995
+        "price": null,
+        "signal": -28.863157894736844
       },
       {
         "ticker": "AXP",
-        "price": 235.92,
-        "signal": -29.961
+        "price": null,
+        "signal": -29.575499999999998
       },
       {
         "ticker": "SO",
-        "price": 79.555,
-        "signal": -31.59473684210526
+        "price": null,
+        "signal": -30.015384615384622
       },
       {
         "ticker": "D",
-        "price": 53.78,
+        "price": null,
         "signal": -32.56773399014779
-      },
-      {
-        "ticker": "UNH",
-        "price": 503.1,
-        "signal": -37.76837209302326
-      },
-      {
-        "ticker": "ERO",
-        "price": 22.78,
-        "signal": null
-      },
-      {
-        "ticker": "ITOCY",
-        "price": 92.57,
-        "signal": null
-      },
-      {
-        "ticker": "SGRP",
-        "price": 2.155,
-        "signal": null
-      },
-      {
-        "ticker": "SCBFF",
-        "price": 9.8,
-        "signal": null
-      },
-      {
-        "ticker": "TOELY",
-        "price": 112.2,
-        "signal": null
-      },
-      {
-        "ticker": "PED",
-        "price": 0.91,
-        "signal": null
       }
     ]
   },
   "tradeExecutor": {
     "portfolio": {
-      "cash": 827.2549999999992,
+      "cash": 3982.415,
       "creationDate": "2024-06-05T20:07:17.916Z",
       "stocks": [
         {
@@ -1311,10 +1251,6 @@
         {
           "ticker": "RCL",
           "holdings": 26
-        },
-        {
-          "ticker": "DBD",
-          "holdings": 94
         },
         {
           "ticker": "JAKK",
@@ -1334,11 +1270,11 @@
         },
         {
           "ticker": "OPCH",
-          "holdings": 135
+          "holdings": 137
         },
         {
           "ticker": "GPRK",
-          "holdings": 392
+          "holdings": 395
         },
         {
           "ticker": "TROW",
@@ -1350,11 +1286,11 @@
         },
         {
           "ticker": "GOOS",
-          "holdings": 281
+          "holdings": 288
         },
         {
           "ticker": "HBI",
-          "holdings": 773
+          "holdings": 778
         },
         {
           "ticker": "LAKE",
@@ -1386,7 +1322,7 @@
         },
         {
           "ticker": "ARKO",
-          "holdings": 646
+          "holdings": 649
         },
         {
           "ticker": "FWONK",
@@ -1403,6 +1339,10 @@
         {
           "ticker": "DUOL",
           "holdings": 22
+        },
+        {
+          "ticker": "HTHIY",
+          "holdings": 3
         }
       ]
     }

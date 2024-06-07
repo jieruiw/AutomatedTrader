@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import cors from 'cors';
 import { fileURLToPath } from 'url';
 import express from 'express';
 import Scheduler from './utils/Scheduler.js';
@@ -14,6 +15,7 @@ const rootDir = path.resolve(__dirname, '..');
 const storageDir = path.join(rootDir, 'src/storage');
 const app = express();
 const port = 3000;
+app.use(cors());
 app.use(express.json());
 app.use('/api', router);
 async function initialize() {
@@ -43,8 +45,8 @@ async function initialize() {
             'DUOL', 'BKNG', 'BSIG', 'CLS', 'GPRK', 'IVR', 'ITOCY', 'JHG', 'LMAT', 'M', 'MA', 'AXP', 'MS', 'MLM', 'NTIC', 'OPCH', 'PDD',
             'RSVR', 'SM', 'SGRP', 'ODP', 'WU', 'UPLD', 'VTS', 'APTV', 'EAT', 'CPA', 'DD', 'LNTH', 'PBI', 'UNCRY', 'VEL',
             'ANF', 'GOLD', 'HTHIY', 'COOP', 'MMS', 'SHIP', 'SCBFF', 'TYL', 'MNDY', 'FWONK', 'SPNS', 'CIM', 'DY', 'BMA',
-            'PRMW', 'RBA', 'LPG', 'HUYA', 'OC', 'TOELY', 'CHWY', 'DBX', 'AOSL', 'UNP', 'IDN', 'KBCSY', 'BEKE', 'KD', 'IAG', 'SIG',
-            'SCCO', 'SRDX', 'GOOS', 'NEWT', 'PETQ', 'BWEN', 'GS', 'IPW', 'HL', 'ODD', 'PED', 'ACIC', 'EMBC', 'SRTS',
+            'PRMW', 'LPG', 'HUYA', 'OC', 'TOELY', 'CHWY', 'DBX', 'AOSL', 'UNP', 'IDN', 'KBCSY', 'BEKE', 'KD', 'IAG', 'SIG',
+            'SCCO', 'SRDX', 'GOOS', 'NEWT', 'PETQ', 'BWEN', 'GS', 'IPW', 'HL', 'ODD', 'ACIC', 'EMBC', 'SRTS',
             'SNCR', 'BLBD', 'HBI', 'HMY', 'ITRI', 'SLVM', 'VITL', 'APP', 'ASM', 'DDOG', 'EPC', 'GLDD', 'HY',
             'OGN', 'PMT', 'SN', 'TRTX', 'TPC', 'ARKO', 'SIMO', 'SFM'];
         await scheduler.start(stocks);

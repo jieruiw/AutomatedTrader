@@ -45,7 +45,7 @@ export default class TradeExecutor {
                     const date = new Date();
                 }
             }
-        } else if (signal <= -35) {
+        } else if (signal <= -10) {
             const quantity = this.portfolio.getHoldings(ticker);
             if (quantity > 0) {
                 await this.portfolio.sellStock(ticker, currStockPrice, quantity);

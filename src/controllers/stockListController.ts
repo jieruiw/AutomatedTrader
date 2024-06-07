@@ -36,7 +36,7 @@ const stockListController = {
         const { ticker } = req.params;
         try {
             const price = await DataRetriever.getStockPrice(ticker);
-
+            console.log("Updated price for " + ticker + " is: " + price);
                 StockListManager.getStock(ticker).setPrice(price);
             res.status(200).json({ ticker, price });
         } catch (error) {
@@ -96,6 +96,21 @@ const stockListController = {
         }
     },
 
+    updatePrices: async (req: Request, res: Response) => {
+        try {
+            const stocks = StockListManager.getStocks();
+            for (const stock of stocks) {
+                const ticker = stock.getTicker();
+                const newPrice = await DataRetriever.getStockPrice(ticker);
+                if (newPrice !== null) stock.setPrice(newPrice);
+                console.log("The updated price of " + ticker + " is " + newPrice);
+            }
+            res.status(200).json({ message: 'All stock prices updated successfully' });
+        } catch (error) {
+            res.status(500).json({ error: 'Error updating stock prices: ' + error });
+        }
+    },
+
     run: async (req: Request, res: Response) => {
         try {
             const tradeExecutor = StateManager.getTradeExecutor();
@@ -114,6 +129,7 @@ const stockListController = {
             res.status(500).json({ error: 'Error updating running algorithm: ' + error });
         }
     }
+
 };
 
 export default stockListController;

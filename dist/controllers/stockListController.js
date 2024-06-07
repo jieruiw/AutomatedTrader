@@ -35,6 +35,7 @@ const stockListController = {
         const { ticker } = req.params;
         try {
             const price = await DataRetriever.getStockPrice(ticker);
+            console.log("Updated price for " + ticker + " is: " + price);
             StockListManager.getStock(ticker).setPrice(price);
             res.status(200).json({ ticker, price });
         }
@@ -85,12 +86,29 @@ const stockListController = {
                 stock.setPrice(newPrice);
                 // Assume a function to update the signal, implement as needed
                 const newSignal = await TradingAlgorithm.decision(ticker);
-                stock.setSignal(newSignal);
+                if (newSignal !== null)
+                    stock.setSignal(newSignal);
             }
             res.status(200).json({ message: 'All stocks updated successfully' });
         }
         catch (error) {
             res.status(500).json({ error: 'Error updating stocks: ' + error });
+        }
+    },
+    updatePrices: async (req, res) => {
+        try {
+            const stocks = StockListManager.getStocks();
+            for (const stock of stocks) {
+                const ticker = stock.getTicker();
+                const newPrice = await DataRetriever.getStockPrice(ticker);
+                if (newPrice !== null)
+                    stock.setPrice(newPrice);
+                console.log("The updated price of " + ticker + " is " + newPrice);
+            }
+            res.status(200).json({ message: 'All stock prices updated successfully' });
+        }
+        catch (error) {
+            res.status(500).json({ error: 'Error updating stock prices: ' + error });
         }
     },
     run: async (req, res) => {
@@ -102,7 +120,8 @@ const stockListController = {
                 const newPrice = await DataRetriever.getStockPrice(ticker);
                 stock.setPrice(newPrice);
                 const newSignal = await TradingAlgorithm.decision(ticker);
-                stock.setSignal(newSignal);
+                if (newSignal !== null)
+                    stock.setSignal(newSignal);
                 await tradeExecutor.executeTrade(newSignal, ticker);
             }
             res.status(200).json({ message: 'Algorithm completed' });

@@ -165,24 +165,17 @@ class DataRetriever {
         }
     }
     static async getStockPrice(ticker) {
-        const url = `https://finance.yahoo.com/quote/${ticker}`;
-        try {
-            const response = await axios.get(url);
-            const html = response.data;
-            const $ = cheerio.load(html);
-            // Extract the price from the fin-streamer element
-            const priceElement = $('fin-streamer[data-field="regularMarketPrice"]');
-            const price = priceElement.attr('data-value');
-            if (price) {
-                return parseFloat(price);
-            }
-            else {
-                throw new Error(`No price found for ticker ${ticker}`);
-            }
+        const baseURL = 'https://api.twelvedata.com/price';
+        const params = {
+            symbol: ticker,
+            apikey: this.getAPIKey()
+        };
+        const response = await axios.get(baseURL, { params });
+        if (response.status === 200) {
+            return parseFloat(response.data.price);
         }
-        catch (error) {
-            console.error(`Error fetching stock price for ${ticker}:`, error);
-            throw error;
+        else {
+            throw new Error(`API Error: ${response.data.message}`);
         }
     }
     static getAPIKey() {
@@ -226,7 +219,10 @@ DataRetriever.apiKeys = [
     'c601ec756eed414eab7ef7e839940def',
     '284ca96486f648dab2f5eeec3e6fec63',
     'daa171dbd1a64b19b3dcf3b1cad2ae1a',
-    'f5cf21e46a0542da88bf92e2d09ad075'
+    'f5cf21e46a0542da88bf92e2d09ad075',
+    '25f7408ef2134fd98f99060999667b8f',
+    'c716549e268f42b9baa92865e9d60dba',
+    '036d7f859eda4677b65933901f6556fe'
 ];
 DataRetriever.currKey = 0;
 export default DataRetriever;

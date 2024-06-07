@@ -65,7 +65,8 @@ const portfolioController = {
             const { quantity } = req.body;
             const price = await DataRetriever.getStockPrice(ticker);
             const stock = await tradeExecutor.getPortfolio().buyStock(ticker, price, quantity);
-            const response = { stock, price };
+            const totalCost = price * quantity;
+            const response = { stock, totalCost };
             res.status(200).json(response);
         }
         catch (error) {

@@ -80,6 +80,7 @@ export default class DatabaseManager {
         }
         catch (error) {
             console.error("Error removing stock purchase:", error);
+            throw error;
         }
     }
     static async logTransaction(ticker, date, quantity, price, type) {
@@ -136,7 +137,7 @@ export default class DatabaseManager {
                     throw new Error("Invalid period specified");
             }
             const historicalData = await this.portfolioValues.find({
-                date: { $gte: startDate, $lte: endDate }
+                newDate: { $gte: startDate, $lte: endDate }
             }).toArray();
             console.log("Fetched historical data:", historicalData);
             return historicalData;
