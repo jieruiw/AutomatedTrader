@@ -52,7 +52,6 @@ async function initialize() {
         await scheduler.start(stocks);
     }
     StateManager.setTradeExecutor(tradeExecutor);
-    // await scheduler.manualCheck();
     let portfolioValue = tradeExecutor.getPortfolio().getPortfolioValue();
     await DatabaseManager.logPortfolioValue(new Date(), portfolioValue);
     console.log('Trading application started...');

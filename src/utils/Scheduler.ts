@@ -90,18 +90,4 @@ export default class Scheduler {
             });
         }
     }
-
-    async manualCheck() {
-        const stocks = StockListManager.getStocks();
-        for (const stock of stocks) {
-            try {
-                const ticker = stock.getTicker();
-                await this.generateSignal(ticker);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-    }
-
-
 }

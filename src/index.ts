@@ -63,10 +63,12 @@ async function initialize() {
 
     StateManager.setTradeExecutor(tradeExecutor);
 
-    // await scheduler.manualCheck();
-
     let portfolioValue = tradeExecutor.getPortfolio().getPortfolioValue();
-    await DatabaseManager.logPortfolioValue(new Date(), portfolioValue);
+    let currentDate = new Date();
+    if (currentDate.getDay() >= 1 && currentDate.getDay() <= 5) {
+        await DatabaseManager.logPortfolioValue(currentDate, portfolioValue);
+    }
+
     console.log('Trading application started...');
 
     // Graceful shutdown

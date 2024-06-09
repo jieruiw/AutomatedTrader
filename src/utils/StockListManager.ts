@@ -58,6 +58,7 @@ class StockListManager {
     async updateStockPrices() {
         for (const stock of this.stocks) {
             const price = await DataRetriever.getStockPrice(stock.getTicker());
+            if (price !== null)
             stock.setPrice(price);
         }
     }
