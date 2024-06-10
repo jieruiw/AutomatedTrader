@@ -14,8 +14,12 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 const storageDir = path.join(rootDir, 'src/storage');
 const app = express();
-const port = 3000;
-app.use(cors());
+const port = process.env.PORT || 3000;
+console.log(`Server selected port ${port}`);
+app.use(cors({
+    origin: '*',
+    optionsSuccessStatus: 200
+}));
 app.use(express.json());
 app.use('/api', router);
 async function initialize() {
@@ -67,7 +71,7 @@ async function initialize() {
 }
 initialize().then(() => {
     app.listen(port, () => {
-        console.log(`Server is running on http://localhost:${port}`);
+        console.log(`Server is running on :${port}`);
     });
 }).catch(err => {
     console.error("Error initializing application", err);

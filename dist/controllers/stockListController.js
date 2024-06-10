@@ -78,38 +78,43 @@ const stockListController = {
     },
     // PUT endpoint for updating information (price and signal) for all monitored stocks
     update: async (req, res) => {
-        try {
-            const stocks = StockListManager.getStocks();
-            for (const stock of stocks) {
+        const stocks = StockListManager.getStocks();
+        if (stocks.length === 0) {
+            res.status(500).json({ error: 'Error updating stock prices!' });
+        }
+        for (const stock of stocks) {
+            try {
                 const ticker = stock.getTicker();
                 const newPrice = await DataRetriever.getStockPrice(ticker);
                 stock.setPrice(newPrice);
-                // Assume a function to update the signal, implement as needed
                 const newSignal = await TradingAlgorithm.decision(ticker);
                 if (newSignal !== null)
                     stock.setSignal(newSignal);
             }
-            res.status(200).json({ message: 'All stocks updated successfully' });
+            catch (error) {
+                console.error("Error updating the price and signal of " + stock.getTicker() + ": " + error);
+            }
         }
-        catch (error) {
-            res.status(500).json({ error: 'Error updating stocks: ' + error });
-        }
+        res.status(200).json({ message: 'All stocks updated successfully' });
     },
     updatePrices: async (req, res) => {
-        try {
-            const stocks = StockListManager.getStocks();
-            for (const stock of stocks) {
+        const stocks = StockListManager.getStocks();
+        if (stocks.length === 0) {
+            res.status(500).json({ error: 'Error updating stock prices!' });
+        }
+        for (const stock of stocks) {
+            try {
                 const ticker = stock.getTicker();
                 const newPrice = await DataRetriever.getStockPrice(ticker);
                 if (newPrice !== null)
                     stock.setPrice(newPrice);
                 console.log("The updated price of " + ticker + " is " + newPrice);
             }
-            res.status(200).json({ message: 'All stock prices updated successfully' });
+            catch (error) {
+                console.error("Error updating the price of " + stock.getTicker() + ": " + error);
+            }
         }
-        catch (error) {
-            res.status(500).json({ error: 'Error updating stock prices: ' + error });
-        }
+        res.status(200).json({ message: 'All stock prices updated successfully' });
     },
     run: async (req, res) => {
         try {

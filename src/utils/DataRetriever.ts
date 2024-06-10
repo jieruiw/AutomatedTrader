@@ -43,7 +43,8 @@ export default class DataRetriever {
         'f5cf21e46a0542da88bf92e2d09ad075',
         '25f7408ef2134fd98f99060999667b8f',
         'c716549e268f42b9baa92865e9d60dba',
-        '036d7f859eda4677b65933901f6556fe'
+        '036d7f859eda4677b65933901f6556fe',
+        '5960675319d54d638b63fb3eabcce768'
 
 
     ]
