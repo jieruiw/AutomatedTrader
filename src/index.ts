@@ -19,7 +19,10 @@ const storageDir = path.join(rootDir, 'src/storage');
 
 const app = express();
 const port = 3000;
-app.use(cors());
+app.use(cors({
+    origin: '*',
+    optionsSuccessStatus: 200
+}));
 
 app.use(express.json());
 app.use('/api', router);
