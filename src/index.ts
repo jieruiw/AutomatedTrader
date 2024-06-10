@@ -18,7 +18,7 @@ const rootDir = path.resolve(__dirname, '..');
 const storageDir = path.join(rootDir, 'src/storage');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 app.use(cors({
     origin: '*',
     optionsSuccessStatus: 200
