@@ -2,6 +2,7 @@ import cron from 'node-cron';
 import DataRetriever from './DataRetriever.js';
 import TradingAlgorithm from '../services/TradingAlgorithm.js';
 import StockListManager from "./StockListManager.js";
+import DatabaseManager from "./DatabaseManager";
 
 export default class Scheduler {
 
@@ -84,6 +85,7 @@ export default class Scheduler {
                     console.log("ticker got for: " + ticker);
                     await this.generateSignal(ticker);
                 }
+
             }, {
                 scheduled: true,
                 timezone: "America/Vancouver"
