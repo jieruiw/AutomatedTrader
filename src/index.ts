@@ -9,6 +9,7 @@ import Config from "./utils/Config.js";
 import StateManager from "./utils/StateManager.js";
 import DatabaseManager from "./utils/DatabaseManager.js";
 import router from "./routes/routes.js";
+import StockListManager from "./utils/StockListManager.js";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -30,6 +31,8 @@ app.use(cors({
 app.use(express.json());
 app.use('/api', router);
 
+
+
 async function initialize() {
 
     const filePath = path.join(storageDir, 'state.json');
@@ -38,7 +41,7 @@ async function initialize() {
 
     if (fs.existsSync(filePath)) {
         tradeExecutor = StateManager.deserialize();
-        scheduler.addObserver(tradeExecutor);
+        scheduler.setExecutor(tradeExecutor);
         await scheduler.continue();
 
     } else {
@@ -46,7 +49,7 @@ async function initialize() {
         Config.set(0.25, 0.6, 0.15, 0.04);
         const initialCash = 100000;
         tradeExecutor = new TradeExecutor(initialCash);
-        scheduler.addObserver(tradeExecutor);
+        scheduler.setExecutor(tradeExecutor);
         let stocks = ['CRBG', 'COST', 'WMT', 'NXT', 'TSM', 'ARM', 'TSLA', 'AAPL', 'NVDA', 'MGM', 'MOD', 'GPS', 'AMZN', 'RIVN', 'F', 'MSFT', 'META',
             'GOOG', 'FLNC', 'LLY', 'JPM', 'PG', 'AMD', 'ANET', 'PYPL', 'EXC', 'EA', 'BIIB', 'JD', 'HPQ', 'RCL', 'ARM', 'ANF',
             'CHWY', 'JNJ', 'PFE', 'MRK', 'UNH', 'ABBV', 'HD', 'BAC', 'WBD', 'INTC', 'ADBE', 'CSCO', 'CRM','GS', 'C', 'WFC', 'KO', 'PEP', 'UL', 'CL', 'GE',
@@ -69,13 +72,17 @@ async function initialize() {
 
     StateManager.setTradeExecutor(tradeExecutor);
 
-    let portfolioValue = tradeExecutor.getPortfolio().getPortfolioValue();
+
     let currentDate = new Date();
     if (currentDate.getDay() >= 1 && currentDate.getDay() <= 5) {
+        await StockListManager.updateStockPrices();
+        let portfolioValue = tradeExecutor.getPortfolio().getPortfolioValue();
         await DatabaseManager.logPortfolioValue(currentDate, portfolioValue);
     }
 
     console.log('Trading application started...');
+
+
 
     // Graceful shutdown
     process.on('SIGINT', () => {

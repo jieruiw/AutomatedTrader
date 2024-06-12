@@ -1,4 +1,4 @@
-import { MongoClient, Db, Collection } from 'mongodb';
+import {MongoClient, Db, Collection} from 'mongodb';
 
 export default class DatabaseManager {
     private static client: MongoClient;
@@ -25,13 +25,13 @@ export default class DatabaseManager {
         await this.connect();
         const newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
         try {
-            const existingEntry = await this.portfolioValues.findOne({ newDate });
-            if (!existingEntry) {
-                await this.portfolioValues.insertOne({ newDate, value });
-                console.log("Logged portfolio value:", { newDate, value });
-            } else {
-                console.log("Portfolio value for today already exists.");
-            }
+            await this.portfolioValues.updateOne(
+                {newDate},
+                {$set: {value}},
+                {upsert: true}
+            );
+            console.log("Logged portfolio value:", {newDate, value});
+
         } catch (error) {
             console.error("Error logging portfolio value:", error);
         }
@@ -40,7 +40,7 @@ export default class DatabaseManager {
     static async logStockPurchase(ticker: string, date: Date, price: number, quantity: number) {
         await this.connect();
         try {
-            const existingEntries = await this.stockPurchases.find({ ticker }).toArray();
+            const existingEntries = await this.stockPurchases.find({ticker}).toArray();
             let totalQuantity = quantity;
             let totalCost = price * quantity;
             let oldestDate = date;
@@ -55,7 +55,7 @@ export default class DatabaseManager {
                 }
 
                 // Delete existing entries
-                await this.stockPurchases.deleteMany({ ticker });
+                await this.stockPurchases.deleteMany({ticker});
             }
 
             const weightedAveragePrice = totalCost / totalQuantity;
@@ -76,7 +76,7 @@ export default class DatabaseManager {
     static async reduceStockPurchase(ticker: string, date: Date, quantity: number) {
         await this.connect();
         try {
-            const existingEntry = await this.stockPurchases.findOne({ ticker });
+            const existingEntry = await this.stockPurchases.findOne({ticker});
             if (!existingEntry) {
                 throw new Error(`No stock found for ticker: ${ticker}`);
             }
@@ -85,13 +85,13 @@ export default class DatabaseManager {
 
             if (newQuantity > 0) {
                 await this.stockPurchases.updateOne(
-                    { ticker },
-                    { $set: { quantity: newQuantity } }
+                    {ticker},
+                    {$set: {quantity: newQuantity}}
                 );
-                console.log("Updated stock purchase:", { ticker, date: existingEntry.date, quantity: newQuantity });
+                console.log("Updated stock purchase:", {ticker, date: existingEntry.date, quantity: newQuantity});
             } else {
-                await this.stockPurchases.deleteOne({ ticker });
-                console.log("Removed stock purchase:", { ticker, date: existingEntry.date });
+                await this.stockPurchases.deleteOne({ticker});
+                console.log("Removed stock purchase:", {ticker, date: existingEntry.date});
             }
         } catch (error) {
             console.error("Error removing stock purchase:", error);
@@ -102,8 +102,8 @@ export default class DatabaseManager {
     static async logTransaction(ticker: string, date: Date, quantity: number, price: number, type: "buy" | "sell") {
         await this.connect();
         try {
-            await this.transactions.insertOne({ ticker, date, quantity, price, type });
-            console.log("Logged transaction:", { ticker, date, quantity, price, type });
+            await this.transactions.insertOne({ticker, date, quantity, price, type});
+            console.log("Logged transaction:", {ticker, date, quantity, price, type});
         } catch (error) {
             console.error("Error logging transaction:", error);
         }
@@ -113,7 +113,7 @@ export default class DatabaseManager {
     static async getTransactions() {
         await this.connect();
         try {
-            const transactions = await this.transactions.find().sort({ date: -1 }).limit(50).toArray();
+            const transactions = await this.transactions.find().sort({date: -1}).limit(50).toArray();
             console.log("Fetched transactions:", transactions);
             return transactions;
         } catch (error) {
@@ -155,7 +155,7 @@ export default class DatabaseManager {
             }
 
             const historicalData = await this.portfolioValues.find({
-                newDate: { $gte: startDate, $lte: endDate }
+                newDate: {$gte: startDate, $lte: endDate}
             }).toArray();
 
             console.log("Fetched historical data:", historicalData);
@@ -170,7 +170,7 @@ export default class DatabaseManager {
     static async getBookValue(ticker: string) {
         await this.connect();
         try {
-            const stock = await this.stockPurchases.findOne({ ticker });
+            const stock = await this.stockPurchases.findOne({ticker});
             if (stock) {
                 console.log("Fetched book value:", stock.price);
                 return stock.price;
@@ -191,7 +191,6 @@ export default class DatabaseManager {
             console.log("MongoDB connection closed");
         }
     }
-
 
 
 }

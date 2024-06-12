@@ -9,6 +9,7 @@ import Config from "./utils/Config.js";
 import StateManager from "./utils/StateManager.js";
 import DatabaseManager from "./utils/DatabaseManager.js";
 import router from "./routes/routes.js";
+import StockListManager from "./utils/StockListManager.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
@@ -56,9 +57,10 @@ async function initialize() {
         await scheduler.start(stocks);
     }
     StateManager.setTradeExecutor(tradeExecutor);
-    let portfolioValue = tradeExecutor.getPortfolio().getPortfolioValue();
     let currentDate = new Date();
     if (currentDate.getDay() >= 1 && currentDate.getDay() <= 5) {
+        await StockListManager.updateStockPrices();
+        let portfolioValue = tradeExecutor.getPortfolio().getPortfolioValue();
         await DatabaseManager.logPortfolioValue(currentDate, portfolioValue);
     }
     console.log('Trading application started...');

@@ -1,33 +1,19 @@
 import cron from 'node-cron';
-import DataRetriever from './DataRetriever.js';
 import TradingAlgorithm from '../services/TradingAlgorithm.js';
 import StockListManager from "./StockListManager.js";
+import TradeExecutor from "../services/TradeExecutor";
 import DatabaseManager from "./DatabaseManager";
 
 export default class Scheduler {
 
-    //TODO: Ensure that failed analysis and other exceptions are thrown all the way to this point, where this section of
-    // the program retries the analysis at a later time.
+    private executor: TradeExecutor | null = null;
 
-    private observers: any[];
-
-    constructor() {
-        this.observers = [];
+    setExecutor(tradeExecutor: TradeExecutor) {
+        this.executor = tradeExecutor;
     }
 
-
-    addObserver(observer: any) {
-        this.observers.push(observer);
-    }
-
-    removeObserver(observer: any) {
-        this.observers = this.observers.filter(obs => obs !== observer);
-    }
-
-    notifyObservers(signal: number, ticker: string) {
-        for (const observer of this.observers) {
-            observer.update(signal, ticker);
-        }
+    notifyExecutor(signal: number, ticker: string) {
+        this.executor?.update(signal, ticker);
     }
 
     //todo: implement a manual stock check button
@@ -35,18 +21,11 @@ export default class Scheduler {
     async generateSignal(ticker: string) {
         try {
             const signal = await TradingAlgorithm.decision(ticker);
-            this.notifyObservers(signal, ticker);
+            this.notifyExecutor(signal, ticker);
         } catch (error) {
                 throw error;
         }
     }
-
-
-
-    async delay(ms: number | undefined) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
 
 
     async start(stocks: string[]) {
@@ -63,8 +42,11 @@ export default class Scheduler {
 
 
     async continue() {
-        cron.schedule('*/20 * * * 1-5', async () => {
+        cron.schedule('*/20 6-13 * * 1-5', async () => {
             await StockListManager.updateStockPrices();
+            const value = this.executor!.getPortfolio().getPortfolioValue();
+            const date = new Date();
+            await DatabaseManager.logPortfolioValue(date, value);
         }, {
             scheduled: true,
             timezone: "America/Vancouver"
@@ -92,4 +74,6 @@ export default class Scheduler {
             });
         }
     }
+
+
 }
