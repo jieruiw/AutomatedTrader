@@ -1,6 +1,6 @@
 # Automated Trader
 
-Automated Trader is a Node.js project that implements a stock trading strategy using real-time and historical data. The project currently includes functionality for retrieving Zacks Rank data, managing a portfolio, and executing trades based on a trading algorithm.
+Automated Trader is a Node.js project that implements a stock trading strategy using real-time and historical data. The project currently includes functionality for retrieving 18 sources of real-time data, executing trades automatically based on the data through a trading algorithm, and managing a portfolio.
 
 ## Table of Contents
 
