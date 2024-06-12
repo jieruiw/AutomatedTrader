@@ -1,8 +1,8 @@
 import cron from 'node-cron';
 import TradingAlgorithm from '../services/TradingAlgorithm.js';
 import StockListManager from "./StockListManager.js";
-import TradeExecutor from "../services/TradeExecutor";
-import DatabaseManager from "./DatabaseManager";
+import TradeExecutor from "../services/TradeExecutor.js";
+import DatabaseManager from "./DatabaseManager.js";
 
 export default class Scheduler {
 
