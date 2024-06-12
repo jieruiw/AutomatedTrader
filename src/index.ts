@@ -72,14 +72,6 @@ async function initialize() {
 
     StateManager.setTradeExecutor(tradeExecutor);
 
-
-    let currentDate = new Date();
-    if (currentDate.getDay() >= 1 && currentDate.getDay() <= 5) {
-        await StockListManager.updateStockPrices();
-        let portfolioValue = tradeExecutor.getPortfolio().getPortfolioValue();
-        await DatabaseManager.logPortfolioValue(currentDate, portfolioValue);
-    }
-
     console.log('Trading application started...');
 
 

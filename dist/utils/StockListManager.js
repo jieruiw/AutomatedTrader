@@ -53,6 +53,7 @@ class StockListManager {
             const price = await DataRetriever.getStockPrice(stock.getTicker());
             if (price !== null)
                 stock.setPrice(price);
+            console.log("updated price of " + stock.getTicker() + " is " + price);
         }
     }
     toJSON() {

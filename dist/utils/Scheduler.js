@@ -1,33 +1,26 @@
 import cron from 'node-cron';
 import TradingAlgorithm from '../services/TradingAlgorithm.js';
 import StockListManager from "./StockListManager.js";
+import DatabaseManager from "./DatabaseManager.js";
 export default class Scheduler {
     constructor() {
-        this.observers = [];
+        this.executor = null;
     }
-    addObserver(observer) {
-        this.observers.push(observer);
+    setExecutor(tradeExecutor) {
+        this.executor = tradeExecutor;
     }
-    removeObserver(observer) {
-        this.observers = this.observers.filter(obs => obs !== observer);
-    }
-    notifyObservers(signal, ticker) {
-        for (const observer of this.observers) {
-            observer.update(signal, ticker);
-        }
+    notifyExecutor(signal, ticker) {
+        this.executor?.update(signal, ticker);
     }
     //todo: implement a manual stock check button
     async generateSignal(ticker) {
         try {
             const signal = await TradingAlgorithm.decision(ticker);
-            this.notifyObservers(signal, ticker);
+            this.notifyExecutor(signal, ticker);
         }
         catch (error) {
             throw error;
         }
-    }
-    async delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
     }
     async start(stocks) {
         for (let i = 0; i < stocks.length; i++) {
@@ -41,8 +34,11 @@ export default class Scheduler {
         await this.continue();
     }
     async continue() {
-        cron.schedule('*/20 * * * 1-5', async () => {
+        cron.schedule('*/20 6-13 * * 1-5', async () => {
             await StockListManager.updateStockPrices();
+            const value = this.executor.getPortfolio().getPortfolioValue();
+            const date = new Date();
+            await DatabaseManager.logPortfolioValue(date, value);
         }, {
             scheduled: true,
             timezone: "America/Vancouver"

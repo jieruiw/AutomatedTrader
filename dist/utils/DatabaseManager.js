@@ -16,14 +16,8 @@ export default class DatabaseManager {
         await this.connect();
         const newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
         try {
-            const existingEntry = await this.portfolioValues.findOne({ newDate });
-            if (!existingEntry) {
-                await this.portfolioValues.insertOne({ newDate, value });
-                console.log("Logged portfolio value:", { newDate, value });
-            }
-            else {
-                console.log("Portfolio value for today already exists.");
-            }
+            await this.portfolioValues.updateOne({ newDate }, { $set: { value } }, { upsert: true });
+            console.log("Logged portfolio value:", { newDate, value });
         }
         catch (error) {
             console.error("Error logging portfolio value:", error);

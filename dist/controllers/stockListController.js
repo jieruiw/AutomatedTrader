@@ -127,7 +127,7 @@ const stockListController = {
                 const newSignal = await TradingAlgorithm.decision(ticker);
                 if (newSignal !== null)
                     stock.setSignal(newSignal);
-                await tradeExecutor.executeTrade(newSignal, ticker);
+                await tradeExecutor.update(newSignal, ticker);
             }
             res.status(200).json({ message: 'Algorithm completed' });
         }
