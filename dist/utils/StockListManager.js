@@ -61,13 +61,14 @@ class StockListManager {
             stocks: this.stocks.map(stock => ({
                 ticker: stock.getTicker(),
                 price: stock.getPrice(),
-                signal: stock.getSignal()
+                signal: stock.getSignal(),
+                logo: stock.getImage()
             }))
         };
     }
     fromJSON(json) {
         const instance = StockListManager.getInstance();
-        instance.stocks = json.stocks.map((stockData) => new Stock(stockData.ticker, stockData.price, stockData.signal));
+        instance.stocks = json.stocks.map((stockData) => new Stock(stockData.ticker, stockData.price, stockData.signal, stockData.logo));
         return instance;
     }
 }

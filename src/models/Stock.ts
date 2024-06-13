@@ -4,10 +4,11 @@ public price: number;
 public signal: number| null = null;
 public image: string | null = null;
 
-    constructor(ticker: string, price: number, signal?: number) {
+    constructor(ticker: string, price: number, signal?: number, logo?: string) {
         this.ticker = ticker;
         this.price = price;
         if (signal) this.signal = signal;
+        if (logo) this.image = logo;
 
     }
 
