@@ -1,6 +1,7 @@
 export default class Stock {
     constructor(ticker, price, signal) {
         this.signal = null;
+        this.image = null;
         this.ticker = ticker;
         this.price = price;
         if (signal)
@@ -20,5 +21,11 @@ export default class Stock {
     }
     setPrice(price) {
         this.price = price;
+    }
+    getImage() {
+        return this.image;
+    }
+    setImage(image) {
+        this.image = image;
     }
 }

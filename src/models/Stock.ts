@@ -2,6 +2,7 @@ export default class Stock {
 private readonly ticker: string;
 public price: number;
 public signal: number| null = null;
+public image: string | null = null;
 
     constructor(ticker: string, price: number, signal?: number) {
         this.ticker = ticker;
@@ -32,4 +33,13 @@ public signal: number| null = null;
         this.price = price;
     }
 
+
+
+    getImage(): string | null {
+        return this.image;
+    }
+
+    setImage(image: string): void {
+        this.image = image;
+    }
 }

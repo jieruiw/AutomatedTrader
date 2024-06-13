@@ -76,201 +76,215 @@ export default class DataRetriever {
     }
 
 
+    static async getPriceTargets(ticker: string): Promise<PriceTargets> {
+        try {
+            const response = await axios.get('https://finance.yahoo.com/quote/' + ticker);
+            const html = response.data;
+            const $ = cheerio.load(html);
 
-static async getPriceTargets(ticker: string): Promise<PriceTargets> {
-    try {
-        const response = await axios.get('https://finance.yahoo.com/quote/' + ticker);
-        const html = response.data;
-        const $ = cheerio.load(html);
+            const low = $('.lowLabel .price').text().trim();
+            const average = $('.average .price').text().trim();
+            const current = $('.current .price').text().trim();
+            const high = $('.highLabel .price').text().trim();
 
-        const low = $('.lowLabel .price').text().trim();
-        const average = $('.average .price').text().trim();
-        const current = $('.current .price').text().trim();
-        const high = $('.highLabel .price').text().trim();
+            const priceTargets: PriceTargets = {
+                low: parseFloat(low.replace(',', '')),
+                average: parseFloat(average.replace(',', '')),
+                current: parseFloat(current.replace(',', '')),
+                high: parseFloat(high.replace(',', '')),
+            };
 
-        const priceTargets: PriceTargets = {
-            low: parseFloat(low.replace(',', '')),
-            average: parseFloat(average.replace(',', '')),
-            current: parseFloat(current.replace(',', '')),
-            high: parseFloat(high.replace(',', '')),
+            priceTargets.low = parseFloat(low);
+            priceTargets.average = parseFloat(average);
+            priceTargets.current = parseFloat(current);
+            priceTargets.high = parseFloat(high);
+
+            return priceTargets;
+        } catch (error) {
+            console.error(`Error fetching price targets for ${ticker}:`, error);
+            throw new Error(`Error fetching price targets for ${ticker}!`);
+        }
+    }
+
+
+    static async getSMA(ticker: string, time: number) {
+        const baseURL = 'https://api.twelvedata.com/sma';
+        const params = {
+            symbol: ticker,
+            interval: '1day',
+            apikey: this.getAPIKey(),
+            outputsize: 10,
+            time_period: time
         };
 
-        priceTargets.low = parseFloat(low);
-        priceTargets.average = parseFloat(average);
-        priceTargets.current = parseFloat(current);
-        priceTargets.high = parseFloat(high);
 
-        return priceTargets;
-    } catch (error) {
-        console.error(`Error fetching price targets for ${ticker}:`, error);
-        throw new Error(`Error fetching price targets for ${ticker}!`);
+        const response = await axios.get(baseURL, {params});
+
+        if (response.status === 200 && response.data.status === "ok") {
+            return response.data.values.map((item: { datetime: any; sma: string; }) => ({
+                datetime: item.datetime,
+                sma: parseFloat(item.sma)
+            }));
+        } else {
+            throw new Error(`API Error: ${response.data.message}`);
+        }
     }
-}
 
 
-static async getSMA(ticker: string, time: number) {
-    const baseURL = 'https://api.twelvedata.com/sma';
-    const params = {
-        symbol: ticker,
-        interval: '1day',
-        apikey: this.getAPIKey(),
-        outputsize: 10,
-        time_period: time
-    };
+    static async getEMA(ticker: string, time: number) {
+        const baseURL = 'https://api.twelvedata.com/ema';
+        const params = {
+            symbol: ticker,
+            interval: '1day',
+            apikey: this.getAPIKey(),
+            outputsize: 10,
+            time_period: time
+        };
 
 
-    const response = await axios.get(baseURL, {params});
+        const response = await axios.get(baseURL, {params});
 
-    if (response.status === 200 && response.data.status === "ok") {
-        return response.data.values.map((item: { datetime: any; sma: string; }) => ({
-            datetime: item.datetime,
-            sma: parseFloat(item.sma)
-        }));
-    } else {
-        throw new Error(`API Error: ${response.data.message}`);
+        if (response.status === 200 && response.data.status === "ok") {
+            return response.data.values.map((item: { datetime: any; ema: string; }) => ({
+                datetime: item.datetime,
+                ema: parseFloat(item.ema)
+            }));
+        } else {
+            throw new Error(`API Error: ${response.data.message}`);
+        }
     }
-}
+
+    static async getRSI(ticker: string) {
+        const baseURL = 'https://api.twelvedata.com/rsi';
+        const params = {
+            symbol: ticker,
+            interval: '1day',
+            apikey: this.getAPIKey()
+        };
 
 
-static async getEMA(ticker: string, time: number) {
-    const baseURL = 'https://api.twelvedata.com/ema';
-    const params = {
-        symbol: ticker,
-        interval: '1day',
-        apikey: this.getAPIKey(),
-        outputsize: 10,
-        time_period: time
-    };
+        const response = await axios.get(baseURL, {params});
 
-
-    const response = await axios.get(baseURL, {params});
-
-    if (response.status === 200 && response.data.status === "ok") {
-        return response.data.values.map((item: { datetime: any; ema: string; }) => ({
-            datetime: item.datetime,
-            ema: parseFloat(item.ema)
-        }));
-    } else {
-        throw new Error(`API Error: ${response.data.message}`);
+        if (response.status === 200 && response.data.status === "ok") {
+            return response.data.values.map((item: { datetime: any; rsi: string; }) => ({
+                datetime: item.datetime,
+                rsi: parseFloat(item.rsi)
+            }));
+        } else {
+            throw new Error(`API Error: ${response.data.message}`);
+        }
     }
-}
-
-static async getRSI(ticker: string) {
-    const baseURL = 'https://api.twelvedata.com/rsi';
-    const params = {
-        symbol: ticker,
-        interval: '1day',
-        apikey: this.getAPIKey()
-    };
 
 
-    const response = await axios.get(baseURL, {params});
+    static async getMACD(ticker: string) {
+        const baseURL = 'https://api.twelvedata.com/macd';
+        const params = {
+            symbol: ticker,
+            interval: '1day',
+            apikey: this.getAPIKey()
+        };
 
-    if (response.status === 200 && response.data.status === "ok") {
-        return response.data.values.map((item: { datetime: any; rsi: string; }) => ({
-            datetime: item.datetime,
-            rsi: parseFloat(item.rsi)
-        }));
-    } else {
-        throw new Error(`API Error: ${response.data.message}`);
+
+        const response = await axios.get(baseURL, {params});
+
+        if (response.status === 200 && response.data.status === "ok") {
+            return response.data.values.map((item: {
+                datetime: any;
+                macd: string;
+                macd_signal: string;
+                macd_hist: string;
+            }) => ({
+                datetime: item.datetime,
+                macd: parseFloat(item.macd),
+                macd_signal: parseFloat(item.macd_signal),
+                macd_hist: parseFloat(item.macd_hist)
+            }));
+        } else {
+            throw new Error(`API Error: ${response.data.message}`);
+        }
     }
-}
 
 
-static async getMACD(ticker: string) {
-    const baseURL = 'https://api.twelvedata.com/macd';
-    const params = {
-        symbol: ticker,
-        interval: '1day',
-        apikey: this.getAPIKey()
-    };
+    static async getBBands(ticker: string) {
+        const baseURL = "https://api.twelvedata.com/bbands";
+        const params = {
+            symbol: ticker,
+            interval: "1day",
+            apikey: this.getAPIKey()
+        };
 
-
-    const response = await axios.get(baseURL, {params});
-
-    if (response.status === 200 && response.data.status === "ok") {
-        return response.data.values.map((item: {
-            datetime: any;
-            macd: string;
-            macd_signal: string;
-            macd_hist: string;
-        }) => ({
-            datetime: item.datetime,
-            macd: parseFloat(item.macd),
-            macd_signal: parseFloat(item.macd_signal),
-            macd_hist: parseFloat(item.macd_hist)
-        }));
-    } else {
-        throw new Error(`API Error: ${response.data.message}`);
+        const response = await axios.get(baseURL, {params});
+        if (response.status === 200 && response.data.status === "ok") {
+            return response.data.values.map((item: {
+                datetime: any;
+                upper_band: string;
+                middle_band: string;
+                lower_band: string;
+            }) => ({
+                datetime: item.datetime,
+                upper_band: parseFloat(item.upper_band),
+                middle_band: parseFloat(item.middle_band),
+                lower_band: parseFloat(item.lower_band)
+            }));
+        } else {
+            throw new Error(`API Error: ${response.data.message}`);
+        }
     }
-}
 
 
-static async getBBands(ticker: string) {
-    const baseURL = "https://api.twelvedata.com/bbands";
-    const params = {
-        symbol: ticker,
-        interval: "1day",
-        apikey: this.getAPIKey()
-    };
+    static async getOBV(ticker: string) {
+        const baseURL = "https://api.twelvedata.com/obv";
+        const params = {
+            symbol: ticker,
+            interval: "1day",
+            apikey: this.getAPIKey()
+        };
 
-    const response = await axios.get(baseURL, {params});
-    if (response.status === 200 && response.data.status === "ok") {
-        return response.data.values.map((item: {
-            datetime: any;
-            upper_band: string;
-            middle_band: string;
-            lower_band: string;
-        }) => ({
-            datetime: item.datetime,
-            upper_band: parseFloat(item.upper_band),
-            middle_band: parseFloat(item.middle_band),
-            lower_band: parseFloat(item.lower_band)
-        }));
-    } else {
-        throw new Error(`API Error: ${response.data.message}`);
+        const response = await axios.get(baseURL, {params});
+        if (response.status === 200 && response.data.status === "ok") {
+            return response.data.values.map((item: { datetime: any; obv: string; }) => ({
+                datetime: item.datetime,
+                obv: parseFloat(item.obv)
+            }));
+        } else {
+            throw new Error(`API Error: ${response.data.message}`);
+        }
     }
-}
 
+    static async getLogo(ticker: string): Promise<string> {
+        const baseURL = "https://api.api-ninjas.com/v1/logo";
+        const headers = {
+            'X-Api-Key': 'C3wScVtQ3feEJoa173dXrQ==MXpR3GVluHFye9mi'
+        };
+        const params = {ticker};
 
-static async getOBV(ticker: string) {
-    const baseURL = "https://api.twelvedata.com/obv";
-    const params = {
-        symbol: ticker,
-        interval: "1day",
-        apikey: this.getAPIKey()
-    };
-
-    const response = await axios.get(baseURL, {params});
-    if (response.status === 200 && response.data.status === "ok") {
-        return response.data.values.map((item: { datetime: any; obv: string; }) => ({
-            datetime: item.datetime,
-            obv: parseFloat(item.obv)
-        }));
-    } else {
-        throw new Error(`API Error: ${response.data.message}`);
+        const response = await axios.get(baseURL, {headers, params});
+        if (response.status === 200 && response.data.length > 0) {
+            return response.data[0].image;
+        } else {
+            throw new Error(`API Error: ${response.data.message}`);
+        }
     }
-}
 
-static async getStockPrice(ticker: string): Promise<number> {
-    const baseURL = 'https://api.twelvedata.com/price';
-    const params = {
-        symbol: ticker,
-        apikey: this.getAPIKey()
-    };
+    static async getStockPrice(ticker: string): Promise<number> {
+        const baseURL = 'https://api.twelvedata.com/price';
+        const params = {
+            symbol: ticker,
+            apikey: this.getAPIKey()
+        };
 
-    const response = await axios.get(baseURL, {params});
+        const response = await axios.get(baseURL, {params});
 
-    if (response.status === 200) {
-        return parseFloat(response.data.price);
-    } else {
-        throw new Error(`API Error: ${response.data.message}`);
+        if (response.status === 200) {
+            return parseFloat(response.data.price);
+        } else {
+            throw new Error(`API Error: ${response.data.message}`);
+        }
     }
-}
 
 
     private static getAPIKey(): string {
-        const ret: string =  this.apiKeys[this.currKey];
+        const ret: string = this.apiKeys[this.currKey];
         if (this.currKey < this.apiKeys.length - 1) {
             this.currKey++;
         } else {
@@ -278,7 +292,7 @@ static async getStockPrice(ticker: string): Promise<number> {
         }
 
         return ret;
-}
+    }
 
 
 }

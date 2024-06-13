@@ -41,7 +41,6 @@ async function initialize() {
 
     if (fs.existsSync(filePath)) {
         tradeExecutor = StateManager.deserialize();
-        scheduler.setExecutor(tradeExecutor);
         await scheduler.continue();
 
     } else {
@@ -49,7 +48,6 @@ async function initialize() {
         Config.set(0.25, 0.6, 0.15, 0.04);
         const initialCash = 100000;
         tradeExecutor = new TradeExecutor(initialCash);
-        scheduler.setExecutor(tradeExecutor);
         let stocks = ['CRBG', 'COST', 'WMT', 'NXT', 'TSM', 'ARM', 'TSLA', 'AAPL', 'NVDA', 'MGM', 'MOD', 'GPS', 'AMZN', 'RIVN', 'F', 'MSFT', 'META',
             'GOOG', 'FLNC', 'LLY', 'JPM', 'PG', 'AMD', 'ANET', 'PYPL', 'EXC', 'EA', 'BIIB', 'JD', 'HPQ', 'RCL', 'ARM', 'ANF',
             'CHWY', 'JNJ', 'PFE', 'MRK', 'UNH', 'ABBV', 'HD', 'BAC', 'WBD', 'INTC', 'ADBE', 'CSCO', 'CRM','GS', 'C', 'WFC', 'KO', 'PEP', 'UL', 'CL', 'GE',

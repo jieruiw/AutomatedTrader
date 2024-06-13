@@ -3,6 +3,7 @@ import StockListManager from '../utils/StockListManager.js';
 import DataRetriever from '../utils/DataRetriever.js';
 import TradingAlgorithm from "../services/TradingAlgorithm.js";
 import StateManager from "../utils/StateManager.js";
+import stockListManager from "../utils/StockListManager.js";
 
 const stockListController = {
     // GET endpoint for getting all monitored stocks
@@ -138,8 +139,35 @@ const stockListController = {
         } catch (error) {
             res.status(500).json({error: 'Error updating running algorithm: ' + error});
         }
-    }
+    },
 
+    getLogo: async (req: Request, res: Response) => {
+        const {ticker} = req.params;
+        try {
+
+            const stock = stockListManager.getStock(ticker);
+
+            if (!stock) {
+                return res.status(404).json({ error: 'Stock not found' });
+            }
+
+            let logo: string | null = stock.getImage();
+
+            if (logo === null) {
+                logo = await DataRetriever.getLogo(ticker);
+                if (logo) {
+                    stock.setImage(logo);
+                } else {
+                    return res.status(404).json({ error: 'Logo not found' });
+                }
+            }
+
+
+            res.status(200).json(logo);
+        } catch (error) {
+            res.status(500).json({error: 'Error fetching logo for ' + ticker + ": "+  error});
+        }
+    }
 };
 
 export default stockListController;

@@ -164,6 +164,20 @@ class DataRetriever {
             throw new Error(`API Error: ${response.data.message}`);
         }
     }
+    static async getLogo(ticker) {
+        const baseURL = "https://api.api-ninjas.com/v1/logo";
+        const headers = {
+            'X-Api-Key': 'C3wScVtQ3feEJoa173dXrQ==MXpR3GVluHFye9mi'
+        };
+        const params = { ticker };
+        const response = await axios.get(baseURL, { headers, params });
+        if (response.status === 200 && response.data.length > 0) {
+            return response.data[0].image;
+        }
+        else {
+            throw new Error(`API Error: ${response.data.message}`);
+        }
+    }
     static async getStockPrice(ticker) {
         const baseURL = 'https://api.twelvedata.com/price';
         const params = {

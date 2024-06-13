@@ -34,6 +34,7 @@ router.get('/stocks', stockListController.getStocks);
 router.get('/stocks/price/:ticker', stockListController.getStockPrice);
 // verified works
 router.get('/stocks/score/:ticker', stockListController.getSignal);
+router.get('/stocks/logo/:ticker', stockListController.getLogo);
 // works
 router.post('/stocks/add/:ticker', stockListController.addStock);
 // note: reminder to check if currently holding before deleting, with proper error handling

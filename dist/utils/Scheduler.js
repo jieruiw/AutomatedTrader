@@ -2,15 +2,10 @@ import cron from 'node-cron';
 import TradingAlgorithm from '../services/TradingAlgorithm.js';
 import StockListManager from "./StockListManager.js";
 import DatabaseManager from "./DatabaseManager.js";
+import StateManager from "./StateManager.js";
 export default class Scheduler {
-    constructor() {
-        this.executor = null;
-    }
-    setExecutor(tradeExecutor) {
-        this.executor = tradeExecutor;
-    }
     notifyExecutor(signal, ticker) {
-        this.executor?.update(signal, ticker);
+        StateManager.getTradeExecutor().update(signal, ticker);
     }
     //todo: implement a manual stock check button
     async generateSignal(ticker) {
@@ -36,7 +31,7 @@ export default class Scheduler {
     async continue() {
         cron.schedule('*/20 6-13 * * 1-5', async () => {
             await StockListManager.updateStockPrices();
-            const value = this.executor.getPortfolio().getPortfolioValue();
+            const value = StateManager.getTradeExecutor().getPortfolio().getPortfolioValue();
             const date = new Date();
             await DatabaseManager.logPortfolioValue(date, value);
         }, {
